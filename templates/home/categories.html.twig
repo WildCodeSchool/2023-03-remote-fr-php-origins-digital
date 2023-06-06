@@ -4,44 +4,22 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h2 class="text-center m-3">Categories</h2>
-		<div class="row g-4 m-1">
+	<div class="container mb-2">
+		<h2 class="text-center m-3 mb-3">Categories</h2>
+		<div class="row g-4 justify-content-center">
 			{% for i in 0..3 %}
-			<div class="col-lg-5 offset-lg-1">
-				<div class="card text-center">
-					<a class="stretched-link" href="/"><img src="{{ asset('build/images/Docu_esport.avif') }}" class="card-img-top" alt="images d'un documentaire"></a>
-					<div class="card-img-overlay">
-						<h5 class="card-title text-light">Nouveautés</h5>
+				<div class="col-lg-5">
+					<div class="card text-center bg-image">
+						<a class="stretched-link" href="/"><img src="{{ asset('build/images/Docu_esport.avif') }}" class="card-img-top" alt="images d'un documentaire"></a>
+						<div class="card-img-overlay">
+							<h5 class="card-title text-light bg-text">Nouveautés</h5>
+						</div>
 					</div>
 				</div>
-			</div>
 			{% endfor %}
-
-			{# <div class="col-lg-3">
-				<div class="card text-center">
-					<a class="stretched-link" href="/"><img src="{{ asset('build/images/Docu_esport.avif') }}" class="card-img-top" alt="images d'un documentaire"></a>
-					<div class="card-img-overlay">
-						<h5 class="card-title text-light">Documentaires</h5>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3">
-				<div class="card text-center">
-					<a class="stretched-link" href="/"><img src="{{ asset('build/images/Docu_esport.avif') }}" class="card-img-top" alt="images d'un documentaire"></a>
-					<div class="card-img-overlay">
-						<h5 class="card-title text-light">Bande-annonces</h5>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-3">
-				<div class="card text-center">
-					<a class="stretched-link" href="/"><img src="{{ asset('build/images/Docu_esport.avif') }}" class="card-img-top" alt="images d'un documentaire"></a>
-					<div class="card-img-overlay">
-						<h5 class="card-title text-light">E-sport</h5>
-					</div>
-				</div>
-			</div> #}
+		</div>
+		<div class="card mt-4 mb-4" style="width: 80rem; height: 10rem">
+			<img src="..." class="card-img-top" alt="...">
 		</div>
 	</div>
 {% endblock %}
