@@ -1,4 +1,5 @@
 import videojs from "video.js";
+import './styles/_video.scss';
 
 var player = videojs('myVideo', {
     autoplay: 'muted',
