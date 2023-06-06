@@ -1,0 +1,85 @@
+nav {
+    font-family: montserrat, sans-serif;
+    font-style: normal;
+    font-weight: 550;
+    --bs-secondary-bg: #010D18;
+    --bs-dark-rgb: 1, 13, 24;
+}
+
+nav button.btn.btn-dark {
+    --bs-btn-bg: #010D18;
+    --bs-btn-active-border-color: #010D18;
+    --bs-btn-border-color: #010D18;
+}
+
+nav button.navbar-toggler {
+    --bs-border-width: 0px;
+    --bs-navbar-color: #010D18;
+}
+
+.navbar-toggler span {
+    display: block;
+    background-color: #FFFFFF;
+    height: 3px;
+    width: 25px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    position: relative;
+    left: 0;
+    opacity: 1;
+    transition: all 0.35s ease-out;
+    transform-origin: center left;
+}
+
+.navbar-toggler span.middle-bar {
+    background-color: #FF7002;
+}
+
+.navbar-toggler span:nth-child(1) {
+    transform: translate(0%, 0%) rotate(0deg);
+}
+
+.navbar-toggler span:nth-child(2) {
+    opacity: 1;
+}
+
+.navbar-toggler span:nth-child(3) {
+    transform: translate(0%, 0%) rotate(0deg);
+}
+
+.navbar-toggler span:nth-child(1) {
+    margin-top: 0.3em;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(1) {
+    transform: translate(15%, -33%) rotate(45deg);
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggler:not(.collapsed) span:nth-child(3) {
+    transform: translate(15%, 33%) rotate(-45deg);
+}
+
+.mobileDropdown {
+    top: 82.5px;
+    height: 100vh;
+    padding: 10vh;
+    --bs-gradient: linear-gradient(180deg, rgba(1,13,24,1) 0%, rgba(27,41,54,1) 60%, rgba(124,71,30,1) 100%);
+}
+
+.mobileDropdown a.nav-link{
+    --bs-nav-link-color: rgba(255,255,255, 1);
+    --bs-nav-link-hover-color: rgba(255,255,255, 1);
+}
+
+.mobileDropdown .mobile {
+    padding: 1vh;
+}
+
+.collapsing.mobileDropdown {
+    transition: none !important;
+}
+
