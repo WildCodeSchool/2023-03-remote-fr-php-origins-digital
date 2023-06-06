@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<video
+    id="myVideo"
+    class="video-js"
+    width="1280"
+    height="544"
+    data-setup='{"controls": true, "autoplay": false, "preload": "auto"}'
+    controls
+    playbackRates="0.25,0.5,1,1.5,2.5,3">
+    <source src={{ asset('build/images/21.mp4') }}>
+</video>
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
+        <script src="/assets/video-player.js"></script>
+    {% endblock %}
+{% endblock %}
+
