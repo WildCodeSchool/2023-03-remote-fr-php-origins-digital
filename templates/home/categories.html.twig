@@ -5,7 +5,19 @@
 
 {% block body %}
 	<div class="container mb-2">
-		<h2 class="text-center m-3 mb-3">Categories</h2>
+		<h1 class="text-center m-3 mb-3">Categories</h1>
+	</div>
+	<div class="container-fluid">
+		<nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+			<ol class="breadcrumb ml-2">
+				<li class="breadcrumb-item">
+					<a href="/" class="text-decoration-none link-dark">Acceuil</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Categories</li>
+			</ol>
+		</nav>
+	</div>
+	<div class="container margin-left-2">
 		<div class="row g-4 justify-content-center">
 			{% for i in 0..3 %}
 				<div class="col-lg-5">
