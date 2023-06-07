@@ -1,23 +1,25 @@
 {% extends 'base.html.twig' %}
+
 {% block body %}
-<video
-    id="myVideo"
-    class="video-js"
-    width="1280"
-    height="544"
-    data-setup='{"controls": true, "autoplay": false, "preload": "auto"}'
-    controls
-    playbackRates="0.25,0.5,1,1.5,2.5,3">
-    <source src="/uploads/4K_247.mp4" type="video/mp4"/>
-</video>
+    <div class="container-fluid video">
+        <video
+            id="my-player"
+            class="video-js"
+            controls
+            preload="auto"
+            data-setup='{}'>
+            <source src="/uploads/dance_minecraft.mp4" type="video/mp4"/>
+        </video>
+    </div>
+
     {% block stylesheets %}
+        {{ parent() }}
         {{ encore_entry_link_tags('video') }}
     {% endblock %}
 
     {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-
-        <script src="/assets/video-player.js"></script>
+        {{ parent() }}
+        {{ encore_entry_script_tags('video') }}
     {% endblock %}
 {% endblock %}
 
