@@ -2,48 +2,49 @@ import videojs from "video.js"
 import "video.js/dist/video-js.css"
 import './styles/_video.scss'
 import 'video.js/dist/video'
-import 'videojs-playlist/dist/videojs-playlist'
+import  'videojs-playlist/dist/videojs-playlist.min'
 
-const player = videojs('my-player', {
-  autoplay: 'muted',
-  controls: 'true',
-  loop: false,
-  aspectRatio: '4:3',
-  playbackRates: [0.25,0.5,1,1.5,2,2.5],
+const playerHome = videojs('my-player-home', {
+    autoplay: true,
+    controls: true,
+    loop: false,
+    playbackRates: [0.25,0.5,1,1.5,2,2.5],
+    autoload: true,
 });
 
-player.playlist([{
-  sources: [{
-    src: 'http://media.w3.org/2010/05/sintel/trailer.mp4',
-    type: 'video/mp4'
-  }],
-  poster: 'http://media.w3.org/2010/05/sintel/poster.png'
-}, {
-  sources: [{
-    src: 'http://media.w3.org/2010/05/bunny/trailer.mp4',
-    type: 'video/mp4'
-  }],
-  poster: 'http://media.w3.org/2010/05/bunny/poster.png'
-}, {
-  sources: [{
-    src: 'http://vjs.zencdn.net/v/oceans.mp4',
-    type: 'video/mp4'
-  }],
-  poster: 'http://www.videojs.com/img/poster.jpg'
-}, {
-  sources: [{
-    src: 'http://media.w3.org/2010/05/bunny/movie.mp4',
-    type: 'video/mp4'
-  }],
-  poster: 'http://media.w3.org/2010/05/bunny/poster.png'
-}, {
-  sources: [{
-    src: 'http://media.w3.org/2010/05/video/movie_300.mp4',
-    type: 'video/mp4'
-  }],
-  poster: 'http://media.w3.org/2010/05/video/poster.png'
-}]);
+const player = videojs('my-player', {
+    autoplay: true,
+    controls: true,
+    loop: false,
+    aspectRation: '16:9',
+    playbackRates: [0.25,0.5,1,1.5,2,2.5],
+    autoload: true,
+});
 
-player.playlist.autoadvance(0);
+player.addClass('vjs-matrix');
+document.addEventListener('DOMContentLoaded', () => {
+    const videos = document.getElementsByClassName('testVideo');
+    for (let i = 0; i < videos.length; i++) {
+        const video = videos[i];
+        const playerId = "my-player-" + i;
+
+        video.id = playerId;
+        const player = videojs(playerId);
+
+        player.on("mouseover", () => {
+            player.play();
+            player.el().style.transform = "scale(1.02)";
+            player.el().style.borderRadius = "0";
+        });
+
+        player.on("mouseout", () => {
+            player.pause();
+            player.el().style.transform = "scale(1)";
+            player.el().style.borderRadius = "12px";
+        });
+    }
+});
+
+
 
 

@@ -31,6 +31,7 @@
         "video.js": "^8.3.0",
         "videojs-playlist": "^5.1.0",
         "videojs-sprite-thumbnails": "^2.1.0",
-        "videojs-standard": "^9.0.1"
+        "videojs-standard": "^9.0.1",
+        "videojs-thumbnails": "^1.0.3"
     }
 }
