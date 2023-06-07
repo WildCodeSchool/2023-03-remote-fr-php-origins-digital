@@ -23,7 +23,7 @@ const player = videojs('my-player', {
 
 player.addClass('vjs-matrix');
 document.addEventListener('DOMContentLoaded', () => {
-    const videos = document.getElementsByClassName('testVideo');
+    const videos = document.getElementsByClassName('recommandationVideo');
     for (let i = 0; i < videos.length; i++) {
         const video = videos[i];
         const playerId = "my-player-" + i;
