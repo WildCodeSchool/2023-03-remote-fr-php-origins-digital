@@ -19,8 +19,6 @@ class Video
     #[ORM\Column(length: 45)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $description = null;
 
     #[ORM\Column]
     private ?int $time = null;
@@ -42,6 +40,9 @@ class Video
 
     #[ORM\OneToMany(mappedBy: 'video', targetEntity: ImageVideo::class)]
     private Collection $imageVideos;
+
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $description = null;
 
     public function __construct()
     {
@@ -65,17 +66,6 @@ class Video
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
 
     public function getTime(): ?int
     {
@@ -175,6 +165,18 @@ class Video
                 $imageVideo->setVideo(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

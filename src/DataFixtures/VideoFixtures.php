@@ -50,7 +50,9 @@ class VideoFixtures extends Fixture
             );
             $video = new Video();
             $video->setTitle($videoData['title']);
-            $video->setDescription($faker->paragraph(2));
+            $video->setDescription(implode("", array_map(function ($item) {
+                return '<p>' . $item . '</p>';
+            }, $faker->paragraphs($faker->numberBetween(2, 3)))));
             $video->setTime($videoData['time']);
             $video->setVideoUrl($videoData['video_url']);
             $video->setViews($videoData['views']);
