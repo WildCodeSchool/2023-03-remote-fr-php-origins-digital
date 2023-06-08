@@ -33,7 +33,8 @@
 
         <div class="d-flex justify-content-end w-25">
             <div class="d-flex justify-content-end">
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDropdown"
                         aria-controls="navbarNavDropdown"
                         aria-expanded="true" aria-label="Toggle navigation">
                     <span class="icon-bar top-bar"></span>
@@ -46,8 +47,20 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa-solid fa-star"></i></a>
                     </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#"><i class="fa-solid fa-user"></i></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                           data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            {% if app.user %}
+                                <li><a class="dropdown-item" href=#>Mon compte</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
+                            {% else %}
+                                <li><a class="dropdown-item" href="{{ path('app_login') }}">Me connecter</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire</a></li>
+                            {% endif %}
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -57,20 +70,29 @@
 
 <div class="collapse navbar-collapse fixed-top navbar-dark bg-dark bg-gradient mobileDropdown" id="navbarNavDropdown">
     <ul class="navbar-nav justify-content-center">
-        <li class="nav-item mobile">
-            <a class="nav-link" href="#">Connexion</a>
-        </li>
-        <li class="nav-item mobile">
-            <a class="nav-link" href="#">Inscription</a>
-        </li>
-        <li class="nav-item mobile">
-            <a class="nav-link" href="#">Favoris</a>
-        </li>
-        <li class="nav-item mobile">
-            <a class="nav-link" href="#">Categorie</a>
-        </li>
-        <li class="nav-item mobile">
-            <a class="nav-link" href="#">Genre</a>
-        </li>
+        {% if app.user %}
+            <li class="nav-item mobile">
+                <a class="nav-link" href=#>Mon compte</a></li>
+
+            <li class="nav-item mobile">
+                <a class="nav-link" href="#">Favoris</a>
+            </li>
+            <li class="nav-item mobile">
+                <a class="nav-link" href="#">Categorie</a>
+            </li>
+            <li class="nav-item mobile">
+                <a class="nav-link" href="#">Genre</a>
+            </li>
+            <li class="nav-item mobile">
+                <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a></li>
+            {% else %}
+            <li class="nav-item mobile">
+                <a class="nav-link" href="{{ path('app_login') }}">Me connecter</a>
+            </li>
+            <li class="nav-item mobile">
+                <a class="nav-link" href="{{ path('app_register') }}">M'inscrire</a>
+            </li>
+        {% endif %}
+
     </ul>
 </div>
