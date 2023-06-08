@@ -1,5 +1,8 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
+    globals: 
+        upload_video_dir: 'upload_video_dir'
+        upload_image_dir: 'upload_video_dir'
 
 when@test:
     twig:
