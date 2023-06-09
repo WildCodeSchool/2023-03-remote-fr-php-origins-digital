@@ -34,6 +34,7 @@ const swiperNew = new Swiper(".mySwiper_nouveaute", {
     // Default parameters
     slidesPerView: 2,
     spaceBetween: 10,
+    preload: 'none',
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
