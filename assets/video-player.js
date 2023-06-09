@@ -19,6 +19,7 @@ const player = videojs('my-player', {
     aspectRation: '16:9',
     playbackRates: [0.25,0.5,1,1.5,2,2.5],
     autoload: true,
+    preload: 'none',
 });
 
 player.addClass('vjs-matrix');
