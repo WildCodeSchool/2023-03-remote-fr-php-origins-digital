@@ -12,16 +12,19 @@
 
 		{% block stylesheets %}
 			{{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('swiper') }}
+            {{ encore_entry_link_tags('video') }}
 		{% endblock %}
 
 		{% block javascripts %}
-
 			{{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('swiper') }}
+            {{ encore_entry_script_tags('video') }}
 		{% endblock %}
 	</head>
 	<body>
         {% include '_navbar.html.twig' %}
-		{% block body %}{% endblock %}
+		{% block body %} {% endblock %}
         {% include '_footer.html.twig' %}
 	</body>
 </html>

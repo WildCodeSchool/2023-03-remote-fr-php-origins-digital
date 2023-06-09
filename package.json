@@ -27,6 +27,11 @@
     "dependencies": {
         "@popperjs/core": "^2.11.8",
         "bootstrap": "^5.3.0",
-        "swiper": "^9.3.2"
+        "swiper": "^9.3.2",
+        "video.js": "^8.3.0",
+        "videojs-playlist": "^5.1.0",
+        "videojs-sprite-thumbnails": "^2.1.0",
+        "videojs-standard": "^9.0.1",
+        "videojs-thumbnails": "^1.0.3"
     }
 }
