@@ -6,6 +6,7 @@ const swiper = new Swiper(".mySwiper_recommandation", {
     // Default parameters
     slidesPerView: 2,
     spaceBetween: 10,
+    preload: 'none',
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",

@@ -7,10 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-#[Route(path: '/connexion', name: 'app_')]
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/', name: 'login')]
+    #[Route(path: '/connexion', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         // if ($this->getUser()) {
@@ -28,7 +27,7 @@ class SecurityController extends AbstractController
         ]);
     }
 
-    #[Route(path: '/deconnexion', name: 'logout')]
+    #[Route(path: '/deconnexion', name: 'app_logout')]
     public function logout(): void
     {
             // Nothing to do here..
