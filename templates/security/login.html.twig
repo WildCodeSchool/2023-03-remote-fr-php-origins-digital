@@ -5,7 +5,6 @@
 {% block body %}
     <section class="container-fluid vh-100 d-flex align-items-center">
         <div class="row w-100">
-            <!-- Start of left column -->
             <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
                 <form method="post">
                     {% if error %}
@@ -46,13 +45,9 @@
                     <a href="{{ path('app_register') }}" class="btn btn-secondary mt-3">M'inscrire</a>
                 </form>
             </div>
-            <!-- End of left column -->
-
-            <!-- Start of right column -->
             <div class="col-lg-6 d-none d-lg-block vh-100">
                 <img src="{{ asset('build/images/imgForm.png') }}" alt="" class="img-fluid w-100 h-100 object-fit-cover">
             </div>
-            <!-- End of right column -->
         </div>
     </section>
 {% endblock %}

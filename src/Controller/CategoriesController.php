@@ -11,6 +11,6 @@ class CategoriesController extends AbstractController
     #[Route('/categories', name: 'app_categories')]
     public function index(): Response
     {
-        return $this->render('home/categories.html.twig');
+        return $this->render('categories/categories.html.twig');
     }
 }
