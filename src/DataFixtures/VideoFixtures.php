@@ -22,13 +22,13 @@ class VideoFixtures extends Fixture
             'video_url' => 'gameplay_manette_league_of_legend.mp4',
             'views' => 29, 'is_private' => false, 'is_upcoming' => true, 'video_number' => '4'],
         ['title' => 'Gaming house', 'time' => 18, 'video_url' => 'gaming_house.mp4', 'views' => 5,
-            'is_private' => false, 'is_upcoming' => true, 'video_number' => '5'],
+            'is_private' => true, 'is_upcoming' => true, 'video_number' => '5'],
         ['title' => 'Gameplay jeux pc', 'time' => 27, 'video_url' => 'gameplay.mp4', 'views' => 9,
-            'is_private' => false, 'is_upcoming' => true, 'video_number' => '6'],
+            'is_private' => true, 'is_upcoming' => true, 'video_number' => '6'],
         ['title' => 'League of Legends', 'time' => 6, 'video_url' => 'league_of_legends.mp4', 'views' => 2,
-            'is_private' => false, 'is_upcoming' => true, 'video_number' => '7'],
+            'is_private' => true, 'is_upcoming' => true, 'video_number' => '7'],
         ['title' => 'Gameplay manette ps5', 'time' => 14, 'video_url' => 'manette_ps5.mp4', 'views' => 12,
-            'is_private' => false, 'is_upcoming' => true, 'video_number' => '8'],
+            'is_private' => true, 'is_upcoming' => true, 'video_number' => '8'],
     ];
 
     public function __construct(private ParameterBagInterface $parameterBag)
