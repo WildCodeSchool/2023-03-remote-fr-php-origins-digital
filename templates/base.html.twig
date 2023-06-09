@@ -20,21 +20,15 @@
 <body>
 
 {% if app.request.get('_route') not in ['app_register', 'app_login'] %}
-    {% include '_navbar.html.twig' %}
+    {% include '_includes/_navbar.html.twig' %}
 {% endif %}
 
-{% for category, messages in app.flashes %}
-    {% for message in messages %}
-        <div class="alert alert-{{ category }} mt-3">
-            {{ message }}
-        </div>
-    {% endfor %}
-{% endfor %}
+{% include '_includes/_flash.html.twig' %}
 
 {% block body %}{% endblock %}
 
 {% if app.request.get('_route') not in ['app_register', 'app_login'] %}
-    {% include '_footer.html.twig' %}
+    {% include '_includes/_footer.html.twig' %}
 {% endif %}
 
 </body>
