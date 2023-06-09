@@ -2,6 +2,8 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle'
 import './styles/swiper.scss'
 
+window.Swiper = Swiper;
+
 const swiper = new Swiper(".mySwiper_recommandation", {
     // Default parameters
     slidesPerView: 2,
@@ -32,4 +34,3 @@ const swiper = new Swiper(".mySwiper_recommandation", {
 });
 
 
-window.Swiper = Swiper;

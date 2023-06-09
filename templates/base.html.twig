@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" type="image/png" href="{{ asset('build/images/logo_origins.png') }}"/>
-    <script src="https://kit.fontawesome.com/848d5c22f9.js" crossorigin="anonymous"></script>
-    <title>
-        {% block title %}Origin Digital
-        {% endblock %}
-    </title>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="icon" type="image/png" href="{{ asset('build/images/logo_origins.png') }}"/>
+        <script src="https://kit.fontawesome.com/848d5c22f9.js" crossorigin="anonymous"></script>
+		<title>
+			{% block title %}Origin Digital
+			{% endblock %}
+		</title>
 
-    {% block stylesheets %}
-        {{ encore_entry_link_tags('app') }}
-    {% endblock %}
-    {% block javascripts %}
-        {{ encore_entry_script_tags('app') }}
-    {% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('swiper') }}
+            {{ encore_entry_link_tags('video') }}
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('swiper') }}
+            {{ encore_entry_script_tags('video') }}
+        {% endblock %}
 </head>
 <body>
 
