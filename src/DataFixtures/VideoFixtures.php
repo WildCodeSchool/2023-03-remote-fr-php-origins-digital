@@ -45,7 +45,7 @@ class VideoFixtures extends Fixture
         $faker = Factory::create('fr_FR');
         foreach (self::VIDEOS as $videoData) {
             copy(
-                __DIR__ . '/data/videos/' . $videoData['video_url'],
+                __DIR__ . '/_data/videos/' . $videoData['video_url'],
                 __DIR__ . '/../../public' . $uploadVideoDir . '/' . $videoData['video_url']
             );
             $video = new Video();

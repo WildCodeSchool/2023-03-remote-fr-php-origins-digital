@@ -33,7 +33,7 @@ class VideoImageFixtures extends Fixture
 
         foreach (self::IMAGES as $imageData) {
             copy(
-                __DIR__ . '/data/images/' . $imageData['file'],
+                __DIR__ . '/_data/images/' . $imageData['file'],
                 __DIR__ . '/../../public' . $uploadImageDir . '/' . $imageData['file']
             );
             $image = new ImageVideo();
