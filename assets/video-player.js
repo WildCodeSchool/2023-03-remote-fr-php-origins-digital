@@ -12,14 +12,13 @@ const playerHome = videojs('my-player-home', {
     autoload: true,
 });
 
-const player = videojs('my-player', {
+const player = videojs('modal-player-video-', {
     autoplay: true,
     controls: true,
     loop: false,
     aspectRation: '16:9',
     playbackRates: [0.25,0.5,1,1.5,2,2.5],
     autoload: true,
-    preload: 'none',
 });
 
 player.addClass('vjs-matrix');
@@ -45,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
 
 
 

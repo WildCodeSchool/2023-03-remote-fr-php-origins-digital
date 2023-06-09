@@ -4,36 +4,38 @@
         <h2 class="mt-4">Recommandation</h2>
             <div class="swiper mySwiper_recommandation">
                 <div class="swiper-wrapper">
-                    {% for i in 0..9 %}
-                        <div class="swiper-slide" data-bs-target="#myModal" data-bs-toggle="modal">
-                            <video class=" recommandationVideo video-js videoPlayerHome" id="my-player-home" controls poster="/uploads/images/{{ i+1 }}.jpg">
-                                <source src="/uploads/video/{{ i+1 }}.mp4" alt="Vidéo {{ i+1 }}" type="video/mp4">
-                            </video>
-                        </div>
+                    {% for video in videos %}
+                            <div class="swiper-slide" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                                <video class=" recommandationVideo video-js videoPlayerHome" id="my-player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}">
+                                    <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
+                                </video>
+                            </div>
                     {% endfor %}
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
-        <div class="modal" id="myModal">
-            <div class="modal-dialog modal-fullscreen">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">Ma vidéo</h3>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body">
-                        <video  id="my-player" class="video-js videoPlayer" >
-                            <source src="/uploads/1.mp4" alt="Vidéo 1" type="video/mp4">
-                        </video>
-                        <h3>Titre : Test</h3>
-                        <p>Lorem Lorem Lorem Lorem Lorem</p>
-                        <p>01/01/2023</p>
-                    </div>
-                    <div class="modal-footer">
+        {% for video in videos %}
+            <div class="modal" id="myModal{{ video.id }}">
+                <div class="modal-dialog modal-fullscreen">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h3 class="modal-title">Ma vidéo</h3>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <video  id="modal-player-video-{{  video.id }}" class="video-js videoPlayer" controls>
+                                <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
+                            </video>
+                            <h3>Titre : {{ video.title }}</h3>
+                            {{ video.description | raw }}
+                        </div>
+                        <div class="modal-footer">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        {% endfor %}
     </section>
 </div>
+
