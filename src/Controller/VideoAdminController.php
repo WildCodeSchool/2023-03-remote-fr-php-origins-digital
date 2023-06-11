@@ -7,7 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/video/admin', name: 'video_admin_')]
+#[Route('/admin/video', name: 'video_admin_')]
 class VideoAdminController extends AbstractController
 {
     #[Route('/', name: 'index')]
