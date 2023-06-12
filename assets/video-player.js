@@ -4,29 +4,30 @@ import './styles/_video.scss'
 import 'video.js/dist/video'
 import  'videojs-playlist/dist/videojs-playlist.min'
 
-const playerHome = videojs('my-player-home', {
+const playerHome = videojs('player-home', {
     autoplay: true,
     controls: true,
     loop: false,
     playbackRates: [0.25,0.5,1,1.5,2,2.5],
     autoload: true,
 });
-
-const player = videojs('modal-player-video-', {
-    autoplay: true,
-    controls: true,
-    loop: false,
-    aspectRation: '16:9',
-    playbackRates: [0.25,0.5,1,1.5,2,2.5],
-    autoload: true,
+const players = document.querySelectorAll('[id^="modal-player-video"]');
+players.forEach((playerElement, index) => {
+    const player = videojs(playerElement.id, {
+        autoplay: true,
+        controls: true,
+        loop: false,
+        playbackRates: [0.25, 0.5, 1, 1.5, 2, 2.5],
+        autoload: true
+    });
 });
 
-player.addClass('vjs-matrix');
+playerHome.addClass('vjs-matrix');
 document.addEventListener('DOMContentLoaded', () => {
     const videos = document.getElementsByClassName('recommandationVideo');
     for (let i = 0; i < videos.length; i++) {
         const video = videos[i];
-        const playerId = "my-player-" + i;
+        const playerId = "player-home-" + i;
 
         video.id = playerId;
         const player = videojs(playerId);
