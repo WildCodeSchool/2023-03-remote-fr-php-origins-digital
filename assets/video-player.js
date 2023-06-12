@@ -10,6 +10,7 @@ const playerHome = videojs('player-home', {
     loop: false,
     playbackRates: [0.25,0.5,1,1.5,2,2.5],
     autoload: true,
+    preload: 'none',
 });
 const players = document.querySelectorAll('[id^="modal-player-video"]');
 players.forEach((playerElement, index) => {

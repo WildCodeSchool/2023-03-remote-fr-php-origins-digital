@@ -1,3 +1,16 @@
 @import "bootstrap/scss/bootstrap";
 @import "navbarStyles.scss";
 @import "category.scss";
+@import "genre.scss";
+@import 'atropos/atropos.scss';
+
+nav.footer {
+    margin-top: 10vh;
+}
+
+body {
+    background: rgb(1,13,24);
+    background: linear-gradient(180deg, rgba(1,13,24,1) 0%, rgba(4,17,28,0.9668242296918768) 50%, rgba(27,41,54,0.9164040616246498) 100%);
+    color: #FFFFFF;
+}
+
