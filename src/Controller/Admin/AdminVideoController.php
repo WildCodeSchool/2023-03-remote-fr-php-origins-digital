@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Admin;
 
 use App\Repository\VideoRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/video', name: 'video_admin_')]
-class VideoAdminController extends AbstractController
+#[Route('/admin/video', name: 'video_')]
+class AdminVideoController extends AbstractController
 {
     #[Route('/', name: 'index')]
     public function index(VideoRepository $videoRepository): Response
