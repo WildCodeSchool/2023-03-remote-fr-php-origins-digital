@@ -17,7 +17,6 @@ class HomeController extends AbstractController
         GenreRepository $genreRepository,
         ImageGenreRepository $imageGenreRepository
     ): Response {
-        $user = $this->getUser(); // obtenir l'utilisateur actuellement connecté
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
         $genres = $genreRepository->findAll();
         $genresWithImages = [];
@@ -42,7 +41,6 @@ class HomeController extends AbstractController
 
         return $this->render('home/index.html.twig', [
             'videos' => $videos,
-            'user' => $user,
             'genresWithImages' => $genresWithImages,
         ]);
     }
