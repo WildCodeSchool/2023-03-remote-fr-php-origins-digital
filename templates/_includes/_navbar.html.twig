@@ -64,7 +64,7 @@
                                 <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
                             {% else %}
                                 <li><a class="dropdown-item" href="{{ path('app_login') }}">Me connecter</a></li>
-                                <li><a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire <i class="fa-solid fa-user-plus"></i></a></li>
                             {% endif %}
                         </ul>
                     </li>
@@ -94,13 +94,13 @@
                 <a class="nav-link" href="#">Genre</a>
             </li>
             <li class="nav-item mobile">
-                <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a></li>
+                <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
             {% else %}
             <li class="nav-item mobile">
                 <a class="nav-link" href="{{ path('app_login') }}">Me connecter</a>
             </li>
             <li class="nav-item mobile">
-                <a class="nav-link" href="{{ path('app_register') }}">M'inscrire</a>
+                <a class="nav-link" href="{{ path('app_register') }}">M'inscrire  <i class="fa-solid fa-user-plus"></i></a>
             </li>
         {% endif %}
 
