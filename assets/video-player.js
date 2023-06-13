@@ -10,7 +10,6 @@ const playerHome = videojs('player-home', {
     loop: false,
     playbackRates: [0.25,0.5,1,1.5,2,2.5],
     autoload: true,
-    preload: 'none',
 });
 const players = document.querySelectorAll('[id^="modal-player-video"]');
 players.forEach((playerElement, index) => {
@@ -25,7 +24,7 @@ players.forEach((playerElement, index) => {
 
 playerHome.addClass('vjs-matrix');
 document.addEventListener('DOMContentLoaded', () => {
-    const videos = document.getElementsByClassName('recommandationVideo');
+    const videos = document.getElementsByClassName('videoPlayerHome');
     for (let i = 0; i < videos.length; i++) {
         const video = videos[i];
         const playerId = "player-home-" + i;

@@ -5,37 +5,19 @@
             <div class="swiper mySwiper_recommandation">
                 <div class="swiper-wrapper">
                     {% for video in videos %}
-                            <div class="swiper-slide" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                                <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}">
+                            <div class="swiper-slide card border-0 bg-transparent text-white " data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                                <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}" preload="none">
                                     <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                                 </video>
+                                <div class="card-body">
+                                    <h3 class="card-title">{{ video.title }}</h3>
+                                </div>
                             </div>
                     {% endfor %}
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
-        {% for video in videos %}
-            <div class="modal" id="myModal{{ video.id }}">
-                <div class="modal-dialog modal-fullscreen">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h3 class="modal-title">{{video.title}}</h3>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <video  id="modal-player-video-{{ video.id }}" class="video-js videoPlayer" controls>
-                                <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
-                            </video>
-                            <h3>Titre : {{ video.title }}</h3>
-                            {{ video.description | raw }}
-                        </div>
-                        <div class="modal-footer">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        {% endfor %}
     </section>
 </div>
 

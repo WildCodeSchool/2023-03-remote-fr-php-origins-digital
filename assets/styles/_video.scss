@@ -1,6 +1,6 @@
 .videoPlayer{
-    height: auto;
-    width: 80%;
+    height: 35rem;
+    width: 65%;
     aspect-ratio: 16/9;
 }
 
@@ -9,12 +9,35 @@
     width: 100%;
 }
 
-.recommandationVideo {
-    margin-top: 1.5rem;
-    margin-bottom: 5rem;
+.recommandationVideo , .tendanceVideo {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .swiper-slide {
     margin-left: 1.3rem;
 }
 
+.modal {
+    color: black;
+}
+
+.card {
+    max-width: 30em;
+}
+
+.card-title {
+    color: white;
+}
+
+.video-container {
+    width: 100%;
+}
+
+.swiper {
+    margin-bottom: 3rem;
+}
+
+.card h3 {
+    font-size: 1.5rem;
+}
