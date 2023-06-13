@@ -3,11 +3,11 @@
         <h2 class="mt-4">Tendance</h2>
         {% for video in videos %}
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                <div class="card mt-2 mb-2 card bg-transparent text-white border-0" style="width: 100%;">
+                <div class="card mt-2 mb-2 card bg-transparent text-white" style="width: 100%;">
                     <div class="video-container position-relative w-200 h-250" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                         {% if video.Private and not app.user %}
                         <a href="{{ path('app_login') }}">
-                        <video class=" tendanceVideo video-js videoPlayerHome hover-to-play w-100 " id="player-home" controls poster="{{ asset('build/images/cadenas.png') }}" preload="none">
+                        <video class=" tendanceVideo video-js videoPlayerHome hover-to-play w-100 border-0 " id="player-home" controls poster="{{ asset('build/images/cadenas.png') }}">
                             <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                         </video>
                         </a>

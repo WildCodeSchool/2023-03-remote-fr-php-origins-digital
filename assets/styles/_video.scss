@@ -6,7 +6,7 @@
 
 .videoPlayerHome{
     height: 15rem;
-    width: 100%;
+    width: 95%;
 }
 
 .recommandationVideo , .tendanceVideo {
@@ -41,3 +41,9 @@
 .card h3 {
     font-size: 1.5rem;
 }
+
+.vjs-poster img,
+.vjs-tech {
+    object-fit: cover;
+}
+

@@ -7,6 +7,7 @@
     {% include 'home/video_recommandations.html.twig' %}
     {%  include 'home/video_tendances.html.twig' %}
     {% for video in videos %}
+        {% if not video.Private or app.user %}
         <div class="modal" id="myModal{{ video.id }}">
             <div class="modal-dialog modal-fullscreen">
                 <div class="modal-content">
@@ -26,6 +27,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
     {% endfor %}
     {% include 'home/genre.html.twig' %}
 {% endblock %}
