@@ -6,22 +6,35 @@
 		<link rel="icon" type="image/png" href="{{ asset('build/images/logo_origins.png') }}"/>
         <script src="https://kit.fontawesome.com/848d5c22f9.js" crossorigin="anonymous"></script>
 		<title>
-			{% block title %}Projet 3 Name
+			{% block title %}Origin Digital
 			{% endblock %}
 		</title>
 
-		{% block stylesheets %}
-			{{ encore_entry_link_tags('app') }}
-		{% endblock %}
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('swiper') }}
+            {{ encore_entry_link_tags('video') }}
+        {% endblock %}
 
-		{% block javascripts %}
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('swiper') }}
+            {{ encore_entry_script_tags('video') }}
+        {% endblock %}
+</head>
+<body>
 
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
-	</head>
-	<body>
-        {% include '_navbar.html.twig' %}
-		{% block body %}{% endblock %}
-        {% include '_footer.html.twig' %}
-	</body>
+{% if app.request.get('_route') not in ['app_register', 'app_login'] %}
+    {% include '_includes/_navbar.html.twig' %}
+{% endif %}
+
+{% include '_includes/_flash.html.twig' %}
+
+{% block body %}{% endblock %}
+
+{% if app.request.get('_route') not in ['app_register', 'app_login'] %}
+    {% include '_includes/_footer.html.twig' %}
+{% endif %}
+
+</body>
 </html>

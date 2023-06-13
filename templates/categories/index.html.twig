@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories
+{% endblock %}
+
+{% block body %}
+	<div class="container mb-2">
+		<h1 class="text-center m-3 mb-3">Catégories</h1>
+	</div>
+	<div class="container-fluid">
+		<nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+			<ol class="breadcrumb ml-2">
+				<li class="breadcrumb-item">
+					<a href="/" class="text-decoration-none link-dark">Accueil</a>
+				</li>
+				<li class="breadcrumb-item active" aria-current="page">Catégories</li>
+			</ol>
+		</nav>
+	</div>
+	<div class="container margin-left-2">
+		<div class="row g-4 justify-content-center mt-4">
+			{% for i in 0..3 %}
+				<div class="col-lg-5">
+					<div class="card text-center bg-image">
+						<a class="stretched-link" href="{{path ('app_categories_show')}}"><img src="{{ asset('build/images/Docu_esport.avif') }}" class="card-img-top" alt="images d'un documentaire"></a>
+						<div class="card-img-overlay">
+							<h5 class="card-title text-light bg-text">Nouveautés</h5>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="card mt-4 mb-4">
+			<img src="https://fakeimg.pl/1320x200/?text=PUB" class="card-img-top" alt="PUB">
+		</div>
+	</div>
+{% endblock %}

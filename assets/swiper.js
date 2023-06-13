@@ -2,10 +2,13 @@ import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle'
 import './styles/swiper.scss'
 
+window.Swiper = Swiper;
+
 const swiper = new Swiper(".mySwiper_recommandation", {
     // Default parameters
     slidesPerView: 2,
     spaceBetween: 10,
+    preload: 'none',
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
@@ -59,4 +62,3 @@ const swiperNew = new Swiper(".mySwiper_nouveaute", {
     }
 });
 
-window.Swiper = Swiper;

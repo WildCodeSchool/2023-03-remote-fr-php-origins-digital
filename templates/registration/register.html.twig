@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <section class="container-fluid vh-100 d-flex align-items-center">
+        <div class="row w-100">
+            <!-- Start of left column -->
+            <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
+
+                <div>
+                    <a href="/" class="back-button text-decoration-none">Retour au site <i class="fa-solid fa-reply"></i></a>
+                    <h1 class="mb-4">Inscription</h1>
+
+                    {{ form_start(registrationForm) }}
+
+                    <fieldset class="mb-3 mt-3">
+                        {{ form_row(registrationForm.fullName) }}
+                        {{ form_row(registrationForm.pseudo) }}
+                        {{ form_row(registrationForm.email) }}
+                        {{ form_row(registrationForm.plainPassword, {
+                            label: 'Mot de passe'
+                        }) }}
+                    </fieldset>
+
+                    {{ form_row(registrationForm.RGPDConsent) }}
+
+                    <button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
+                    <a href="{{ path('app_login') }}" class="btn btn-secondary my-3">Me connecter</a>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+            <!-- End of left column -->
+
+            <!-- Start of right column -->
+            <div class="d-none d-lg-block col-lg-6 vh-100">
+                <img src="{{ asset('build/images/imgForm.png') }}" alt=""
+                     class="img-fluid w-100 h-100 object-fit-cover">
+            </div>
+            <!-- End of right column -->
+        </div>
+    </section>
+
+{% endblock %}
