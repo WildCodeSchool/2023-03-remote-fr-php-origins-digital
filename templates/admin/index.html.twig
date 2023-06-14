@@ -1,15 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin/base.html.twig' %}
 
 {% block title %}Administration{% endblock %}
 
 {% block body %}
-
-    <div class="container">
-        <div class="row">
-            {% include "_partials/adminnav.html.twig" %}
-            <main class="col-9 border border-light bg-secondary p-2">
-                <h1 class="text-dark">Administration</h1>
-            </main>
-        </div>
-    </div>
+<h1 class="mt-4">Bonjour {{ app.user.fullName }}</h1>
 {% endblock %}
