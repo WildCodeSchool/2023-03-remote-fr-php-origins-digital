@@ -5,7 +5,7 @@
             <div class="swiper mySwiper_recommandation">
                 <div class="swiper-wrapper">
                     {% for i in 0..9 %}
-                        <div class="swiper-slide" data-bs-target="#myModal" data-bs-toggle="modal">
+                        <div class="swiper-slide swiper-slide-recommendation" data-bs-target="#myModal" data-bs-toggle="modal">
                             <video class=" recommandationVideo video-js videoPlayerHome" id="my-player-home" preload="none" controls poster="/uploads/images/{{ i+1 }}.jpg">
                                 <source src="/uploads/video/{{ i+1 }}.mp4" alt="Vidéo {{ i+1 }}" type="video/mp4">
                             </video>
