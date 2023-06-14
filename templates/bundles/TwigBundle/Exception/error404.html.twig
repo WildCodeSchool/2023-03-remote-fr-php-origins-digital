@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+    <section class="container-fluid vh-100 d-flex align-items-center">
+        <div class="row w-100">
+            <div class="col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center">
+                <h1>
+                    Page non trouvée.
+                </h1>
+                <a class="text-decoration-none" href="{{ path('app_home') }}">Retour à la page d'accueil <i class="fa-solid fa-reply"></i></a>
+            </div>
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="{{ asset('build/images/page404.png') }}" alt="Page non trouvée"
+                     class="img-fluid w-100 h-100">
+            </div>
+        </div>
+    </section>
+{% endblock %}
