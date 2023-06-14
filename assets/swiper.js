@@ -1,6 +1,6 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle'
-import './styles/swiper.scss'
+import './styles/swiperTop.scss'
 
 window.Swiper = Swiper;
 
@@ -62,3 +62,31 @@ const swiperNew = new Swiper(".mySwiper_nouveaute", {
     }
 });
 
+const swiperTop = new Swiper(".mySwiper_top", {
+    // Default parameters
+    slidesPerView: 3.5,
+    spaceBetween: 30,
+    freeMode: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+    },
+    // Responsive breakpoints
+    breakpoints: {
+        // when window width is >= 576px
+        576: {
+            slidesPerView: 1.5,
+            spaceBetween: 30
+        },
+        // when window width is >= 768px
+        768: {
+            slidesPerView: 2.5,
+            spaceBetween: 30
+        },
+        // when window width is >= 992px
+        992: {
+            slidesPerView: 3.5,
+            spaceBetween: 30
+        }
+    }
+});
