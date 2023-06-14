@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Favoris{% endblock %}
+
+{% block body %}
+    <div class="mainContainer">
+        <h2 class="text-center mb-5 mt-3">Vos vidéos favorites</h2>
+
+    <div class="d-flex justify-content-around">
+        <div class="latestBookmarkContainer">
+            <h4 class="p-2">Dernière vidéo mise en favoris</h4>
+            {% for video in videos %}
+                {% if loop.last %}
+                <div class="latestBookmark card border-0 bg-transparent text-white " data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                    <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}" preload="none">
+                        <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
+                    </video>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="bookmarkContainer">
+        <div class="swiper videoBookmarksSwiper">
+        <div class="swiper-wrapper bookmarkWrapper">
+            {% for video in videos %}
+                <div class="swiper-slide card border-0 bg-transparent text-white swiper-slide-bookMarks" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                    <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}" preload="none">
+                        <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
+                    </video>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        </div>
+        </div>
+
+
+        <div class="bookMarksAd">
+            PUB
+        </div>
+    </div>
+    </div>
+{% endblock %}

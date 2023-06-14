@@ -44,9 +44,12 @@ class Video
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\ManyToMany(targetEntity: VideoBookmarks::class, mappedBy: 'video')]
+    private Collection $videoBookmarks;
     public function __construct()
     {
         $this->imageVideos = new ArrayCollection();
+        $this->videoBookmarks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -177,6 +180,32 @@ class Video
     public function setDescription(string $description): self
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, VideoBookmarks>
+     */
+    public function getVideoBookmarks(): Collection
+    {
+        return $this->videoBookmarks;
+    }
+
+    public function addVideoBookmark(VideoBookmarks $videoBookmark): static
+    {
+        if (!$this->videoBookmarks->contains($videoBookmark)) {
+            $this->videoBookmarks->add($videoBookmark);
+            $videoBookmark->addVideo($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideoBookmark(VideoBookmarks $videoBookmark): static
+    {
+        if ($this->videoBookmarks->removeElement($videoBookmark)) {
+            $videoBookmark->removeVideo($this);
+        }
 
         return $this;
     }

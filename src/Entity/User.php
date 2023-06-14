@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -18,6 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->videoBookmarks = new ArrayCollection();
     }
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -52,6 +55,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt;
 
+    #[ORM\ManyToMany(targetEntity: VideoBookmarks::class, mappedBy: 'user')]
+    private Collection $videoBookmarks;
     public function getId(): ?int
     {
         return $this->id;
@@ -169,6 +174,33 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): self
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, VideoBookmarks>
+     */
+    public function getVideoBookmarks(): Collection
+    {
+        return $this->videoBookmarks;
+    }
+
+    public function addVideoBookmark(VideoBookmarks $videoBookmark): static
+    {
+        if (!$this->videoBookmarks->contains($videoBookmark)) {
+            $this->videoBookmarks->add($videoBookmark);
+            $videoBookmark->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVideoBookmark(VideoBookmarks $videoBookmark): static
+    {
+        if ($this->videoBookmarks->removeElement($videoBookmark)) {
+            $videoBookmark->removeUser($this);
+        }
 
         return $this;
     }
