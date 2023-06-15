@@ -120,6 +120,7 @@ class ResetPasswordController extends AbstractController
 
             // Encode(hash) the plain password, and set it.
             $encodedPassword = $passwordHasher->hashPassword(
+                /** @var User $user  */
                 $user,
                 $form->get('plainPassword')->getData()
             );
@@ -130,7 +131,10 @@ class ResetPasswordController extends AbstractController
             // The session is cleaned up after the password has been changed.
             $this->cleanSessionAfterReset();
 
-            return $this->redirectToRoute('app_home');
+            // message flash
+            $this->addFlash('success', 'Votre mot de passe a bien été modifié');
+
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('reset_password/reset.html.twig', [
@@ -173,7 +177,7 @@ class ResetPasswordController extends AbstractController
         $email = (new TemplatedEmail())
             ->from(new Address('test@test.com', 'Origins Digital'))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
+            ->subject('Votre demande de renitialisation de mot de passe')
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,
