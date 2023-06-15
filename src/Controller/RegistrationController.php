@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
 
             // email
             $email = (new Email())
-                ->from('OriginDigital@example.com')
+                ->from($this->getParameter('mailer_from'))
                 ->to('you@example.com')
                 ->subject('Origin Digital - Inscription réussi')
                 ->html('<p>Félicitation votre compte à été crée avec succès, vous avez accès a la totalité
