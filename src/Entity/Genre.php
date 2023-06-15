@@ -24,7 +24,11 @@ class Genre
     public function __construct()
     {
         $this->categories = new ArrayCollection();
+        $this->imageGenres = new ArrayCollection();
     }
+
+    #[ORM\OneToMany(mappedBy: 'genre', targetEntity: ImageGenre::class, orphanRemoval: true)]
+    private Collection $imageGenres;
 
     public function getId(): ?int
     {
@@ -65,6 +69,23 @@ class Genre
             $this->categories->add($category);
             $category->setGenre($this);
         }
+        return $this;
+    }
+
+    /* @return Collection<int, ImageGenre>
+    */
+
+    public function getImageGenres(): Collection
+    {
+        return $this->imageGenres;
+    }
+
+    public function addImageGenre(ImageGenre $imageGenre): static
+    {
+        if (!$this->imageGenres->contains($imageGenre)) {
+            $this->imageGenres->add($imageGenre);
+            $imageGenre->setGenre($this);
+        }
 
         return $this;
     }
@@ -77,7 +98,17 @@ class Genre
                 $category->setGenre(null);
             }
         }
+        return $this;
+    }
 
+    public function removeImageGenre(ImageGenre $imageGenre): static
+    {
+        if ($this->imageGenres->removeElement($imageGenre)) {
+            // set the owning side to null (unless already changed)
+            if ($imageGenre->getGenre() === $this) {
+                $imageGenre->setGenre(null);
+            }
+        }
         return $this;
     }
 }
