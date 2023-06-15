@@ -2,9 +2,11 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\ResetPasswordRequest;
 use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -67,10 +69,22 @@ class AdminUserController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, UserRepository $userRepository): Response
+    public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
-            $userRepository->remove($user, true);
+            // Find all reset password requests associated with this user
+            $resetRequests = $entityManager->getRepository(ResetPasswordRequest::class)->findBy(['user' => $user]);
+
+            // Loop over each reset password request and remove it
+            foreach ($resetRequests as $request) {
+                $entityManager->remove($request);
+            }
+
+            // Remove the user
+            $entityManager->remove($user);
+
+            // Finally, flush to apply the changes
+            $entityManager->flush();
         }
 
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
