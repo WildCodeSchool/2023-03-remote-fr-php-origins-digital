@@ -19,29 +19,10 @@ class HomeController extends AbstractController
     ): Response {
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
         $genres = $genreRepository->findAll();
-        $genresWithImages = [];
-
-        foreach ($genres as $genre) {
-            $imagesGenres = $imageGenreRepository->findBy(['genre' => $genre], ['id' => 'ASC']);
-
-            $images = [];
-            foreach ($imagesGenres as $imageGenre) {
-                $images[] = [
-                    'background' => $imageGenre->getBackground(),
-                    'character' => $imageGenre->getGenreCharacter(),
-                    'text' => $imageGenre->getGenreName(),
-                ];
-            }
-
-            $genresWithImages[] = [
-                'genre' => $genre,
-                'images' => $images,
-            ];
-        }
 
         return $this->render('home/index.html.twig', [
             'videos' => $videos,
-            'genresWithImages' => $genresWithImages,
+            'genres' => $genres,
         ]);
     }
 }
