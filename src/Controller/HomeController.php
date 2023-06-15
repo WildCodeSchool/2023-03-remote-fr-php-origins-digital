@@ -45,7 +45,8 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'videos' => $videos,
             'genresWithImages' => $genresWithImages,
-            'imagevideos' => $imageVideos
+            'imagevideos' => $imageVideos,
+            'genres' => $genres,
         ]);
     }
 }
