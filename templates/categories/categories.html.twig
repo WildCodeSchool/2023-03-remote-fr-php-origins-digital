@@ -19,16 +19,19 @@
 	</div>
 	<div class="container margin-left-2">
 		<div class="row g-4 justify-content-center">
-			{% for i in 0..3 %}
-				<div class="col-lg-5">
-					<div class="card text-center bg-image">
-						<a class="stretched-link" href="/"><img src="{{ asset('build/images/Docu_esport.avif') }}" class="card-img-top" alt="images d'un documentaire"></a>
-						<div class="card-img-overlay">
-							<h5 class="card-title text-light bg-text">Nouveautés</h5>
-						</div>
-					</div>
-				</div>
-			{% endfor %}
+            {% for category in categories %}
+                {% set image = category.imagesCategories.first() %}
+                <div class="col-lg-5">
+                    <div class="card text-center bg-image">
+                        <a class="stretched-link" href="/">
+                            <img src="/uploads/images/{{ image ? image.file : 'default.jpg' }}" class="card-img-top" alt="{{ category.name }}">
+                        </a>
+                        <div class="card-img-overlay">
+                            <h5 class="card-title text-light bg-text">{{ category.name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
 		</div>
 		<div class="card mt-4 mb-4">
 			<img src="https://fakeimg.pl/1320x200/?text=PUB" class="card-img-top" alt="PUB">
