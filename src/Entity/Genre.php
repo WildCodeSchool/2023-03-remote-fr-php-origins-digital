@@ -18,13 +18,17 @@ class Genre
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'genre', targetEntity: ImageGenre::class, orphanRemoval: true)]
-    private Collection $imageGenres;
+    #[ORM\OneToMany(mappedBy: 'genre', targetEntity: Categories::class)]
+    private Collection $categories;
 
     public function __construct()
     {
+        $this->categories = new ArrayCollection();
         $this->imageGenres = new ArrayCollection();
     }
+
+    #[ORM\OneToMany(mappedBy: 'genre', targetEntity: ImageGenre::class, orphanRemoval: true)]
+    private Collection $imageGenres;
 
     public function getId(): ?int
     {
@@ -52,8 +56,25 @@ class Genre
     }
 
     /**
-     * @return Collection<int, ImageGenre>
+     * @return Collection<int, Categories>
      */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categories $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->setGenre($this);
+        }
+        return $this;
+    }
+
+    /* @return Collection<int, ImageGenre>
+    */
+
     public function getImageGenres(): Collection
     {
         return $this->imageGenres;
@@ -69,6 +90,17 @@ class Genre
         return $this;
     }
 
+    public function removeCategory(Categories $category): static
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getGenre() === $this) {
+                $category->setGenre(null);
+            }
+        }
+        return $this;
+    }
+
     public function removeImageGenre(ImageGenre $imageGenre): static
     {
         if ($this->imageGenres->removeElement($imageGenre)) {
@@ -77,7 +109,6 @@ class Genre
                 $imageGenre->setGenre(null);
             }
         }
-
         return $this;
     }
 }

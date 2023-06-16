@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use App\Entity\Genre;
+use App\Entity\Categories;
 use App\Repository\ImageVideoRepository;
 use App\Repository\GenreRepository;
 use App\Repository\ImageGenreRepository;
 use App\Repository\VideoRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Repository\CategoriesRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class HomeController extends AbstractController
 {
