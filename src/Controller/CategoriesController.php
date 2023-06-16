@@ -26,16 +26,12 @@ class CategoriesController extends AbstractController
         ]);
     }
 
-    #[Route('categories/{id}', name: 'app_categories_show', methods: ['GET'])]
+    #[Route('/categories/{id}', name: 'app_categories_show', methods: ['GET'])]
     public function show(
-        Request $request,
         Genre $genre,
-        CategoriesRepository $categoriesRepository
     ): Response {
-        $categories = $categoriesRepository->findBy(['genre' => $genre]);
 
-        return $this->render('categories/index.html.twig', [
-            'categories' => $categories,
+        return $this->render('categories/show.html.twig', [
             'genre' => $genre,
         ]);
     }

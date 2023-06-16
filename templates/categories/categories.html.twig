@@ -20,12 +20,14 @@
 	<div class="container margin-left-2">
 		<div class="row g-4 justify-content-center">
             {% for category in categories %}
-                {% set image = category.imagesCategories.first() %}
                 <div class="col-lg-5">
                     <div class="card text-center bg-image">
-                        <a class="stretched-link" href="/">
-                            <img src="/uploads/images/{{ image ? image.file : 'default.jpg' }}" class="card-img-top" alt="{{ category.name }}">
-                        </a>
+                        {% for image in category.imagesCategories %}
+                            <a class="stretched-link" href="/">
+                                <img src="/uploads/images/{{ image.file }}"
+                                     class="card-img-top" alt="{{ category.name }}">
+                            </a>
+                        {% endfor %}
                         <div class="card-img-overlay">
                             <h5 class="card-title text-light bg-text">{{ category.name }}</h5>
                         </div>

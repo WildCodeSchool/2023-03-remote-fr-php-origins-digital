@@ -12,10 +12,10 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 class ImagesCategoriesFixtures extends Fixture implements DependentFixtureInterface
 {
     public const IMAGESCATEGORIES = [
-        ['name' => 'bande-annonces-categories.jpg', 'categorie' => 'category_BANDES_ANNONCES'],
-        ['name' => 'docu-categories.jpg', 'categorie' => 'category_DOCUMENTAIRES'],
-        ['name' => 'new-categories.jpg', 'categorie' => 'category_NOUVEAUTES'],
-        ['name' => 'esport-categories.jpg', 'categorie' => 'category_ESPORT']
+        ['file' => 'gaming_house.jpg', 'categorie' => 'category_BANDES-ANNONCES'],
+        ['file' => 'docu-categories.jpg', 'categorie' => 'category_DOCUMENTAIRES'],
+        ['file' => 'new-categories.jpg', 'categorie' => 'category_NOUVEAUTES'],
+        ['file' => 'esport-categories.jpg', 'categorie' => 'category_ESPORT']
     ];
 
     public function __construct(private ParameterBagInterface $parameterBag)
@@ -35,11 +35,11 @@ class ImagesCategoriesFixtures extends Fixture implements DependentFixtureInterf
         for ($i = 1; $i <= self::NB_CATEGORIES; $i++) {
             foreach (self::IMAGESCATEGORIES as $imageData) {
                 copy(
-                    __DIR__ . '/data/images/' . $imageData['name'],
-                    __DIR__ . '/../../public' . $uploadImageDir . '/' . $imageData['name']
+                    __DIR__ . '/data/images/' . $imageData['file'],
+                    __DIR__ . '/../../public' . $uploadImageDir . '/' . $imageData['file']
                 );
                     $image = new ImagesCategories();
-                    $image->setFile($imageData['name']);
+                    $image->setFile($imageData['file']);
                     $image->setCategories($this->getReference($imageData['categorie'] . '_' . $i));
                     $manager->persist($image);
             }

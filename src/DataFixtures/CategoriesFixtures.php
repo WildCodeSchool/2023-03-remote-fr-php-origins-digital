@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 class CategoriesFixtures extends Fixture implements DependentFixtureInterface
 {
     public const CATEGORIES = [
-        'BANDES_ANNONCES', 'DOCUMENTAIRES', 'NOUVEAUTES', 'ESPORT'
+        'BANDES-ANNONCES', 'DOCUMENTAIRES', 'NOUVEAUTES', 'ESPORT'
     ];
 
     public function load(ObjectManager $manager): void
