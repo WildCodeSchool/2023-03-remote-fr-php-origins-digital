@@ -1,0 +1,38 @@
+{{ form_start(form) }}
+<div class="row text-black">
+    <div class="col-md-6">
+            {{ form_label(form.title, 'Titre') }}
+            {{ form_widget(form.title) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_label(form.time, 'Temps de la vidéo') }}
+        {{ form_widget(form.time) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_label(form.videoUrl, 'Url de la vidéo') }}
+        {{ form_widget(form.videoUrl) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_label(form.private, 'Uniquement pour les abonnés') }}
+        {{ form_widget(form.private) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_label(form.realeaseDate, 'Date de sortie') }}
+        {{ form_widget(form.realeaseDate) }}
+    </div>
+    <div class="col-md-9">
+        {{ form_label(form.upcoming, 'A venir') }}
+        {{ form_widget(form.upcoming) }}
+    </div>
+    <div class="col-md-9">
+            {{ form_label(form.description, 'Description de la vidéo') }}
+            {{ form_widget(form.description) }}
+     </div>
+    <div class="col-md-9">
+        {{ form_widget(form.posterFile) }}
+    </div>
+    <div class="col-md-6">
+        <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+    </div>
+</div>
+{{ form_end(form) }}
