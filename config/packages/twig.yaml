@@ -3,7 +3,10 @@ twig:
     globals: 
         upload_video_dir: 'upload_video_dir'
         upload_image_dir: 'upload_video_dir'
+        form_themes:
+            - '@FontAwesome/fontawesome_layout.html.twig'
 
 when@test:
     twig:
         strict_variables: true
+

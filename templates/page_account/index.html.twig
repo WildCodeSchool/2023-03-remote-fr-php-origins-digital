@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+
+    <section class="bg-secondary-subtle d-flex">
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            A propos de moi
+                        </div>
+                        <div class="card-body">
+                            {{ form_start(form) }}
+                            <div class="form-group mt-3">
+                                {{ form_label(form.fullName) }}
+                                {{ form_widget(form.fullName) }}
+                            </div>
+                            <div class="form-group mt-3">
+                                {{ form_label(form.pseudo) }}
+                                {{ form_widget(form.pseudo) }}
+                            </div>
+                            <div class="form-group mt-3">
+                                {{ form_label(form.email) }}
+                                {{ form_widget(form.email) }}
+                            </div>
+                            <div class="form-group mt-3">
+                                <a href="{{ path('app_forgot_password_request') }}">Changer de mot de passe</a>
+                            </div>
+                            <div class="form-group mt-3">
+                                <button type="submit" class="btn btn-success">Mettre à jour</button>
+                            </div>
+                            {{ form_end(form) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-header">
+                            Mon compte
+                        </div>
+                        <div class="card-body">
+                            <h1> {{ app.user.fullName }}</h1>
+                            <p> Votre compte n'est pas encore confirmé.</p>
+                            <p>Recevoir le mail de confirmation </p>
+                            <button class="btn btn-warning">Envoie d'email</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

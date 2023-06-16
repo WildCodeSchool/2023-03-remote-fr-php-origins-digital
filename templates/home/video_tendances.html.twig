@@ -1,17 +1,25 @@
 <div class="container-fluid mt-4">
     <div class="row">
         <h2 class="mt-4">Tendance</h2>
-        {% for i in 0..5 %}
-            <div class="col-lg-4 col-md-6">
-                <div class="card mt-2 mb-2" style="width: 100%;">
-                    <video width="100%" height="280" controls>
-                        <source src="/uploads/videos/{{ i+1 }}.mp4" alt="Vidéo {{ i+1 }}" type="video/mp4">
-                    </video>
-
-                <h3 class="card-title">Titre</h3>
-                <p class="card-text">Nom du créateur</p>
-            </div></div>
+        {% for video in videos %}
+            <div class="col-lg-4 col-md-6 d-flex justify-content-center">
+                <div class="card mt-2 mb-2 card bg-transparent text-white border-0" style="width: 100%;">
+                    <div class="video-container position-relative w-200 h-250" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                        {% if video.Private and not app.user %}
+                        <a href="{{ path('app_login') }}">
+                        <img src="/uploads/images/{{ video.imagevideos.0.file }}" alt="{{ video.title }}" class="img-fluid">
+                        </a>
+                        {% else %}
+                            <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}">
+                                <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
+                            </video>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h3 class="card-title">{{ video.title }}</h3>
+                    </div>
+                </div>
+            </div>
         {% endfor %}
     </div>
 </div>
-

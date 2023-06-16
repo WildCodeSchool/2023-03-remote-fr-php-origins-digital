@@ -18,7 +18,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav" id="navbar">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Accueil<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/#genre">Genres</a>
                     </li>
                 </ul>
             </div>
@@ -54,11 +57,14 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             {% if app.user %}
-                                <li><a class="dropdown-item" href=#>Mon compte</a></li>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <li><a class="dropdown-item" href={{ path('admin_index') }}>Administration</a></li>
+                                {% endif %}
+                                <li><a class="dropdown-item" href={{ path('app_page_account') }}>Mon compte</a></li>
                                 <li><a class="dropdown-item" href="{{ path('app_logout') }}">Me déconnecter</a></li>
                             {% else %}
                                 <li><a class="dropdown-item" href="{{ path('app_login') }}">Me connecter</a></li>
-                                <li><a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire</a></li>
+                                <li><a class="dropdown-item" href="{{ path('app_register') }}">M'inscrire <i class="fa-solid fa-user-plus"></i></a></li>
                             {% endif %}
                         </ul>
                     </li>
@@ -71,8 +77,12 @@
 <div class="collapse navbar-collapse fixed-top navbar-dark bg-dark bg-gradient mobileDropdown" id="navbarNavDropdown">
     <ul class="navbar-nav justify-content-center">
         {% if app.user %}
+            {% if is_granted('ROLE_ADMIN') %}
+                <li class="nav-item mobile">
+                    <a class="nav-link" href={{ path('admin_index') }}>Administration</a></li>
+            {% endif %}
             <li class="nav-item mobile">
-                <a class="nav-link" href=#>Mon compte</a></li>
+                <a class="nav-link" href={{ path('app_page_account') }}>Mon compte</a></li>
 
             <li class="nav-item mobile">
                 <a class="nav-link" href="#">Favoris</a>
@@ -84,13 +94,13 @@
                 <a class="nav-link" href="#">Genre</a>
             </li>
             <li class="nav-item mobile">
-                <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a></li>
+                <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter <i class="fa-solid fa-arrow-right-from-bracket"></i></a></li>
             {% else %}
             <li class="nav-item mobile">
                 <a class="nav-link" href="{{ path('app_login') }}">Me connecter</a>
             </li>
             <li class="nav-item mobile">
-                <a class="nav-link" href="{{ path('app_register') }}">M'inscrire</a>
+                <a class="nav-link" href="{{ path('app_register') }}">M'inscrire  <i class="fa-solid fa-user-plus"></i></a>
             </li>
         {% endif %}
 
