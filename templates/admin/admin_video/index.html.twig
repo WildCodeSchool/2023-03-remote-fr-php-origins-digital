@@ -1,0 +1,45 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Video {% endblock %}
+
+{% block body %}
+    <h2>Video</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Time</th>
+                <th>Views</th>
+                <th>Private</th>
+                <th>RealeaseDate</th>
+                <th>Upcoming</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for video in videos %}
+            <tr>
+                <td>{{ video.id }}</td>
+                <td>{{ video.title }}</td>
+                <td>{{ video.time }}</td>
+                <td>{{ video.views }}</td>
+                <td>{{ video.private ? 'Yes' : 'No' }}</td>
+                <td>{{ video.realeaseDate ? video.realeaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ video.upcoming ? 'Yes' : 'No' }}</td>
+                <td>{{ video.description }}</td>
+                <td>
+                    <a href="{{ path('app_admin_video_show', {'id': video.id}) }}">show</a>
+                    <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
