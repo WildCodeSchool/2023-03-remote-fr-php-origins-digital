@@ -20,7 +20,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
-        $this->videoBookmarks = new ArrayCollection();
+        $this->bookmarks = new ArrayCollection();
     }
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -55,8 +55,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'datetime_immutable', options: ['default' => 'CURRENT_TIMESTAMP'])]
     private ?\DateTimeImmutable $createdAt;
 
-    #[ORM\ManyToMany(targetEntity: VideoBookmarks::class, mappedBy: 'user')]
-    private Collection $videoBookmarks;
+    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'userBookmarks')]
+    private Collection $bookmarks;
     public function getId(): ?int
     {
         return $this->id;
@@ -179,28 +179,25 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return Collection<int, VideoBookmarks>
+     * @return Collection<int, Video>
      */
-    public function getVideoBookmarks(): Collection
+    public function getBookmarks(): Collection
     {
-        return $this->videoBookmarks;
+        return $this->bookmarks;
     }
 
-    public function addVideoBookmark(VideoBookmarks $videoBookmark): static
+    public function addBookmark(Video $bookmark): static
     {
-        if (!$this->videoBookmarks->contains($videoBookmark)) {
-            $this->videoBookmarks->add($videoBookmark);
-            $videoBookmark->addUser($this);
+        if (!$this->bookmarks->contains($bookmark)) {
+            $this->bookmarks->add($bookmark);
         }
 
         return $this;
     }
 
-    public function removeVideoBookmark(VideoBookmarks $videoBookmark): static
+    public function removeBookmark(Video $bookmark): static
     {
-        if ($this->videoBookmarks->removeElement($videoBookmark)) {
-            $videoBookmark->removeUser($this);
-        }
+        $this->bookmarks->removeElement($bookmark);
 
         return $this;
     }

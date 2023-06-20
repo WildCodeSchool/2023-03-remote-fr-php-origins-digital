@@ -44,12 +44,12 @@ class Video
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: VideoBookmarks::class, mappedBy: 'video')]
-    private Collection $videoBookmarks;
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'bookmarks')]
+    private Collection $userBookmarks;
     public function __construct()
     {
         $this->imageVideos = new ArrayCollection();
-        $this->videoBookmarks = new ArrayCollection();
+        $this->userBookmarks = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -184,27 +184,27 @@ class Video
     }
 
     /**
-     * @return Collection<int, VideoBookmarks>
+     * @return Collection<int, User>
      */
-    public function getVideoBookmarks(): Collection
+    public function getUserBookmarks(): Collection
     {
-        return $this->videoBookmarks;
+        return $this->userBookmarks;
     }
 
-    public function addVideoBookmark(VideoBookmarks $videoBookmark): static
+    public function addUserBookmark(User $userBookmark): static
     {
-        if (!$this->videoBookmarks->contains($videoBookmark)) {
-            $this->videoBookmarks->add($videoBookmark);
-            $videoBookmark->addVideo($this);
+        if (!$this->userBookmarks->contains($userBookmark)) {
+            $this->userBookmarks->add($userBookmark);
+            $userBookmark->addBookmark($this);
         }
 
         return $this;
     }
 
-    public function removeVideoBookmark(VideoBookmarks $videoBookmark): static
+    public function removeUserBookmark(User $userBookmark): static
     {
-        if ($this->videoBookmarks->removeElement($videoBookmark)) {
-            $videoBookmark->removeVideo($this);
+        if ($this->userBookmarks->removeElement($userBookmark)) {
+            $userBookmark->removeBookmark($this);
         }
 
         return $this;

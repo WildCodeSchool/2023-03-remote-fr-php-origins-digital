@@ -5,6 +5,7 @@ namespace App\DataFixtures;
 use App\Entity\ImageGenre;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 class ImageGenreFixtures extends Fixture
 {
@@ -17,8 +18,17 @@ class ImageGenreFixtures extends Fixture
         '6' => ['6', 'rpg-background.jpg', 'rpg-character.png', 'rpg-text.png'],
     ];
 
+    public function __construct(private ParameterBagInterface $parameterBag)
+    {
+    }
+
     public function load(ObjectManager $manager): void
     {
+        $uploadImageDir = $this->parameterBag->get('upload_image_dir');
+        if (!is_dir(__DIR__ . '/../../public/' . $uploadImageDir)) {
+            mkdir(__DIR__ . '/../../public/' . $uploadImageDir, recursive: true);
+        }
+
         foreach (self::IMAGES as $genreId => $imageData) {
             $genreImage = new ImageGenre();
             $genreImage->setId((int)$imageData[0]);
