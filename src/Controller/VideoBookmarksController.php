@@ -35,7 +35,6 @@ class VideoBookmarksController extends AbstractController
     #[Route('/bookmarks/save/{id}', name: 'add_bookmark')]
     #[IsGranted('ROLE_USER')]
     public function addBookmarkRoute(
-        Request $request,
         Video $video,
         UserRepository $userRepository
     ): Response {
