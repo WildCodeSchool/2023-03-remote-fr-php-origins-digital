@@ -31,8 +31,16 @@ liip_imagine:
                     size: [ 450, 191 ]
                     # crop the input image, if required
                     mode: outbound
-        thumbnail_locked:
+        thumbnail_categories:
             quality: 75
             filters:
                 scale:
                     to: 0.1
+        thumbnail_locked:
+            quality: 75
+            filters:
+                thumbnail:
+                    # set the thumbnail size to "32x32" pixels
+                    size: [ 570, 300 ]
+                    # crop the input image, if required
+                    mode: outbound

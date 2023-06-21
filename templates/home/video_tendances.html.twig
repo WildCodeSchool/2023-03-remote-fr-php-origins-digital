@@ -4,7 +4,7 @@
         {% for video in videos %}
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 <div class="card mt-2 mb-2 card bg-transparent text-white border-0" style="width: 100%;">
-                    <div class="video-container position-relative w-200 h-250" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                    <div class="video-container position-relative" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                         {% if video.Private and not app.user %}
                         <a href="{{ path('app_login') }}">
                         <img src="{{ ('/uploads/images/' ~ video.imagevideos.0.file ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">

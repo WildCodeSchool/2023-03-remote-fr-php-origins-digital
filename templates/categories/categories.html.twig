@@ -24,7 +24,7 @@
                     <div class="card text-center bg-image">
                         {% for image in category.imagesCategories %}
                             <a class="stretched-link" href="/">
-                                <img src="{{ ('/uploads/images/' ~ image.file ) | imagine_filter('thumbnail_locked') }}"
+                                <img src="{{ ('/uploads/images/' ~ image.file ) | imagine_filter('thumbnail_categories') }}"
                                      class="card-img-top" alt="{{ category.name }}">
                             </a>
                         {% endfor %}
