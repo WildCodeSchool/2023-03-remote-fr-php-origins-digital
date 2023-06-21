@@ -7,10 +7,11 @@
                     <div class="video-container position-relative" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                         {% if video.Private and not app.user %}
                         <a href="{{ path('app_login') }}">
-                        <img src="{{ ('/uploads/images/' ~ video.imagevideos.0.file ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
+                        <img src="{{ ('/uploads/images/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid img-tendance">
+                            <i class="fa-solid fa-lock lock fa-2xl position-absolute"></i>
                         </a>
                         {% else %}
-                            <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="{{ ('/uploads/images/' ~ video.imagevideos.0.file ) | imagine_filter('thumbnail_locked') }}">
+                            <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="{{ ('/uploads/images/' ~ video.image ) | imagine_filter('thumbnail_locked') }}">
                                 <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                             </video>
                         {% endif %}

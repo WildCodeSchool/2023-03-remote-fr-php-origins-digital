@@ -26,7 +26,7 @@ class ImagesCategoriesFixtures extends Fixture implements DependentFixtureInterf
 
     public function load(ObjectManager $manager): void
     {
-        $uploadImageDir = $this->parameterBag->get('upload_image_dir');
+        $uploadImageDir = $this->parameterBag->get('image_dir');
         if (!is_dir(__DIR__ . '/../../public/' . $uploadImageDir)) {
             mkdir(__DIR__ . '/../../public/' . $uploadImageDir, recursive: true);
         }
