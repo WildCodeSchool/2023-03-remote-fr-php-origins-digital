@@ -24,7 +24,7 @@
                     <div class="card h-100 text-center">
                         <a class="stretched-link" href="/">
                             {% if category.file %}
-                                <img src="/uploads/images/{{ category.file }}"
+                                <img src="/uploads/images/{{ category.file | imagine_filter('thumbnail_categories') }}"
                                      class="card-img-top w-100 object-fit-cover border-none" alt="{{ category.name }}">
                             {% else %}
                                 <div class="card-img-top w-100 object-fit-cover border-none">

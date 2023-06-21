@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\VideoRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -47,13 +49,19 @@ class Video
     #[ORM\Column]
     private ?bool $upcoming = null;
 
-
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'bookmarks')]
+    private Collection $userBookmarks;
+
+    public function __construct()
+    {
+        $this->userBookmarks = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -153,6 +161,32 @@ class Video
     public function setDescription(string $description): self
     {
         $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUserBookmarks(): Collection
+    {
+        return $this->userBookmarks;
+    }
+
+    public function addUserBookmark(User $userBookmark): static
+    {
+        if (!$this->userBookmarks->contains($userBookmark)) {
+            $this->userBookmarks->add($userBookmark);
+            $userBookmark->addBookmark($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserBookmark(User $userBookmark): static
+    {
+        if ($this->userBookmarks->removeElement($userBookmark)) {
+            $userBookmark->removeBookmark($this);
+        }
 
         return $this;
     }

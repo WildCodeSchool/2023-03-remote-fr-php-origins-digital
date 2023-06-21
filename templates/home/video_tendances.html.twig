@@ -4,14 +4,14 @@
         {% for video in videos %}
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 <div class="card mt-2 mb-2 card bg-transparent text-white border-0" style="width: 100%;">
-                    <div class="video-container position-relative w-200 h-250" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                    <div class="video-container position-relative" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                         {% if video.Private and not app.user %}
-                        <a href="{{ path('app_login') }}" >
-                        <img src="/uploads/images/{{ video.image }}" alt="{{ video.title }}" class="img-fluid img-tendance">
+                        <a href="{{ path('app_login') }}">
+                        <img src="{{ ('/uploads/images/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid img-tendance">
                             <i class="fa-solid fa-lock lock fa-2xl position-absolute"></i>
                         </a>
                         {% else %}
-                            <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="/uploads/images/{{ video.image }}">
+                            <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="{{ ('/uploads/images/' ~ video.image ) | imagine_filter('thumbnail_locked') }}">
                                 <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                             </video>
                         {% endif %}
