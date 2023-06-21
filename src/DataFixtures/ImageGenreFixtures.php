@@ -25,8 +25,8 @@ class ImageGenreFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $uploadImageDir = $this->parameterBag->get('image_dir');
-        if (!is_dir(__DIR__ . '/../../public/' . $uploadImageDir)) {
-            mkdir(__DIR__ . '/../../public/' . $uploadImageDir, recursive: true);
+        if (!is_dir(__DIR__ . '/../../public' . $uploadImageDir)) {
+            mkdir(__DIR__ . '/../../public' . $uploadImageDir, recursive: true);
         }
 
         foreach (self::IMAGES as $genreId => $imageData) {

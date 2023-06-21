@@ -25,8 +25,8 @@ class CategoriesFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $uploadImageDir = $this->parameterBag->get('image_dir');
-        if (!is_dir(__DIR__ . '/../../public/uploads/images/' . $uploadImageDir)) {
-            mkdir(__DIR__ . '/../../public/uploads/images/' . $uploadImageDir, recursive: true);
+        if (!is_dir(__DIR__ . '/../../public' . $uploadImageDir)) {
+            mkdir(__DIR__ . '/../../public' . $uploadImageDir, recursive: true);
         }
 
         foreach (self::CATEGORIES as $categoriesData) {
@@ -37,7 +37,7 @@ class CategoriesFixtures extends Fixture implements DependentFixtureInterface
 
                 // Définir le chemin d'accès au fichier
                 $filePath = __DIR__ . '/data/images/' . $categoriesData['file'];
-                $destinationPath = __DIR__ . '/../../public/uploads/images/' . $uploadImageDir . '/' . $categoriesData
+                $destinationPath = __DIR__ . '/../../public' . $uploadImageDir . '/' . $categoriesData
                     ['file'];
 
                 // Copier le fichier vers le répertoire de destination

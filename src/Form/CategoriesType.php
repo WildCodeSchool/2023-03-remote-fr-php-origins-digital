@@ -20,11 +20,6 @@ class CategoriesType extends AbstractType
             ->add('genre', null, [
                 'attr' => ['class' => 'form-control'],
             ])
-            ->add('file', null, [
-                'label' => false,
-                'required' => false,
-                'attr' => ['class' => 'form-control', 'style' => 'display:none']
-            ])
             ->add('imageFile', VichFileType::class, [
                 'required' => false,
                 'label' => 'Image',

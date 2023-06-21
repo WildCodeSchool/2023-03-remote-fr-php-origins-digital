@@ -31,15 +31,7 @@ class AdminCategoriesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $file = $form->get('file')->getData();
-            if ($file instanceof UploadedFile) {
-                $uploadDirectory = $this->getParameter('upload_image_dir');
-                $filename = uniqid() . '.' . $file->guessExtension();
-                $file->move($uploadDirectory, $filename);
-            }
-
             $categoriesRepository->save($category, true);
-
             return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('admin/admin_categories/new.html.twig', [
