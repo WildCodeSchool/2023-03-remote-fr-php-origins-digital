@@ -5,7 +5,7 @@
 
 {% block body %}
     <div class="container mb-2">
-        <h1 class="text-center m-3 mb-3">Categories</h1>
+        <h1 class="text-center m-3 mb-3">Categories {{ genre.name }}</h1>
     </div>
     <div class="container-fluid">
         <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
@@ -23,8 +23,15 @@
                 <div class="col-lg-5">
                     <div class="card h-100 text-center">
                         <a class="stretched-link" href="/">
-                            <img src="{{ ('/uploads/images/' ~ category.imagesCategories.0.file ) | imagine_filter('thumbnail_categories') }}"
-                                 class="card-img-top w-100 object-fit-cover border-none" alt="{{ category.name }}">
+                            {% if category.file %}
+                                <img src="/uploads/images/{{ category.file | imagine_filter('thumbnail_categories') }}"
+                                     class="card-img-top w-100 object-fit-cover border-none" alt="{{ category.name }}">
+                            {% else %}
+                                <div class="card-img-top w-100 object-fit-cover border-none">
+                                    Pas d'image
+                                </div>
+                            {% endif %}
+
                         </a>
                         <div class="card-img-overlay">
                             <h5 class="card-title text-dark bg-secondary-subtle">{{ category.name }}</h5>

@@ -40,13 +40,13 @@ class VideoFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $uploadVideoDir = $this->parameterBag->get('video_dir');
-        if (!is_dir(__DIR__ . '/../../public/' . $uploadVideoDir)) {
-            mkdir(__DIR__ . '/../../public/' . $uploadVideoDir, recursive: true);
+        if (!is_dir(__DIR__ . '/../../public' . $uploadVideoDir)) {
+            mkdir(__DIR__ . '/../../public' . $uploadVideoDir, recursive: true);
         }
 
         $uploadImageDir = $this->parameterBag->get('image_dir');
-        if (!is_dir(__DIR__ . '/../../public/' . $uploadImageDir)) {
-            mkdir(__DIR__ . '/../../public/' . $uploadImageDir, recursive: true);
+        if (!is_dir(__DIR__ . '/../../public' . $uploadImageDir)) {
+            mkdir(__DIR__ . '/../../public' . $uploadImageDir, recursive: true);
         }
 
         $faker = Factory::create('fr_FR');

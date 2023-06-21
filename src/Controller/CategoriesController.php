@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Genre;
 use App\Repository\CategoriesRepository;
-use App\Repository\ImagesCategoriesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,14 +14,12 @@ class CategoriesController extends AbstractController
     #[Route('/categories', name: 'app_categories')]
     public function index(
         CategoriesRepository $categoriesRepository,
-        ImagesCategoriesRepository $imagesCatRepository
     ): Response {
         $categories = $categoriesRepository->findAll();
-        $imagesCategories = $imagesCatRepository->findAll();
+
 
         return $this->render('categories/categories.html.twig', [
             'categories' => $categories,
-            'imagescategories' => $imagesCategories
         ]);
     }
 
