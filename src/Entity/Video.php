@@ -4,8 +4,6 @@ namespace App\Entity;
 
 use App\Repository\VideoRepository;
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -23,7 +21,6 @@ class Video
     #[ORM\Column(length: 45)]
     private ?string $title = null;
 
-
     #[ORM\Column]
     private ?int $time = null;
 
@@ -38,6 +35,7 @@ class Video
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $realeaseDate = null;
+
     #[Vich\UploadableField(mapping: 'video_file', fileNameProperty: 'videoUrl')]
     private ?File $videoFile = null;
     #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'image')]
@@ -49,18 +47,13 @@ class Video
     #[ORM\Column]
     private ?bool $upcoming = null;
 
-    #[ORM\OneToMany(mappedBy: 'video', targetEntity: ImageVideo::class)]
-    private Collection $imageVideos;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
+
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
-    public function __construct()
-    {
-        $this->imageVideos = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -152,37 +145,6 @@ class Video
         return $this;
     }
 
-    /**
-     * @return Collection<int, ImageVideo>
-     */
-    public function getImageVideos(): Collection
-    {
-        return $this->imageVideos;
-    }
-
-    public function addImageVideo(ImageVideo $imageVideo): self
-    {
-        if (!$this->imageVideos->contains($imageVideo)) {
-            $this->imageVideos->add($imageVideo);
-            $imageVideo->setVideo($this);
-        }
-
-        return $this;
-    }
-
-
-    public function removeImageVideo(ImageVideo $imageVideo): self
-    {
-        if ($this->imageVideos->removeElement($imageVideo)) {
-            // set the owning side to null (unless already changed)
-            if ($imageVideo->getVideo() === $this) {
-                $imageVideo->setVideo(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getDescription(): ?string
     {
         return $this->description;
@@ -211,20 +173,6 @@ class Video
         $this->updatedAt = $updatedAt;
     }
 
-    public function getPosterFile(): ?File
-    {
-        return $this->posterFile;
-    }
-
-    public function setPosterFile(File $image = null): Video
-    {
-        $this->posterFile = $image;
-        if ($image) {
-            $this->updatedAt = new DateTime('now');
-        }
-        return $this;
-    }
-
     public function getVideoFile(): ?File
     {
         return $this->videoFile;
@@ -248,6 +196,20 @@ class Video
     {
         $this->image = $image;
 
+        return $this;
+    }
+
+    public function getPosterFile(): ?File
+    {
+        return $this->posterFile;
+    }
+
+    public function setPosterFile(File $image = null): Video
+    {
+        $this->posterFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
         return $this;
     }
 }

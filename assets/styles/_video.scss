@@ -47,3 +47,13 @@
     object-fit: cover;
 }
 
+.lock {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color : #FF6608;
+}
+
+.img-tendance {
+    opacity: 25%;
+}

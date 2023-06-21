@@ -19,7 +19,7 @@ class VideoFixtures extends Fixture
             'image' => 'playstation_call_of_duty.jpg'],
         ['title' => 'Gameplay fifa', 'time' => 10, 'video_url' => 'gameplay_fifa.mp4', 'views' => 11,
             'is_private' => false, 'is_upcoming' => true, 'video_number' => '3', 'image' => 'fifa_gameplay.jpg'],
-        ['title' => 'League of Legends Ã  la manette', 'time' => 39,
+        ['title' => 'League of Legends à la manette', 'time' => 39,
             'video_url' => 'gameplay_manette_league_of_legend.mp4',
             'views' => 29, 'is_private' => false, 'is_upcoming' => true, 'video_number' => '4',
             'image' => 'manette_league_of_legends.jpg'],
@@ -65,14 +65,13 @@ class VideoFixtures extends Fixture
             $video->setDescription(implode("", array_map(function ($item) {
                 return '<p>' . $item . '</p>';
             }, $faker->paragraphs($faker->numberBetween(2, 3)))));
+            $video->setTime($videoData['time']);
+            $video->setVideoUrl($videoData['video_url']);
+            $video->setViews($videoData['views']);
             $video->setPrivate($videoData['is_private']);
             $video->setRealeaseDate(new DateTime('now'));
             $video->setUpcoming($videoData['is_upcoming']);
             $video->setImage($videoData['image']);
-            $video->setTime($videoData['time']);
-            $video->setVideoUrl($videoData['video_url']);
-            $video->setViews($videoData['views']);
-            $this->addReference('video_' . $videoData['video_number'], $video);
             $manager->persist($video);
         }
         $manager->flush();

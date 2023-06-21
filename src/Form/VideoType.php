@@ -33,6 +33,7 @@ class VideoType extends AbstractType
                 ],
             ])
             ->add('videoUrl', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control',
                 ],
@@ -57,6 +58,14 @@ class VideoType extends AbstractType
             ])
             ->add('description', CKEditorType::class, [
                 'purify_html' => true
+            ])
+            ->add('videoFile', VichFileType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => true,
+                'attr' => [
+                    'class' => 'form-control'
+                ],
             ])
             ->add('posterFile', VichFileType::class, [
                 'required' => false,
