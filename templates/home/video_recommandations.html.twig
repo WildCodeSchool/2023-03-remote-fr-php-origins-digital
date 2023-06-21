@@ -6,7 +6,7 @@
                 <div class="swiper-wrapper">
                     {% for video in videos %}
                             <div class="swiper-slide card border-0 bg-transparent text-white " data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                                <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}" preload="none">
+                                <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="{{ ('/uploads/images/' ~ video.imagevideos.0.file ) | imagine_filter('thumbnail_locked') }}" preload="none">
                                     <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                                 </video>
                                 <div class="card-body">
