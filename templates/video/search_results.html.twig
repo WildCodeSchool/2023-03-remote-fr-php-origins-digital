@@ -1,14 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+    <h1>Renseignez votre recherche</h1>
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4">
+            {{ form_start(form) }}
+            {{ form_label(form.search) }}
+            <div class="input-group mb-6">
+                {{ form_widget(form.search) }}
+                <a  href="{{ path('video_search') }}"
+                   class="btn btn-outline-primary">
+                   Reset
+                </a>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
+</div>
+{% if app.request.method == 'GET' and form.search.vars.value is not empty %}
 <div class="container-fluid mt-4">
     <div class="row">
-        <h2 class="mt-4">Tendance</h2>
+        {% if videos | length == 0 %}
+        <h2>Aucun résultat pour votre recherche</h2>
+        {% else %}
+        <h2 class="mt-4">Résultats de la recherche</h2>
         {% for video in videos %}
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
                 <div class="card mt-2 mb-2 card bg-transparent text-white border-0" style="width: 100%;">
                     <div class="video-container position-relative w-200 h-250" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                         {% if video.Private and not app.user %}
-                        <a href="{{ path('app_login') }}">
-                        <img src="/uploads/images/{{ video.imagevideos.0.file }}" alt="{{ video.title }}" class="img-fluid">
-                        </a>
+                            <a href="{{ path('app_login') }}">
+                                <img src="/uploads/images/{{ video.imagevideos.0.file }}" alt="{{ video.title }}" class="img-fluid">
+                            </a>
                         {% else %}
                             <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}">
                                 <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
@@ -21,6 +46,8 @@
                 </div>
             </div>
         {% endfor %}
+        {%  endif %}
     </div>
-</div>
+    {% endif %}
 
+{% endblock %}
