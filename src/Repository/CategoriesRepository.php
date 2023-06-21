@@ -38,6 +38,14 @@ class CategoriesRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findAllOrderedByGenre(): mixed
+    {
+        return $this->createQueryBuilder('c')
+            ->leftJoin('c.genre', 'g')
+            ->orderBy('g.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 
 //    /**
 //     * @return Categories[] Returns an array of Categories objects

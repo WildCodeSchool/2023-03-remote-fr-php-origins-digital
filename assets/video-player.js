@@ -5,7 +5,6 @@ import 'video.js/dist/video'
 import  'videojs-playlist/dist/videojs-playlist.min'
 
 const playerHome = videojs('player-home', {
-    autoplay: true,
     controls: true,
     loop: false,
     playbackRates: [0.25,0.5,1,1.5,2,2.5],
@@ -14,7 +13,6 @@ const playerHome = videojs('player-home', {
 const players = document.querySelectorAll('[id^="modal-player-video"]');
 players.forEach((playerElement, index) => {
     const player = videojs(playerElement.id, {
-        autoplay: true,
         controls: true,
         loop: false,
         playbackRates: [0.25, 0.5, 1, 1.5, 2, 2.5],
@@ -32,10 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
         video.id = playerId;
         const player = videojs(playerId);
 
-        player.on("mouseover", () => {
-            player.play();
-            player.el().style.transform = "scale(1.02)";
-            player.el().style.borderRadius = "0";
+        player.on("mouseout", () => {
+            player.pause();
+            player.el().style.transform = "scale(1)";
+            player.el().style.borderRadius = "12px";
         });
 
         player.on("mouseout", () => {

@@ -38,8 +38,9 @@ class Video
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $realeaseDate = null;
-
     #[Vich\UploadableField(mapping: 'video_file', fileNameProperty: 'videoUrl')]
+    private ?File $videoFile = null;
+    #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'image')]
     private ?File $posterFile = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
@@ -53,6 +54,8 @@ class Video
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
 
     public function __construct()
     {
@@ -167,6 +170,7 @@ class Video
         return $this;
     }
 
+
     public function removeImageVideo(ImageVideo $imageVideo): self
     {
         if ($this->imageVideos->removeElement($imageVideo)) {
@@ -212,12 +216,38 @@ class Video
         return $this->posterFile;
     }
 
-    public function setPosterFile(File $video = null): Video
+    public function setPosterFile(File $image = null): Video
     {
-        $this->posterFile = $video;
+        $this->posterFile = $image;
+        if ($image) {
+            $this->updatedAt = new DateTime('now');
+        }
+        return $this;
+    }
+
+    public function getVideoFile(): ?File
+    {
+        return $this->videoFile;
+    }
+
+    public function setVideoFile(File $video = null): Video
+    {
+        $this->videoFile = $video;
         if ($video) {
             $this->updatedAt = new DateTime('now');
         }
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
+
         return $this;
     }
 }
