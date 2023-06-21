@@ -34,8 +34,5 @@ liip_imagine:
         thumbnail_locked:
             quality: 75
             filters:
-                thumbnail:
-                    # set the thumbnail size to "32x32" pixels
-                    size: [ 570, 300 ]
-                    # crop the input image, if required
-                    mode: outbound
+                scale:
+                    to: 0.1
