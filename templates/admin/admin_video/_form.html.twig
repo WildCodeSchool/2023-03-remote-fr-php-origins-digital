@@ -29,7 +29,12 @@
             {{ form_widget(form.description) }}
      </div>
     <div class="col-md-9">
+        {{ form_label(form.posterFile, 'Upload image') }}
         {{ form_widget(form.posterFile) }}
+    </div>
+    <div class="col-md-9">
+        {{ form_label(form.posterFile, 'Upload vidéo') }}
+        {{ form_widget(form.videoFile) }}
     </div>
     <div class="col-md-6">
         <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
