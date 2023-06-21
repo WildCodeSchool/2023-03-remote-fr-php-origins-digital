@@ -20,6 +20,7 @@
                             <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                         </video>
                         <h3>Titre : {{ video.title }}</h3>
+                        <a href="{{ path('add_bookmark', {id: video.id}) }}">Mettre en favoris</a>
                         {{ video.description | raw }}
                     </div>
                     <div class="modal-footer">
