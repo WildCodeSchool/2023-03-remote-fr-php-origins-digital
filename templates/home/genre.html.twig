@@ -20,7 +20,7 @@
                                             <!-- put your custom content here -->
                                             <div class="genre-box-bg" data-atropos-offset="0"
                                                  style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);">
-                                                <img src="/uploads/{{ genre.imageGenres.0.background }}"
+                                                <img src="{{ ('/uploads/' ~ genre.imageGenres.0.background ) | imagine_filter('thumbnail_atropos_bg') }}"
                                                      data-atropos-offset="0"
                                                      alt="genre background">
                                             </div>
@@ -28,7 +28,7 @@
                                             Element with no offset will not move
                                             -->
                                             <img class="genre-box-character"
-                                                 src="/uploads/{{ genre.imageGenres.0.genreCharacter }}"
+                                                 src="{{ ('/uploads/' ~ genre.imageGenres.0.genreCharacter ) | imagine_filter('thumbnail_atropos_character') }}"
                                                  data-atropos-offset="15"
                                                  style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);"
                                                  alt="genre character"/>
@@ -37,7 +37,7 @@
                                             making it appear in front of the scene
                                             -->
                                             <img class="genre-box-text"
-                                                 src="/uploads/{{ genre.imageGenres.0.genreName }}"
+                                                 src="{{ ('/uploads/' ~ genre.imageGenres.0.genreName ) | imagine_filter('thumbnail_atropos_text') }}"
                                                  data-atropos-offset="15"
                                                  style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);"
                                                  alt="genre text"/>
