@@ -65,28 +65,15 @@ const swiperNew = new Swiper(".mySwiper_nouveaute", {
 const swiperTop = new Swiper(".mySwiper_top", {
     // Default parameters
     slidesPerView: 3.5,
-    spaceBetween: 30,
-    freeMode: true,
+    spaceBetween: 20,
+    cssMode: true,
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
     pagination: {
         el: ".swiper-pagination",
-        clickable: true,
     },
-    // Responsive breakpoints
-    breakpoints: {
-        // when window width is >= 576px
-        576: {
-            slidesPerView: 1.5,
-            spaceBetween: 30
-        },
-        // when window width is >= 768px
-        768: {
-            slidesPerView: 2.5,
-            spaceBetween: 30
-        },
-        // when window width is >= 992px
-        992: {
-            slidesPerView: 3.5,
-            spaceBetween: 30
-        }
-    }
+    mousewheel: true,
+    keyboard: true,
 });
