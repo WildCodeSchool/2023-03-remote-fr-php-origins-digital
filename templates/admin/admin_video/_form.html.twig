@@ -8,10 +8,6 @@
         {{ form_label(form.time, 'Temps de la vidéo') }}
         {{ form_widget(form.time) }}
     </div>
-    <div class="col-md-6">
-        {{ form_label(form.videoUrl, 'Url de la vidéo') }}
-        {{ form_widget(form.videoUrl) }}
-    </div>
     <div class="col-md-3">
         {{ form_label(form.private, 'Uniquement pour les abonnés') }}
         {{ form_widget(form.private) }}
@@ -35,6 +31,10 @@
     <div class="col-md-9">
         {{ form_label(form.posterFile, 'Upload vidéo') }}
         {{ form_widget(form.videoFile) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_label(form.category, 'Categorie de la vidéo') }}
+        {{ form_widget(form.category) }}
     </div>
     <div class="col-md-6">
         <button class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>

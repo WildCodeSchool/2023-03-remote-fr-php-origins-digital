@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Video;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,23 @@ class VideoRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function queryFindAll(): Query
+    {
+        return $this->createQueryBuilder('v')
+            ->leftJoin('v.categories', 'c')
+            ->getQuery();
+    }
+
+    public function findLikeName(string $search): Query
+    {
+        return $this->createQueryBuilder('v')
+            ->leftJoin('v.categories', 'c')
+            ->andWhere('v.title LIKE :search OR c.name LIKE :search')
+            ->setParameter('search', '%' . $search . '%')
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

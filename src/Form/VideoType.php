@@ -32,12 +32,6 @@ class VideoType extends AbstractType
                     'class' => 'form-control',
                 ],
             ])
-            ->add('videoUrl', TextType::class, [
-                'required' => false,
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
             ->add('private', CheckboxType::class, [
                 'required' => false,
                 'attr' => [
@@ -76,6 +70,9 @@ class VideoType extends AbstractType
                 ],
             ])
 
+            ->add('category', null, [
+                'choice_label' => 'name',
+            ])
         ;
     }
 
