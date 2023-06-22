@@ -11,7 +11,7 @@
                                        id="player-home" controls
                                        poster="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}"
                                        preload="none">
-                                    <source src="/uploads/videos/{{ video.videoUrl }}"
+                                    <source src="{{ video_dir ~ '/' ~ video.videoUrl }}"
                                             alt="Vidéo {{ video.title }}" type="video/mp4">
                                 </video>
                                 <div class="card-body">
