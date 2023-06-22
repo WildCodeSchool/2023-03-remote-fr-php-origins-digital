@@ -30,6 +30,18 @@ class ImageGenreFixtures extends Fixture
         }
 
         foreach (self::IMAGES as $genreId => $imageData) {
+            copy(
+                __DIR__ . '/data/images/' . $imageData[1],
+                __DIR__ . '/../../public' . $uploadImageDir . '/' . $imageData[1]
+            );
+            copy(
+                __DIR__ . '/data/images/' . $imageData[2],
+                __DIR__ . '/../../public' . $uploadImageDir . '/' . $imageData[2]
+            );
+            copy(
+                __DIR__ . '/data/images/' . $imageData[3],
+                __DIR__ . '/../../public' . $uploadImageDir . '/' . $imageData[3]
+            );
             $genreImage = new ImageGenre();
             $genreImage->setId((int)$imageData[0]);
             $genreImage->setBackground($imageData[1]);

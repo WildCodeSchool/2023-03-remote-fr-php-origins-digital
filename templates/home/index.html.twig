@@ -6,7 +6,7 @@
 {% block body %}
     {% include 'home/video_recommandations.html.twig' %}
     {%  include 'home/video_tendances.html.twig' %}
-    {% for video in videos %}
+    {% for video in sortedVideos %}
         {% if not video.Private or app.user %}
         <div class="modal" id="myModal{{ video.id }}">
             <div class="modal-dialog modal-fullscreen">
@@ -20,6 +20,7 @@
                             <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                         </video>
                         <h3>Titre : {{ video.title }}</h3>
+                        <a href="{{ path('add_like', {id: video.id}) }}">Aimer la video</a>
                         <a href="{{ path('add_bookmark', {id: video.id}) }}">Mettre en favoris</a>
                         {{ video.description | raw }}
                     </div>
