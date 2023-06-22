@@ -9,26 +9,15 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/categories', name: 'categories_')]
 class CategoriesController extends AbstractController
 {
-    #[Route('/categories', name: 'app_categories')]
+    #[Route('/{id}', name: 'index', methods: ['GET'])]
     public function index(
-        CategoriesRepository $categoriesRepository,
-    ): Response {
-        $categories = $categoriesRepository->findAll();
-
-
-        return $this->render('categories/categories.html.twig', [
-            'categories' => $categories,
-        ]);
-    }
-
-    #[Route('/categories/{id}', name: 'app_categories_show', methods: ['GET'])]
-    public function show(
         Genre $genre,
     ): Response {
 
-        return $this->render('categories/show.html.twig', [
+        return $this->render('categories/index.html.twig', [
             'genre' => $genre,
         ]);
     }

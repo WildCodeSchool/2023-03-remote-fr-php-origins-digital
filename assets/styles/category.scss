@@ -34,3 +34,7 @@ div.bg-text {
     padding: 20px;
     text-align: center;
 }
+
+.breadcrumb-item + .breadcrumb-item::before {
+    --bs-breadcrumb-divider-color : #FFFFF;
+}

@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categories
+{% block title %}Catégories
 {% endblock %}
 
 {% block body %}
     <div class="container mb-2">
-        <h1 class="text-center m-3 mb-3">Categories {{ genre.name }}</h1>
+        <h1 class="text-center m-3 mb-3">Catégories {{ genre.name }}</h1>
     </div>
     <div class="container-fluid">
         <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
-            <ol class="breadcrumb ml-2">
+            <ol class="breadcrumb ml-2 text-light">
                 <li class="breadcrumb-item">
                     <a href="/" class="text-decoration-none text-secondary">Accueil</a>
                 </li>
@@ -21,26 +21,19 @@
         <div class="row g-4 justify-content-center">
             {% for category in genre.categories %}
                 <div class="col-lg-5">
-                    <div class="card h-100 text-center">
+                    <div class="card text-center bg-image">
                         <a class="stretched-link" href="/">
-                            {% if category.file %}
-                                <img src="/uploads/images/{{ category.file | imagine_filter('thumbnail_categories') }}"
-                                     class="card-img-top w-100 object-fit-cover border-none" alt="{{ category.name }}">
-                            {% else %}
-                                <div class="card-img-top w-100 object-fit-cover border-none">
-                                    Pas d'image
-                                </div>
-                            {% endif %}
-
+                            <img src="{{ (image_dir ~ '/' ~ category.file) | imagine_filter('thumbnail_categories') }}"
+                                 class="card-img-top" alt="{{ category.name }}">
                         </a>
                         <div class="card-img-overlay">
-                            <h5 class="card-title text-dark bg-secondary-subtle">{{ category.name }}</h5>
+                            <h5 class="card-title text-light bg-text">{{ category.name }}</h5>
                         </div>
                     </div>
                 </div>
             {% endfor %}
         </div>
-        <div class="card mt-5 mb-4">
+        <div class="card mt-4 mb-4">
             <img src="https://fakeimg.pl/1320x200/?text=PUB" class="card-img-top" alt="PUB">
         </div>
     </div>
