@@ -26,9 +26,10 @@ class ImageGenre
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updated = null;
 
-    #[ORM\ManyToOne]
+    #[ORM\ManyToOne(inversedBy: 'imageGenres')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Genre $genre = null;
+
 
     public function getId(): ?int
     {
@@ -83,23 +84,23 @@ class ImageGenre
         return $this;
     }
 
-    public function getGenre(): ?Genre
-    {
-        return $this->genre;
-    }
-
-    public function setGenre(?Genre $genre): self
-    {
-        $this->genre = $genre;
-
-        return $this;
-    }
-
     /**
      * @param int|null $id
      */
     public function setId(?int $id): void
     {
         $this->id = $id;
+    }
+
+    public function getGenre(): ?Genre
+    {
+        return $this->genre;
+    }
+
+    public function setGenre(?Genre $genre): static
+    {
+        $this->genre = $genre;
+
+        return $this;
     }
 }

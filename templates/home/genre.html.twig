@@ -1,54 +1,58 @@
-<div class="genre">
+<div class="genre" id="genre">
     <div class="container-fluid">
         <h2>Genres</h2>
         <div class="row">
-            {% for genreWithImage in genresWithImages %}
-                <div class="col-lg-4 col-md-6">
+            {% for genre in genres %}
+                    <div class="col-lg-4 col-md-6">
+                        <a href="{{ path('categories_index', { 'id' : genre.id }) }}">
+                            <div class="atropos desAtropos genre-box genreAtropos">
+                                <!-- scale container (required) -->
 
-                    <div class="atropos desAtropos genre-box genreAtropos">
-                        <!-- scale container (required) -->
+                                <div class="atropos-scale"
+                                     style="transform: translate3d(0px, 0px, 0px); transition-duration: 300ms;">
+                                    <!-- rotate container (required) -->
 
-                        <div class="atropos-scale"
-                             style="transform: translate3d(0px, 0px, 0px); transition-duration: 300ms;">
-                            <!-- rotate container (required) -->
+                                    <div class="atropos-rotate"
+                                         style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg);">
+                                        <!-- inner container (required) -->
 
-                            <div class="atropos-rotate"
-                                 style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px) rotateX(0deg) rotateY(0deg);">
-                                <!-- inner container (required) -->
+                                        <div class="atropos-inner">
+                                            <!-- put your custom content here -->
+                                            <div class="genre-box-bg" data-atropos-offset="0"
+                                                 style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);">
+                                                <img src="{{ ('/uploads/' ~ genre.imageGenres.0.background ) | imagine_filter('thumbnail_atropos_bg') }}"
+                                                     data-atropos-offset="0"
+                                                     alt="genre background">
+                                            </div>
+                                            <!--
+                                            Element with no offset will not move
+                                            -->
+                                            <img class="genre-box-character"
+                                                 src="{{ ('/uploads/' ~ genre.imageGenres.0.genreCharacter ) | imagine_filter('thumbnail_atropos_character') }}"
+                                                 data-atropos-offset="15"
+                                                 style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);"
+                                                 alt="genre character"/>
+                                            <!--
+                                            Element with positive offset will move in same direction,
+                                            making it appear in front of the scene
+                                            -->
+                                            <img class="genre-box-text"
+                                                 src="{{ ('/uploads/' ~ genre.imageGenres.0.genreName ) | imagine_filter('thumbnail_atropos_text') }}"
+                                                 data-atropos-offset="15"
+                                                 style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);"
+                                                 alt="genre text"/>
+                                            <span class="atropos-highlight"
+                                                  style="transform: translate3d(0px, 0px, 0px); transition-duration: 300ms; opacity: 0;"></span>
+                                        </div>
 
-                                <div class="atropos-inner">
-                                    <!-- put your custom content here -->
-                                    <div class="genre-box-bg" data-atropos-offset="0"
-                                         style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);">
-                                        <img src="/uploads/{{  genreWithImage.images[0]['background'] }}"
-                                             data-atropos-offset="0"
-                                             alt="genre background">
                                     </div>
-                                    <!--
-                                    Element with no offset will not move
-                                    -->
-                                    <img class="genre-box-character"
-                                         src="/uploads/{{  genreWithImage.images[0]['character'] }}"
-                                         data-atropos-offset="15"
-                                         style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);" alt="genre character"/>
-                                    <!--
-                                    Element with positive offset will move in same direction,
-                                    making it appear in front of the scene
-                                    -->
-                                    <img class="genre-box-text" src="/uploads/{{  genreWithImage.images[0]['text'] }}"
-                                         data-atropos-offset="15"
-                                         style="transition-duration: 300ms; transform: translate3d(0px, 0px, 0px);" alt="genre text"/>
-                                    <span class="atropos-highlight"
-                                          style="transform: translate3d(0px, 0px, 0px); transition-duration: 300ms; opacity: 0;"></span>
+
                                 </div>
 
                             </div>
-
-                        </div>
+                        </a>
 
                     </div>
-
-                </div>
             {% endfor %}
         </div>
     </div>
@@ -57,3 +61,4 @@
 {% block javascripts %}
     {{ encore_entry_script_tags('atropos') }}
 {% endblock %}
+

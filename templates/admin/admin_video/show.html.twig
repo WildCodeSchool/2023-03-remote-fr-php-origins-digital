@@ -1,0 +1,57 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Video{% endblock %}
+
+{% block body %}
+        <h2>Video</h2>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ video.id }}</td>
+                </tr>
+                <tr>
+                    <th>Title</th>
+                    <td>{{ video.title }}</td>
+                </tr>
+                <tr>
+                    <th>Time</th>
+                    <td>{{ video.time }}</td>
+                </tr>
+                <tr>
+                    <th>VideoUrl</th>
+                    <td>{{ video.videoUrl }}</td>
+                </tr>
+                <tr>
+                    <th>Views</th>
+                    <td>{{ video.views }}</td>
+                </tr>
+                <tr>
+                    <th>Private</th>
+                    <td>{{ video.private ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>RealeaseDate</th>
+                    <td>{{ video.realeaseDate ? video.realeaseDate|date('Y-m-d') : '' }}</td>
+                </tr>
+                <tr>
+                    <th>Upcoming</th>
+                    <td>{{ video.upcoming ? 'Yes' : 'No' }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ video.description }}</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td>{{ video.image }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_admin_video_index') }}">back to list</a>
+
+        <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}">edit</a>
+
+        {{ include('admin/admin_video/_delete_form.html.twig') }}
+{% endblock %}

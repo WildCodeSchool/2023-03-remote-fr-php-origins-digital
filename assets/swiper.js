@@ -1,6 +1,6 @@
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle'
-import './styles/swiperTop.scss'
+import './styles/swiper.scss'
 
 window.Swiper = Swiper;
 
@@ -61,6 +61,17 @@ const swiperNew = new Swiper(".mySwiper_nouveaute", {
         }
     }
 });
+const swiper_favoris = new Swiper('.videoBookmarksSwiper', {
+    loop: false,
+    slidesPerView: 4,
+    spaceBetween: 2,
+    direction: "vertical",
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
 
 const swiperTop = new Swiper(".mySwiper_top", {
     // Default parameters

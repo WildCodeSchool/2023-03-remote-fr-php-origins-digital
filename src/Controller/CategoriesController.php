@@ -2,22 +2,23 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Genre;
+use App\Repository\CategoriesRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/categories', name: 'app_categories_')]
+#[Route('/categories', name: 'categories_')]
 class CategoriesController extends AbstractController
 {
-    #[Route('/', name: 'index')]
-    public function index(): Response
-    {
-        return $this->render('categories/index.html.twig');
-    }
+    #[Route('/{id}', name: 'index', methods: ['GET'])]
+    public function index(
+        Genre $genre,
+    ): Response {
 
-    #[Route('/show', name: 'show')]
-    public function show(): Response
-    {
-        return $this->render('categories/show.html.twig');
+        return $this->render('categories/index.html.twig', [
+            'genre' => $genre,
+        ]);
     }
 }

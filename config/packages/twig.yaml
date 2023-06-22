@@ -1,11 +1,12 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     globals: 
-        upload_video_dir: 'upload_video_dir'
-        upload_image_dir: 'upload_video_dir'
+        video_dir: '%video_dir%'
+        image_dir: '%image_dir%'
         form_themes:
             - '@FontAwesome/fontawesome_layout.html.twig'
 
 when@test:
     twig:
         strict_variables: true
+
