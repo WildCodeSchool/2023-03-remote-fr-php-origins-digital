@@ -11,7 +11,7 @@
             <div class="input-group mb-6">
                 {{ form_widget(form.search) }}
                 <a  href="{{ path('video_search') }}"
-                   class="btn btn-outline-primary">
+                   class="btn btn-search btn-outline-primary">
                    Reset
                 </a>
             </div>
@@ -28,15 +28,15 @@
         <h2 class="mt-4">Résultats de la recherche</h2>
         {% for video in videos %}
             <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                <div class="card mt-2 mb-2 card bg-transparent text-white border-0" style="width: 100%;">
+                <div class="card mt-2 mb-2 card bg-transparent text-white border-0 w-100">
                     <div class="video-container position-relative w-200 h-250" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                         {% if video.Private and not app.user %}
                             <a href="{{ path('app_login') }}">
-                                <img src="/uploads/images/{{ video.imagevideos.0.file }}" alt="{{ video.title }}" class="img-fluid">
+                                <img src="{{ (image_dir ~ '/' ~ video.image )| imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
                             </a>
                         {% else %}
-                            <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="/uploads/images/{{ video.imagevideos.0.file }}">
-                                <source src="/uploads/videos/{{ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
+                            <video class=" recommandationVideo video-js videoPlayerHome" controls poster="{{ (image_dir ~ '/' ~ video.image )| imagine_filter('thumbnail_locked') }}" preload = "none">
+                                <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                             </video>
                         {% endif %}
                     </div>

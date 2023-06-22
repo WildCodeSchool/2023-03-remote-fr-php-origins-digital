@@ -41,7 +41,8 @@ class VideoRepository extends ServiceEntityRepository
     }
     public function queryFindAll(): Query
     {
-        return $this->createQueryBuilder('v')->getQuery();
+        return $this->createQueryBuilder('v')
+            ->getQuery();
     }
 
     public function findLikeName(string $search): Query
@@ -49,8 +50,7 @@ class VideoRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('v')
             ->andWhere('v.title LIKE :search')
             ->setParameter('search', '%' . $search . '%')
-            ->getQuery()
-            ->getResult();
+            ->getQuery();
     }
 
 //    /**
