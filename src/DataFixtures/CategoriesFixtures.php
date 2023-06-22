@@ -44,6 +44,7 @@ class CategoriesFixtures extends Fixture implements DependentFixtureInterface
                 copy($filePath, $destinationPath);
 
                 $category->setFile($categoriesData['file']);
+                $this->addReference('genre_' . $i . '_' . $categoriesData['name'], $category);
                 $manager->persist($category);
             }
         }

@@ -58,6 +58,9 @@ class Video
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'bookmarks')]
     private Collection $userBookmarks;
 
+    #[ORM\ManyToOne(inversedBy: 'videos')]
+    private ?Categories $category = null;
+
     public function __construct()
     {
         $this->userBookmarks = new ArrayCollection();
@@ -244,6 +247,18 @@ class Video
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
+        return $this;
+    }
+
+    public function getCategory(): ?Categories
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Categories $category): static
+    {
+        $this->category = $category;
+
         return $this;
     }
 }
