@@ -15,13 +15,21 @@
         </div>
 
         <div class="d-flex justify-content-center">
-            <form class="d-flex mt-md-0" action="" method="get" role="search">
-                <input class="form-control" type="search" placeholder="Minecraft, RPG, multijoueur..."
-                       aria-label="Search" autocomplete="off" spellcheck="false" autocapitalize="off">
-                <button class="btn btn-dark" type="submit" data-toggle="button">
-                    <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #ffffff;"></i>
-                </button>
-            </form>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav" id="navbar">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('app_home') }}">Accueil</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/#genre">Genres</a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{{ path('video_search') }}">
+                            <i class="fa-solid fa-magnifying-glass fa-xl" style="color: #ffffff;"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="d-flex justify-content-end w-25">
