@@ -26,9 +26,14 @@ class Genre
         $this->categories = new ArrayCollection();
         $this->imageGenres = new ArrayCollection();
     }
-
     #[ORM\OneToMany(mappedBy: 'genre', targetEntity: ImageGenre::class, orphanRemoval: true)]
     private Collection $imageGenres;
+
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
 
     public function getId(): ?int
     {

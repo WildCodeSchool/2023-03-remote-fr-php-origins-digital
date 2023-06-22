@@ -33,4 +33,15 @@ const swiper = new Swiper(".mySwiper_recommandation", {
     }
 });
 
+const swiper_favoris = new Swiper('.videoBookmarksSwiper', {
+    loop: false,
+    slidesPerView: 4,
+    spaceBetween: 2,
+    direction: "vertical",
+    navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+    },
+});
+
 

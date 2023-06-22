@@ -5,8 +5,13 @@ namespace App\Entity;
 use App\Repository\CategoriesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use DateTime;
 
+#[Vich\Uploadable]
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
 class Categories
 {
@@ -22,13 +27,13 @@ class Categories
     #[ORM\JoinColumn(nullable: false)]
     private ?Genre $genre = null;
 
-    #[ORM\OneToMany(mappedBy: 'categories', targetEntity: ImagesCategories::class)]
-    private Collection $imagesCategories;
+    #[ORM\Column(nullable: true)]
+    private ?string $file = null;
 
-    public function __construct()
-    {
-        $this->imagesCategories = new ArrayCollection();
-    }
+    #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'file')]
+    private ?File $imageFile = null;
+    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $updatedAt = null;
 
     public function getId(): ?int
     {
@@ -40,7 +45,7 @@ class Categories
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(string $name): self
     {
         $this->name = $name;
 
@@ -52,40 +57,52 @@ class Categories
         return $this->genre;
     }
 
-    public function setGenre(?Genre $genre): static
+    public function setGenre(?Genre $genre): self
     {
         $this->genre = $genre;
 
         return $this;
     }
 
+    public function getFile(): ?string
+    {
+        return $this->file;
+    }
+
+    public function setFile(?string $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
     /**
-     * @return Collection<int, ImagesCategories>
+     * @return \DateTimeInterface|null
      */
-    public function getImagesCategories(): Collection
+    public function getUpdatedAt(): ?\DateTimeInterface
     {
-        return $this->imagesCategories;
+        return $this->updatedAt;
     }
 
-    public function addImagesCategory(ImagesCategories $imagesCategory): static
+    /**
+     * @param \DateTimeInterface|null $updatedAt
+     */
+    public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
     {
-        if (!$this->imagesCategories->contains($imagesCategory)) {
-            $this->imagesCategories->add($imagesCategory);
-            $imagesCategory->setCategories($this);
-        }
-
-        return $this;
+        $this->updatedAt = $updatedAt;
     }
 
-    public function removeImagesCategory(ImagesCategories $imagesCategory): static
+    public function getImageFile(): ?File
     {
-        if ($this->imagesCategories->removeElement($imagesCategory)) {
-            // set the owning side to null (unless already changed)
-            if ($imagesCategory->getCategories() === $this) {
-                $imagesCategory->setCategories(null);
-            }
-        }
+        return $this->imageFile;
+    }
 
-        return $this;
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if ($imageFile) {
+            $this->updatedAt = new DateTime('now');
+        }
     }
 }

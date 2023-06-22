@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Genre;
 use App\Entity\Categories;
-use App\Repository\ImageVideoRepository;
 use App\Repository\GenreRepository;
 use App\Repository\ImageGenreRepository;
 use App\Repository\VideoRepository;
@@ -21,12 +20,10 @@ class HomeController extends AbstractController
     public function index(
         VideoRepository $videoRepository,
         GenreRepository $genreRepository,
-        ImageVideoRepository $imageVideoRepository,
         ImageGenreRepository $imageGenreRepository
     ): Response {
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
         $genres = $genreRepository->findAll();
-        $imageVideos = $imageVideoRepository->findAll();
         $genresWithImages = [];
 
         foreach ($genres as $genre) {
@@ -50,7 +47,6 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'videos' => $videos,
             'genresWithImages' => $genresWithImages,
-            'imagevideos' => $imageVideos,
             'genres' => $genres,
         ]);
     }
