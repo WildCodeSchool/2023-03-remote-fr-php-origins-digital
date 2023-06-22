@@ -58,9 +58,13 @@ class Video
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'bookmarks')]
     private Collection $userBookmarks;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likes')]
+    private Collection $userLikes;
+
     public function __construct()
     {
         $this->userBookmarks = new ArrayCollection();
+        $this->userLikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -244,6 +248,33 @@ class Video
         if ($image) {
             $this->updatedAt = new DateTime('now');
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUserLikes(): Collection
+    {
+        return $this->userLikes;
+    }
+
+    public function addUserLike(User $userLike): static
+    {
+        if (!$this->userLikes->contains($userLike)) {
+            $this->userLikes->add($userLike);
+            $userLike->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserLike(User $userLike): static
+    {
+        if ($this->userLikes->removeElement($userLike)) {
+            $userLike->removeLike($this);
+        }
+
         return $this;
     }
 }
