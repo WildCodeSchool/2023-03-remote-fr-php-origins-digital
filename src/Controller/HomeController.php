@@ -3,8 +3,8 @@
 namespace App\Controller;
 
 use App\Repository\GenreRepository;
-use App\Repository\ImageGenreRepository;
 use App\Repository\VideoRepository;
+use App\Services\VideoMostViewed;
 use App\Services\VideoSorter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,37 +17,19 @@ class HomeController extends AbstractController
     public function index(
         VideoRepository $videoRepository,
         GenreRepository $genreRepository,
-        ImageGenreRepository $imageGenreRepository,
-        VideoSorter $videoSorter
+        VideoSorter $videoSorter,
+        VideoMostViewed $videoMostViewed
     ): Response {
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
         $sortedVideos = $videoSorter->sortByLikes();
         $genres = $genreRepository->findAll();
-        $genresWithImages = [];
-
-        foreach ($genres as $genre) {
-            $imagesGenres = $imageGenreRepository->findBy(['genre' => $genre], ['id' => 'ASC']);
-
-            $images = [];
-            foreach ($imagesGenres as $imageGenre) {
-                $images[] = [
-                    'background' => $imageGenre->getBackground(),
-                    'character' => $imageGenre->getGenreCharacter(),
-                    'text' => $imageGenre->getGenreName(),
-                ];
-            }
-
-            $genresWithImages[] = [
-                'genre' => $genre,
-                'images' => $images,
-            ];
-        }
+        $mostViewed = $videoMostViewed->mostViewed();
 
         return $this->render('home/index.html.twig', [
             'sortedVideos' => $sortedVideos,
             'videos' => $videos,
-            'genresWithImages' => $genresWithImages,
             'genres' => $genres,
+            'mostViewed' => $mostViewed,
         ]);
     }
 }

@@ -4,9 +4,10 @@
 {% block title %}Origins Digital{% endblock %}
 
 {% block body %}
+    {% include 'home/landing.html.twig' %}
     {% include 'home/video_recommandations.html.twig' %}
     {%  include 'home/video_tendances.html.twig' %}
-    {% for video in sortedVideos %}
+    {% for video in videos %}
         {% if not video.Private or app.user %}
         <div class="modal" id="myModal{{ video.id }}">
             <div class="modal-dialog modal-fullscreen">
