@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Categories;
+use App\Entity\Tags;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Categories>
+ * @extends ServiceEntityRepository<Tags>
  *
- * @method Categories|null find($id, $lockMode = null, $lockVersion = null)
- * @method Categories|null findOneBy(array $criteria, array $orderBy = null)
- * @method Categories[]    findAll()
- * @method Categories[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Tags|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Tags|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Tags[]    findAll()
+ * @method Tags[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class CategoriesRepository extends ServiceEntityRepository
+class TagsRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Categories::class);
+        parent::__construct($registry, Tags::class);
     }
 
-    public function save(Categories $entity, bool $flush = false): void
+    public function save(Tags $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class CategoriesRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Categories $entity, bool $flush = false): void
+    public function remove(Tags $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -40,9 +40,9 @@ class CategoriesRepository extends ServiceEntityRepository
     }
     public function findAllOrderedByGenre(): mixed
     {
-        return $this->createQueryBuilder('c')
-            ->leftJoin('c.genre', 'g')
-            ->orderBy('g.name', 'ASC')
+        return $this->createQueryBuilder('t')
+            ->leftJoin('t.category', 'c')
+            ->orderBy('c.name', 'ASC')
             ->getQuery()
             ->getResult();
     }

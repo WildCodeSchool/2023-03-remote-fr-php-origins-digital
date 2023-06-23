@@ -2,9 +2,9 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Categories;
+use App\Entity\Category;
 use App\Form\CategoriesType;
-use App\Repository\CategoriesRepository;
+use App\Repository\TagsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminCategoriesController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(CategoriesRepository $categoryRepository): Response
+    public function index(TagsRepository $categoryRepository): Response
     {
         return $this->render('admin/admin_categories/index.html.twig', [
             'categories' => $categoryRepository->findAllOrderedByGenre(),
@@ -23,9 +23,9 @@ class AdminCategoriesController extends AbstractController
 
 
     #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategoriesRepository $categoriesRepository): Response
+    public function new(Request $request, TagsRepository $categoriesRepository): Response
     {
-        $category = new Categories();
+        $category = new Category();
         $form = $this->createForm(CategoriesType::class, $category);
         $form->handleRequest($request);
 
@@ -41,7 +41,7 @@ class AdminCategoriesController extends AbstractController
 
 
     #[Route('/{id}', name: 'show', methods: ['GET'])]
-    public function show(Categories $category): Response
+    public function show(Category $category): Response
     {
         return $this->render('admin/admin_categories/show.html.twig', [
             'category' => $category,
@@ -49,7 +49,7 @@ class AdminCategoriesController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Categories $category, CategoriesRepository $categoriesRepository): Response
+    public function edit(Request $request, Category $category, TagsRepository $categoriesRepository): Response
     {
         $form = $this->createForm(CategoriesType::class, $category);
         $form->handleRequest($request);
@@ -67,7 +67,7 @@ class AdminCategoriesController extends AbstractController
     }
 
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    public function delete(Request $request, Categories $category, CategoriesRepository $categoriesRepository): Response
+    public function delete(Request $request, Category $category, TagsRepository $categoriesRepository): Response
     {
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $categoriesRepository->remove($category, true);

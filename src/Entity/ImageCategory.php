@@ -2,12 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\ImageGenreRepository;
+use App\Repository\ImageCategoryRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ImageGenreRepository::class)]
-class ImageGenre
+#[ORM\Entity(repositoryClass: ImageCategoryRepository::class)]
+class ImageCategory
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,17 +18,17 @@ class ImageGenre
     private ?string $background = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $genreCharacter = null;
+    private ?string $categoryCharacter = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $genreName = null;
+    private ?string $categoryName = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updated = null;
 
-    #[ORM\ManyToOne(inversedBy: 'imageGenres')]
+    #[ORM\ManyToOne(inversedBy: 'imageCategories')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Genre $genre = null;
+    private ?Category $category = null;
 
 
     public function getId(): ?int
@@ -48,26 +48,26 @@ class ImageGenre
         return $this;
     }
 
-    public function getGenreCharacter(): ?string
+    public function getCategoryCharacter(): ?string
     {
-        return $this->genreCharacter;
+        return $this->categoryCharacter;
     }
 
-    public function setGenreCharacter(string $genreCharacter): self
+    public function setCategoryCharacter(string $categoryCharacter): self
     {
-        $this->genreCharacter = $genreCharacter;
+        $this->categoryCharacter = $categoryCharacter;
 
         return $this;
     }
 
-    public function getGenreName(): ?string
+    public function getCategoryName(): ?string
     {
-        return $this->genreName;
+        return $this->categoryName;
     }
 
-    public function setGenreName(string $genreName): self
+    public function setCategoryName(string $categoryName): self
     {
-        $this->genreName = $genreName;
+        $this->categoryName = $categoryName;
 
         return $this;
     }
@@ -92,14 +92,14 @@ class ImageGenre
         $this->id = $id;
     }
 
-    public function getGenre(): ?Genre
+    public function getCategory(): ?Category
     {
-        return $this->genre;
+        return $this->category;
     }
 
-    public function setGenre(?Genre $genre): static
+    public function setCategory(?Category $category): static
     {
-        $this->genre = $genre;
+        $this->category = $category;
 
         return $this;
     }

@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\GenreRepository;
-use App\Repository\ImageGenreRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\ImageCategoryRepository;
 use App\Repository\VideoRepository;
 use App\Services\VideoSorter;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,10 +15,10 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
     public function index(
-        VideoRepository $videoRepository,
-        GenreRepository $genreRepository,
-        ImageGenreRepository $imageGenreRepository,
-        VideoSorter $videoSorter
+        VideoRepository         $videoRepository,
+        CategoryRepository      $genreRepository,
+        ImageCategoryRepository $imageGenreRepository,
+        VideoSorter             $videoSorter
     ): Response {
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
         $sortedVideos = $videoSorter->sortByLikes();

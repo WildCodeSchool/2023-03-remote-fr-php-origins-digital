@@ -2,12 +2,12 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\ImageGenre;
+use App\Entity\ImageCategory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class ImageGenreFixtures extends Fixture
+class ImageCategoryFixtures extends Fixture
 {
     public const IMAGES = [
         '1' => ['1', 'combat-background.jpg', 'combat-character.png', 'combat-text.png'],
@@ -29,7 +29,7 @@ class ImageGenreFixtures extends Fixture
             mkdir(__DIR__ . '/../../public' . $uploadImageDir, recursive: true);
         }
 
-        foreach (self::IMAGES as $genreId => $imageData) {
+        foreach (self::IMAGES as $categoryId => $imageData) {
             copy(
                 __DIR__ . '/data/images/' . $imageData[1],
                 __DIR__ . '/../../public' . $uploadImageDir . '/' . $imageData[1]
@@ -42,13 +42,13 @@ class ImageGenreFixtures extends Fixture
                 __DIR__ . '/data/images/' . $imageData[3],
                 __DIR__ . '/../../public' . $uploadImageDir . '/' . $imageData[3]
             );
-            $genreImage = new ImageGenre();
-            $genreImage->setId((int)$imageData[0]);
-            $genreImage->setBackground($imageData[1]);
-            $genreImage->setGenreCharacter($imageData[2]);
-            $genreImage->setGenreName($imageData[3]);
-            $genreImage->setGenre($this->getReference('genre_' . $genreId));
-            $manager->persist($genreImage);
+            $categoryImage = new ImageCategory();
+            $categoryImage->setId((int)$imageData[0]);
+            $categoryImage->setBackground($imageData[1]);
+            $categoryImage->setCategoryCharacter($imageData[2]);
+            $categoryImage->setCategoryName($imageData[3]);
+            $categoryImage->setCategory($this->getReference('category_' . $categoryId));
+            $manager->persist($categoryImage);
         }
         $manager->flush();
     }

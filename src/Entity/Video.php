@@ -61,10 +61,18 @@ class Video
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likes')]
     private Collection $userLikes;
 
+    #[ORM\ManyToOne(inversedBy: 'videos')]
+    private ?Category $category = null;
+
+    #[ORM\ManyToMany(targetEntity: Tags::class, inversedBy: 'videos')]
+    #[ORM\JoinTable(name: "video_tags")]
+    private Collection $tag;
+
     public function __construct()
     {
         $this->userBookmarks = new ArrayCollection();
         $this->userLikes = new ArrayCollection();
+        $this->tag = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -274,6 +282,42 @@ class Video
         if ($this->userLikes->removeElement($userLike)) {
             $userLike->removeLike($this);
         }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tags>
+     */
+    public function getTag(): Collection
+    {
+        return $this->tag;
+    }
+
+    public function addTag(Tags $tag): static
+    {
+        if (!$this->tag->contains($tag)) {
+            $this->tag->add($tag);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tags $tag): static
+    {
+        $this->tag->removeElement($tag);
 
         return $this;
     }

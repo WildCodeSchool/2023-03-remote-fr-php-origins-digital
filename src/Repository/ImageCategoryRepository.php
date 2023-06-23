@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\ImageGenre;
+use App\Entity\ImageCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<ImageGenre>
+ * @extends ServiceEntityRepository<ImageCategory>
  *
- * @method ImageGenre|null find($id, $lockMode = null, $lockVersion = null)
- * @method ImageGenre|null findOneBy(array $criteria, array $orderBy = null)
- * @method ImageGenre[]    findAll()
- * @method ImageGenre[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ImageCategory|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ImageCategory|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ImageCategory[]    findAll()
+ * @method ImageCategory[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ImageGenreRepository extends ServiceEntityRepository
+class ImageCategoryRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, ImageGenre::class);
+        parent::__construct($registry, ImageCategory::class);
     }
 
-    public function save(ImageGenre $entity, bool $flush = false): void
+    public function save(ImageCategory $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class ImageGenreRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(ImageGenre $entity, bool $flush = false): void
+    public function remove(ImageCategory $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
