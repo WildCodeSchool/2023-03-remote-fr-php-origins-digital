@@ -15,6 +15,14 @@
                    Reset
                 </a>
             </div>
+            {{ form_label(form.categories) }}
+            <div class="input-group mb-6">
+                {{ form_widget(form.categories) }}
+                <button
+                    class="btn btn-outline-primary" type="submit">
+                    {{ button_label|default('Soumettre') }}
+                </button>
+            </div>
             {{ form_end(form) }}
         </div>
     </div>
@@ -49,5 +57,5 @@
         {%  endif %}
     </div>
     {% endif %}
-
+    </div>
 {% endblock %}

@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Categories;
 use App\Repository\VideoRepository;
-use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,14 @@ class VideoController extends AbstractController
                     'class' => 'form-control rounded',
                     'placeholder' => 'Gameplay, League of Legends,..',
                 ],
+                'required' => false,
+            ])
+            ->add('categories', EntityType::class, [
+                'label' => 'Categories',
+                'required' => false,
+                'expanded' => true,
+                'class' => Categories::class,
+                'choice_label' => "name"
             ])
             ->getForm();
 
@@ -36,7 +45,8 @@ class VideoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $search = $form->get('search')->getData();
-            $query = $videoRepository->findLikeName($search);
+            $category = $form->get('categories')->getData();
+            $query = $videoRepository->findLikeName($search, $category);
         } else {
             $query = $videoRepository->queryFindAll();
         }

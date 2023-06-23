@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Categories;
 use App\Entity\Video;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Query;
@@ -42,17 +43,21 @@ class VideoRepository extends ServiceEntityRepository
     public function queryFindAll(): Query
     {
         return $this->createQueryBuilder('v')
-            ->leftJoin('v.categories', 'c')
             ->getQuery();
     }
 
-    public function findLikeName(string $search): Query
+    public function findLikeName(?string $search, ?Categories $category): Query
     {
-        return $this->createQueryBuilder('v')
-            ->leftJoin('v.categories', 'c')
-            ->andWhere('v.title LIKE :search OR c.name LIKE :search')
-            ->setParameter('search', '%' . $search . '%')
-            ->getQuery();
+        $query = $this->createQueryBuilder('v')
+            ->join('v.category', 'c')
+            ->andWhere('v.title LIKE :search')
+            ->setParameter('search', '%' . $search . '%');
+        if ($category) {
+            $query
+                ->andWhere('c = :category')
+                ->setParameter('category', $category);
+        }
+        return  $query->getQuery();
     }
 
 
