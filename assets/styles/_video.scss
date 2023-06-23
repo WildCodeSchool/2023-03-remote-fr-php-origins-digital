@@ -14,7 +14,7 @@
     margin-bottom: 1rem;
 }
 
-.swiper-slide {
+.swiper-slide-recommendation {
     margin-left: 1.3rem;
 }
 
@@ -47,3 +47,24 @@
     object-fit: cover;
 }
 
+.btn-search {
+    background-color: #FF6608;
+    color: white;
+    border-color: #FF6608;
+}
+
+.btn-outline-primary{
+    color: white;
+    border-color: #FF6608;
+}
+
+.lock {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color : #FF6608;
+}
+
+.img-tendance {
+    opacity: 25%;
+}

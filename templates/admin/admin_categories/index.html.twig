@@ -1,0 +1,48 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Categories {% endblock %}
+
+{% block body %}
+    <h1>Categories</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Noms</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% set currentGenre = '' %}
+        {% for category in categories %}
+            {% if currentGenre != category.genre.name %}
+                {% set currentGenre = category.genre.name %}
+                <tr>
+                    <th colspan="3">{{ currentGenre }}</th>
+                </tr>
+            {% endif %}
+            <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                    <button class="btn btn-dark">
+                        <a href="{{ path('admin_categories_show', {'id': category.id}) }}" class="text-decoration-none text-white">Voir la categories</a>
+                    </button>
+                    <button class="btn btn-warning">
+                        <a href="{{ path('admin_categories_edit', {'id': category.id}) }}" class="text-decoration-none text-white">Modifier la categories</a>
+                    </button>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button class="btn btn-success"><a href="{{ path('admin_categories_new') }}" class="text-decoration-none text-white">Créer une nouvelle catégorie</a></button>
+
+{% endblock %}
+
+

@@ -34,7 +34,7 @@ class AdminVideoController extends AbstractController
             return $this->redirectToRoute('app_admin_video_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_video/new.html.twig', [
+        return $this->render('admin/admin_video/new.html.twig', [
             'video' => $video,
             'form' => $form,
         ]);
@@ -60,7 +60,7 @@ class AdminVideoController extends AbstractController
             return $this->redirectToRoute('app_admin_video_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_video/edit.html.twig', [
+        return $this->render('admin/admin_video/edit.html.twig', [
             'video' => $video,
             'form' => $form,
         ]);

@@ -7,17 +7,17 @@
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Time</th>
-                <th>Views</th>
-                <th>Private</th>
-                <th>RealeaseDate</th>
-                <th>Upcoming</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Temps</th>
+            <th>Nombre vues</th>
+            <th>Privée</th>
+            <th>Date sortie</th>
+            <th>A venir</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for video in videos %}
@@ -31,13 +31,19 @@
                 <td>{{ video.upcoming ? 'Yes' : 'No' }}</td>
                 <td>{{ video.description }}</td>
                 <td>
-                    <a href="{{ path('app_admin_video_show', {'id': video.id}) }}">show</a>
-                    <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}">edit</a>
+                    <button class="btn btn-dark">
+                        <a href="{{ path('app_admin_video_show', {'id': video.id}) }}"
+                           class="text-decoration-none text-white">Voir la vidéo</a>
+                    </button>
+                    <button class="btn btn-warning mt-2">
+                        <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}"
+                           class="text-decoration-none text-white">Modifier la vidéo</a>
+                    </button>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="10">no records found</td>
+                <td colspan="10">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
