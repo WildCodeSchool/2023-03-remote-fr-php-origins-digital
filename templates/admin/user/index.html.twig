@@ -27,7 +27,7 @@
                             <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                             <td>
                                 <button class="btn btn-dark"><a href="{{ path('user_show', {'id': user.id}) }}" class="text-decoration-none text-white">Voir l'utilisateur</a></button>
-                                <button class="btn btn-warning"><a href="{{ path('user_edit', {'id': user.id}) }}" class="text-decoration-none text-white">Modifier l'utilisateur</a></button>
+                                <button class="btn btn-warning mt-2"><a href="{{ path('user_edit', {'id': user.id}) }}" class="text-decoration-none text-white">Modifier l'utilisateur</a></button>
                             </td>
                         </tr>
                     {% else %}

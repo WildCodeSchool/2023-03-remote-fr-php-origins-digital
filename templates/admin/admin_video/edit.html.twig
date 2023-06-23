@@ -1,12 +1,14 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}Edit Video{% endblock %}
+{% block title %}Modifier la vidéos {{ video.title }}{% endblock %}
 
 {% block body %}
-    <h1>Edit Video</h1>
-        {{ include('admin/admin_video/_form.html.twig', {'button_label': 'Update'}) }}
+    <h1>Modifier la video</h1>
+        {{ include('admin/admin_video/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-    <a href="{{ path('app_admin_video_index') }}">back to list</a>
+    <button class="btn btn-dark mt-3">
+        <a href="{{ path('app_admin_video_index') }}" class="text-decoration-none text-white">Retour à la liste des vidéos</a>
+    </button>
 
     {{ include('admin/admin_video/_delete_form.html.twig') }}
 {% endblock %}

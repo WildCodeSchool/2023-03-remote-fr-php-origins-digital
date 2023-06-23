@@ -27,21 +27,21 @@
                 <td>{{ category.name }}</td>
                 <td>
                     <button class="btn btn-dark">
-                        <a href="{{ path('categories_show', {'id': category.id}) }}" class="text-decoration-none text-white">Voir la categories</a>
+                        <a href="{{ path('admin_categories_show', {'id': category.id}) }}" class="text-decoration-none text-white">Voir la categories</a>
                     </button>
                     <button class="btn btn-warning">
-                        <a href="{{ path('categories_edit', {'id': category.id}) }}" class="text-decoration-none text-white">Modifier la categories</a>
+                        <a href="{{ path('admin_categories_edit', {'id': category.id}) }}" class="text-decoration-none text-white">Modifier la categories</a>
                     </button>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">no records found</td>
+                <td colspan="3">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    <button class="btn btn-success"><a href="{{ path('categories_new') }}" class="text-decoration-none text-white">Créer une nouvelle catégorie</a></button>
+    <button class="btn btn-success"><a href="{{ path('admin_categories_new') }}" class="text-decoration-none text-white">Créer une nouvelle catégorie</a></button>
 
 {% endblock %}
 
