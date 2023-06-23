@@ -6,12 +6,11 @@ use App\Entity\Categories;
 use App\Form\CategoriesType;
 use App\Repository\CategoriesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/admin/categories', name: 'categories_')]
+#[Route('/admin/categories', name: 'admin_categories_')]
 class AdminCategoriesController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
@@ -32,7 +31,7 @@ class AdminCategoriesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoriesRepository->save($category, true);
-            return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_categories_index', [], Response::HTTP_SEE_OTHER);
         }
         return $this->render('admin/admin_categories/new.html.twig', [
             'category' => $category,
@@ -58,7 +57,7 @@ class AdminCategoriesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categoriesRepository->save($category, true);
 
-            return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_categories_index', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->render('admin/admin_categories/edit.html.twig', [
@@ -74,6 +73,6 @@ class AdminCategoriesController extends AbstractController
             $categoriesRepository->remove($category, true);
         }
 
-        return $this->redirectToRoute('categories_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('admin_categories_index', [], Response::HTTP_SEE_OTHER);
     }
 }
