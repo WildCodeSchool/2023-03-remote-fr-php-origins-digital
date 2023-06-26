@@ -1,3 +1,6 @@
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
+
 const Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
@@ -68,7 +71,14 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
-
+    .configureLoaderRule('javascript', loaderRule => {
+        loaderRule.use = {
+            loader: 'esbuild-loader',
+            options: {
+                target: 'es2015'
+            }
+        }
+    })
     .configureBabel((config) => {
         config.plugins.push('@babel/plugin-proposal-class-properties');
     })
@@ -77,6 +87,12 @@ Encore
     .configureBabelPresetEnv((config) => {
         config.useBuiltIns = 'usage';
         config.corejs = 3;
+    })
+    .configureTerserPlugin((options) => {
+        options.minify = TerserPlugin.esbuildMinify;
+    })
+    .configureCssMinimizerPlugin((options) => {
+        options.minify = CssMinimizerPlugin.esbuildMinify;
     })
     // uncomment if you use TypeScript
     // .enableTypeScriptLoader()
