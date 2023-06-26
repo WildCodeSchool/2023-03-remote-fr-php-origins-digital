@@ -20,15 +20,15 @@ class ImageCategory
 
     #[ORM\Column(length: 255)]
     private ?string $background = null;
-    #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'background')]
+    #[Vich\UploadableField(mapping: 'atropos_background_file', fileNameProperty: 'background')]
     private ?File $fileBackground = null;
     #[ORM\Column(length: 255)]
     private ?string $categoryCharacter = null;
-    #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'categoryCharacter')]
+    #[Vich\UploadableField(mapping: 'atropos_character_file', fileNameProperty: 'categoryCharacter')]
     private ?File $fileCharacter = null;
     #[ORM\Column(length: 255)]
     private ?string $categoryName = null;
-    #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'categoryName')]
+    #[Vich\UploadableField(mapping: 'atropos_name_file', fileNameProperty: 'categoryName')]
     private ?File $fileName = null;
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updated = null;
@@ -115,7 +115,7 @@ class ImageCategory
         return $this->fileBackground;
     }
 
-    public function setFileBackground(File $image = null): ImageCategory
+    public function setFileBackground(?File $image = null): ImageCategory
     {
         $this->fileBackground = $image;
         if ($image) {
@@ -128,7 +128,7 @@ class ImageCategory
         return $this->fileCharacter;
     }
 
-    public function setFileCharacter(File $image = null): ImageCategory
+    public function setFileCharacter(?File $image = null): ImageCategory
     {
         $this->fileCharacter = $image;
         if ($image) {
@@ -141,7 +141,7 @@ class ImageCategory
         return $this->fileName;
     }
 
-    public function setFileName(File $image = null): ImageCategory
+    public function setFileName(?File $image = null): ImageCategory
     {
         $this->fileName = $image;
         if ($image) {

@@ -12,3 +12,15 @@ vich_uploader:
             uri_prefix: '%image_dir%'
             upload_destination: '%kernel.project_dir%/public/%image_dir%'
             namer: Vich\UploaderBundle\Naming\SmartUniqueNamer  
+        atropos_background_file:
+            uri_prefix: '%image_dir%'
+            upload_destination: '%kernel.project_dir%/public/%image_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        atropos_character_file:
+            uri_prefix: '%image_dir%'
+            upload_destination: '%kernel.project_dir%/public/%image_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
+        atropos_name_file:
+            uri_prefix: '%image_dir%'
+            upload_destination: '%kernel.project_dir%/public/%image_dir%'
+            namer: Vich\UploaderBundle\Naming\SmartUniqueNamer
