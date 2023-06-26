@@ -4,7 +4,7 @@
 {% endblock %}
 
 {% block body %}
-    <h1 class="text-center mt-4 mb-5">Documentaires</h1>
+    <h1 class="text-center mt-4 mb-5">{{ tag.name }}</h1>
     <!-- Swiper -->
     <div class="container-fluid">
         <nav class="ariane" style="--bs-breadcrumb-divider: '/'; "aria-label="breadcrumb">
@@ -13,20 +13,28 @@
                     <a href="/" class="text-decoration-none text-secondary">Accueil</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="#" class="text-decoration-none text-secondary">Catégories</a>
+                    <a href="{{ path('category_index', {id : category.id}) }}" class="text-decoration-none text-secondary">Catégories</a>
                 </li>
-                <li class="breadcrumb-item active text-light" aria-current="page">Documentaires</li>
+                <li class="breadcrumb-item active text-light" aria-current="page">{{ tag.name }}</li>
             </ol>
         </nav>
         <section>
-            <h2 class="mt-5 mb-5">Nouveautés</h2>
-            <div class="swiper mySwiper_nouveaute">
+            <h2 class="mt-5 mb-5">Recommandation</h2>
+            <div class="swiper mySwiper_recommandation">
                 <div class="swiper-wrapper">
-                    {% for i in 0..9 %}
-                        <div class="swiper-slide">
-                            <video width="100%" height="240" controls>
-                                <source src="/uploads/{{ i+1 }}.mp4" alt="Vidéo {{ i+1 }}" type="video/mp4">
+                    {% for video in videos %}
+                        <div class="swiper-slide card border-0 bg-transparent text-white "
+                             data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                            <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100"
+                                   id="player-home" controls
+                                   poster="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}"
+                                   preload="none">
+                                <source src="{{ video_dir ~ '/' ~ video.videoUrl }}"
+                                        alt="Vidéo {{ video.title }}" type="video/mp4">
                             </video>
+                            <div class="card-body">
+                                <h3 class="card-title">{{ video.title }}</h3>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>

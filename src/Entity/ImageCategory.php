@@ -3,10 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\ImageCategoryRepository;
+use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: ImageCategoryRepository::class)]
+#[Vich\Uploadable]
 class ImageCategory
 {
     #[ORM\Id]
@@ -16,13 +20,16 @@ class ImageCategory
 
     #[ORM\Column(length: 255)]
     private ?string $background = null;
-
+    #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'background')]
+    private ?File $fileBackground = null;
     #[ORM\Column(length: 255)]
     private ?string $categoryCharacter = null;
-
+    #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'categoryCharacter')]
+    private ?File $fileCharacter = null;
     #[ORM\Column(length: 255)]
     private ?string $categoryName = null;
-
+    #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'categoryName')]
+    private ?File $fileName = null;
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $updated = null;
 
@@ -101,6 +108,45 @@ class ImageCategory
     {
         $this->category = $category;
 
+        return $this;
+    }
+    public function getFileBackground(): ?File
+    {
+        return $this->fileBackground;
+    }
+
+    public function setFileBackground(File $image = null): ImageCategory
+    {
+        $this->fileBackground = $image;
+        if ($image) {
+            $this->updated = new DateTime('now');
+        }
+        return $this;
+    }
+    public function getFileCharacter(): ?File
+    {
+        return $this->fileCharacter;
+    }
+
+    public function setFileCharacter(File $image = null): ImageCategory
+    {
+        $this->fileCharacter = $image;
+        if ($image) {
+            $this->updated = new DateTime('now');
+        }
+        return $this;
+    }
+    public function getFileName(): ?File
+    {
+        return $this->fileName;
+    }
+
+    public function setFileName(File $image = null): ImageCategory
+    {
+        $this->fileName = $image;
+        if ($image) {
+            $this->updated = new DateTime('now');
+        }
         return $this;
     }
 }

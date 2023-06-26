@@ -2,13 +2,13 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Tags;
+use App\Entity\Tag;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class TagsFixtures extends Fixture implements DependentFixtureInterface
+class TagFixtures extends Fixture
 {
     public const TAGS = [
         ['name' => 'BANDES-ANNONCES', 'file' => 'gaming_house.jpg'],
@@ -30,21 +30,19 @@ class TagsFixtures extends Fixture implements DependentFixtureInterface
         }
 
         foreach (self::TAGS as $tagsData) {
-            for ($i = 1; $i <= 6; $i++) {
-                $tag = new Tags();
-                $tag->setName($tagsData['name']);
+            $tag = new Tag();
+            $tag->setName($tagsData['name']);
 
-                // Définir le chemin d'accès au fichier
-                $filePath = __DIR__ . '/data/images/' . $tagsData['file'];
-                $destinationPath = __DIR__ . '/../../public' . $uploadImageDir . '/' . $tagsData
-                    ['file'];
+            // Définir le chemin d'accès au fichier
+            $filePath = __DIR__ . '/data/images/' . $tagsData['file'];
+            $destinationPath = __DIR__ . '/../../public' . $uploadImageDir . '/' . $tagsData
+                ['file'];
 
-                // Copier le fichier vers le répertoire de destination
-                copy($filePath, $destinationPath);
+            // Copier le fichier vers le répertoire de destination
+            copy($filePath, $destinationPath);
 
-                $tag->setFile($tagsData['file']);
-                $manager->persist($tag);
-            }
+            $tag->setFile($tagsData['file']);
+            $manager->persist($tag);
         }
 
         $manager->flush();

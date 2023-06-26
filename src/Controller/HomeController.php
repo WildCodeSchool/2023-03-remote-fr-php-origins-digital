@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\CategoryRepository;
 use App\Repository\ImageCategoryRepository;
+use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
 use App\Services\VideoSorter;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,39 +16,20 @@ class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
     public function index(
-        VideoRepository         $videoRepository,
-        CategoryRepository      $genreRepository,
-        ImageCategoryRepository $imageGenreRepository,
-        VideoSorter             $videoSorter
+        VideoRepository $videoRepository,
+        CategoryRepository $categoryRepository,
+        VideoSorter $videoSorter,
+        TagRepository $tagsRepository
     ): Response {
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
         $sortedVideos = $videoSorter->sortByLikes();
-        $genres = $genreRepository->findAll();
-        $genresWithImages = [];
-
-        foreach ($genres as $genre) {
-            $imagesGenres = $imageGenreRepository->findBy(['genre' => $genre], ['id' => 'ASC']);
-
-            $images = [];
-            foreach ($imagesGenres as $imageGenre) {
-                $images[] = [
-                    'background' => $imageGenre->getBackground(),
-                    'character' => $imageGenre->getGenreCharacter(),
-                    'text' => $imageGenre->getGenreName(),
-                ];
-            }
-
-            $genresWithImages[] = [
-                'genre' => $genre,
-                'images' => $images,
-            ];
-        }
-
+        $categories = $categoryRepository->findAll();
+        $tags = $tagsRepository->findAll();
         return $this->render('home/index.html.twig', [
             'sortedVideos' => $sortedVideos,
             'videos' => $videos,
-            'genresWithImages' => $genresWithImages,
-            'genres' => $genres,
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 }

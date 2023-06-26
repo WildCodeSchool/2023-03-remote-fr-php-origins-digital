@@ -1,0 +1,11 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}New ImageCategory{% endblock %}
+
+{% block body %}
+    <h1>Create new ImageCategory</h1>
+
+    {{ include('admin/admin_image_category/_form.html.twig') }}
+
+    <a href="{{ path('app_admin_image_category_index') }}">back to list</a>
+{% endblock %}

@@ -64,7 +64,7 @@ class Video
     #[ORM\ManyToOne(inversedBy: 'videos')]
     private ?Category $category = null;
 
-    #[ORM\ManyToMany(targetEntity: Tags::class, inversedBy: 'videos')]
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'videos')]
     #[ORM\JoinTable(name: "video_tags")]
     private Collection $tag;
 
@@ -299,14 +299,14 @@ class Video
     }
 
     /**
-     * @return Collection<int, Tags>
+     * @return Collection<int, Tag>
      */
     public function getTag(): Collection
     {
         return $this->tag;
     }
 
-    public function addTag(Tags $tag): static
+    public function addTag(Tag $tag): static
     {
         if (!$this->tag->contains($tag)) {
             $this->tag->add($tag);
@@ -315,7 +315,7 @@ class Video
         return $this;
     }
 
-    public function removeTag(Tags $tag): static
+    public function removeTag(Tag $tag): static
     {
         $this->tag->removeElement($tag);
 

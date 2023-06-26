@@ -22,11 +22,11 @@
 
     <article class="card mb-3">
         <div class="hearder p-2">
-            Genres
+            Categories
         </div>
         <div class="card-body">
-            <p><a href="#">Liste des genres</a></p>
-            <p><a href="#">Ajouter un genre</a></p>
+            <p><a href="{{ path('app_admin_category_index') }}">Liste des categories</a></p>
+            <p><a href="{{ path('app_admin_category_new') }}">Ajouter une categorie</a></p>
         </div>
         <div class="card-body">
             <p><a href="{{ path('app_admin_image_category_index') }}">Liste des images des catégories</a></p>

@@ -2,26 +2,31 @@
 
 namespace App\Repository;
 
-use App\Entity\Tags;
+use App\DataFixtures\CategoryFixtures;
+use App\Entity\Category;
+use App\Entity\Tag;
+use App\Entity\Video;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query;
 use Doctrine\Persistence\ManagerRegistry;
+use phpDocumentor\Reflection\Types\Integer;
 
 /**
- * @extends ServiceEntityRepository<Tags>
+ * @extends ServiceEntityRepository<Tag>
  *
- * @method Tags|null find($id, $lockMode = null, $lockVersion = null)
- * @method Tags|null findOneBy(array $criteria, array $orderBy = null)
- * @method Tags[]    findAll()
- * @method Tags[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Tag|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Tag|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Tag[]    findAll()
+ * @method Tag[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class TagsRepository extends ServiceEntityRepository
+class TagRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Tags::class);
+        parent::__construct($registry, Tag::class);
     }
 
-    public function save(Tags $entity, bool $flush = false): void
+    public function save(Tag $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +35,7 @@ class TagsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Tags $entity, bool $flush = false): void
+    public function remove(Tag $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -38,13 +43,16 @@ class TagsRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
-    public function findAllOrderedByGenre(): mixed
-    {
-        return $this->createQueryBuilder('t')
-            ->leftJoin('t.category', 'c')
-            ->orderBy('c.name', 'ASC')
-            ->getQuery()
-            ->getResult();
+
+    public function findActiveTag(
+        ?int $categoryId,
+    ): ?Query {
+        $query = $this->createQueryBuilder('t')
+            ->join('t.videos', 'v', 'WITH', 'v.id = t.id')
+            ->join('c.category', 'c', 'WITH', 'c.id = v.id')
+            ->andWhere('c.id = :categoryId')
+            ->setParameter('categoryId', $categoryId);
+        return $query->getQuery();
     }
 
 //    /**

@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\TagsRepository;
+use App\Repository\TagRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -12,8 +12,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use DateTime;
 
 #[Vich\Uploadable]
-#[ORM\Entity(repositoryClass: TagsRepository::class)]
-class Tags
+#[ORM\Entity(repositoryClass: TagRepository::class)]
+class Tag
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
