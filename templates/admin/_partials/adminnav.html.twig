@@ -28,15 +28,19 @@
             <p><a href="#">Liste des genres</a></p>
             <p><a href="#">Ajouter un genre</a></p>
         </div>
+        <div class="card-body">
+            <p><a href="{{ path('app_admin_image_category_index') }}">Liste des images des catégories</a></p>
+            <p><a href="{{ path('app_admin_image_category_new') }}">Ajouter une image à une catégorie</a></p>
+        </div>
     </article>
 
     <article class="card mb-3">
         <div class="hearder p-2">
-            Catégories
+            Tags
         </div>
         <div class="card-body">
-            <p><a href="{{ path('admin_categories_index') }}">Liste des catégories</a></p>
-            <p><a href="{{ path('admin_categories_new') }}">Ajouter une catégorie</a></p>
+            <p><a href="{{ path('app_admin_tag_index') }}">Liste des tags</a></p>
+            <p><a href="{{ path('app_admin_tag_new') }}">Ajouter un tag</a></p>
         </div>
     </article>
 
@@ -52,7 +56,7 @@
 
     <article class="card mb-3">
         <div class="hearder p-2">
-            Carouselle
+            Carousels
         </div>
         <div class="card-body">
             <p><a href="#">Liste des carousels</a></p>
