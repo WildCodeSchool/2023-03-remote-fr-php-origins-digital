@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégories
+{% endblock %}
+
+
+{% block body %}
+    <div class="container mb-2">
+        <h1 class="text-center m-3 mb-3">Catégorie {{ category.name }}</h1>
+    </div>
+    <div class="container-fluid">
+        <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+            <ol class="breadcrumb ml-2 text-light">
+                <li class="breadcrumb-item">
+                    <a href="/" class="text-decoration-none text-secondary">Accueil</a>
+                </li>
+                <li class="breadcrumb-item active text-light" aria-current="page">Catégories</li>
+            </ol>
+        </nav>
+    </div>
+    <div class="container margin-left-2">
+        <div class="row g-4 justify-content-center">
+            {% for tag in tags %}
+                <div class="col-lg-5">
+                    <div class="card text-center bg-image">
+                        <a class="stretched-link" href="{{ path('tags_index', { 'category_id' : category.id, 'tag_id' : tag.id }) }}">
+                            <img src="{{ (image_dir ~ '/' ~ tag.file) | imagine_filter('thumbnail_categories') }}"
+                                 class="card-img-top" alt="{{ tag.name }}">
+                        </a>
+                        <div class="card-img-overlay">
+                            <h5 class="card-title text-light bg-text">{{ tag.name }}</h5>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="card mt-4 mb-4 container-fluid">
+            <img src="https://fakeimg.pl/1320x200/?text=PUB" class="card-img-top" alt="PUB">
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}ImageCategory{% endblock %}
+
+{% block body %}
+    <h1>ImageCategory</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ image_category.id }}</td>
+            </tr>
+            <tr>
+                <th>Background</th>
+                <td>{{ image_category.background }}</td>
+            </tr>
+            <tr>
+                <th>CategoryCharacter</th>
+                <td>{{ image_category.categoryCharacter }}</td>
+            </tr>
+            <tr>
+                <th>CategoryName</th>
+                <td>{{ image_category.categoryName }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ image_category.updated ? image_category.updated|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_image_category_index') }}">back to list</a>
+
+    <a href="{{ path('app_admin_image_category_edit', {'id': image_category.id}) }}">edit</a>
+
+    {{ include('admin/admin_image_category/_delete_form.html.twig') }}
+{% endblock %}

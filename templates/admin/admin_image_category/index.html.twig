@@ -1,0 +1,41 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}ImageCategory index{% endblock %}
+
+{% block body %}
+    <h1>ImageCategory index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Background</th>
+                <th>CategoryCharacter</th>
+                <th>CategoryName</th>
+                <th>Updated</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for image_category in image_categories %}
+            <tr>
+                <td>{{ image_category.id }}</td>
+                <td>{{ image_category.background }}</td>
+                <td>{{ image_category.categoryCharacter }}</td>
+                <td>{{ image_category.categoryName }}</td>
+                <td>{{ image_category.updated ? image_category.updated|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_admin_image_category_show', {'id': image_category.id}) }}">show</a>
+                    <a href="{{ path('app_admin_image_category_edit', {'id': image_category.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_admin_image_category_new') }}">Create new</a>
+{% endblock %}
