@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ImageCategoryRepository;
 use DateTime;
+use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
@@ -18,20 +19,22 @@ class ImageCategory
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $background = null;
     #[Vich\UploadableField(mapping: 'atropos_background_file', fileNameProperty: 'background')]
     private ?File $fileBackground = null;
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $categoryCharacter = null;
     #[Vich\UploadableField(mapping: 'atropos_character_file', fileNameProperty: 'categoryCharacter')]
     private ?File $fileCharacter = null;
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $categoryName = null;
+
     #[Vich\UploadableField(mapping: 'atropos_name_file', fileNameProperty: 'categoryName')]
     private ?File $fileName = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $updated = null;
+    private ?DateTimeInterface $updated = null;
 
     #[ORM\ManyToOne(inversedBy: 'imageCategories')]
     #[ORM\JoinColumn(nullable: false)]
@@ -48,7 +51,7 @@ class ImageCategory
         return $this->background;
     }
 
-    public function setBackground(string $background): self
+    public function setBackground(?string $background): self
     {
         $this->background = $background;
 
@@ -60,7 +63,7 @@ class ImageCategory
         return $this->categoryCharacter;
     }
 
-    public function setCategoryCharacter(string $categoryCharacter): self
+    public function setCategoryCharacter(?string $categoryCharacter): self
     {
         $this->categoryCharacter = $categoryCharacter;
 
@@ -72,7 +75,7 @@ class ImageCategory
         return $this->categoryName;
     }
 
-    public function setCategoryName(string $categoryName): self
+    public function setCategoryName(?string $categoryName): self
     {
         $this->categoryName = $categoryName;
 
@@ -119,7 +122,7 @@ class ImageCategory
     {
         $this->fileBackground = $image;
         if ($image) {
-            $this->updated = new DateTime('now');
+            $this->updated = new DateTime();
         }
         return $this;
     }
@@ -132,7 +135,7 @@ class ImageCategory
     {
         $this->fileCharacter = $image;
         if ($image) {
-            $this->updated = new DateTime('now');
+            $this->updated = new DateTime();
         }
         return $this;
     }
@@ -145,7 +148,7 @@ class ImageCategory
     {
         $this->fileName = $image;
         if ($image) {
-            $this->updated = new DateTime('now');
+            $this->updated = new DateTime();
         }
         return $this;
     }

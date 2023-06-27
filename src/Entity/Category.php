@@ -83,7 +83,7 @@ class Category
         if ($this->imageCategory->removeElement($imageCategory)) {
             // set the owning side to null (unless already changed)
             if ($imageCategory->getCategory() === $this) {
-                $imageCategory->getCategory(null);
+                $imageCategory->setCategory(null);
             }
         }
         return $this;
