@@ -18,11 +18,9 @@ class CategoryController extends AbstractController
         Request $request,
         Category $category
     ): Response {
-        $tags = $tagRepository->findAll();
         $categoryId = $request->query->getInt('categoryId');
-        $activeCategory = $tagRepository->findActiveTag($categoryId);
+        $tags = $tagRepository->findActiveTag($categoryId);
         return $this->render('category/index.html.twig', [
-            'activeCategory' => $activeCategory,
             'tags' => $tags,
             'category' => $category
         ]);
