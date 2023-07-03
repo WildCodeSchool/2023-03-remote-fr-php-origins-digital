@@ -1,0 +1,11 @@
+<div{{ attributes }} class="position- me-2">
+    <input class="form-control me-2" type="search" data-model="search" placeholder="Rechercher une vidéo" aria-label="Search">
+
+    <div class="list-group position-absolute">
+        {% for video in this.searchVideos %}
+        <a href="#" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal" class="list-group-item list-group-item-action">
+            {{ video.title }}
+        </a>
+        {% endfor %}
+    </div>
+</div>

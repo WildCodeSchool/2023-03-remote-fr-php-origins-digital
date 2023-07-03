@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Entity\Categories;
+use App\Entity\Video;
 use App\Repository\VideoRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,51 +15,11 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/video', name: 'video_')]
 class VideoController extends AbstractController
 {
-    #[Route('/', name: 'search')]
-    public function searchForm(
-        Request $request,
-        VideoRepository $videoRepository,
-        PaginatorInterface $paginator,
-    ): Response {
-        $form = $this->createFormBuilder(null, [
-            'method' => 'get',
-            'csrf_protection' => false
-        ])
-            ->add('search', SearchType::class, [
-                'attr' => [
-                    'class' => 'form-control rounded',
-                    'placeholder' => 'Gameplay, League of Legends,..',
-                ],
-                'required' => false,
-            ])
-            ->add('categories', EntityType::class, [
-                'label' => 'Categories',
-                'required' => false,
-                'expanded' => true,
-                'class' => Categories::class,
-                'choice_label' => "name"
-            ])
-            ->getForm();
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $search = $form->get('search')->getData();
-            $category = $form->get('categories')->getData();
-            $query = $videoRepository->findLikeName($search, $category);
-        } else {
-            $query = $videoRepository->queryFindAll();
-        }
-
-        $pagination = $paginator->paginate(
-            $query,
-            $request->query->getInt('page', 1),
-            20
-        );
-
-        return $this->render('video/search_results.html.twig', [
-            'videos' => $pagination,
-            'form' => $form,
+    #[Route('/show/id', name: 'show')]
+    public function show(Video $video): Response
+    {
+        return $this->render('video/show.html.twig', [
+            'video' => $video,
         ]);
     }
 }
