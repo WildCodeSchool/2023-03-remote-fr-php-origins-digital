@@ -15,11 +15,9 @@ class CategoryController extends AbstractController
     #[Route('/{id}', name: 'index', methods: ['GET'])]
     public function index(
         TagRepository $tagRepository,
-        Request $request,
         Category $category
     ): Response {
-        $categoryId = $request->query->getInt('categoryId');
-        $activeTags = $tagRepository->findActiveTag($categoryId);
+        $activeTags = $tagRepository->findActiveTag($category);
         return $this->render('category/index.html.twig', [
             'activeTags' => $activeTags,
             'category' => $category

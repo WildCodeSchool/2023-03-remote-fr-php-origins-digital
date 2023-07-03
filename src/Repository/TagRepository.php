@@ -45,13 +45,12 @@ class TagRepository extends ServiceEntityRepository
     }
 
     public function findActiveTag(
-        ?int $categoryId,
+        ?Category $category,
     ): array {
         $query = $this->createQueryBuilder('t')
-            ->join('t.videos', 'v')
-            ->join('v.category', 'c')
-            ->andWhere('c.id = :categoryId')
-            ->setParameter('categoryId', $categoryId);
+            ->join('t.videos', 'videos')
+            ->andWhere('videos.category = :category')
+            ->setParameter('category', $category);
         return $query->getQuery()->getResult();
     }
 
