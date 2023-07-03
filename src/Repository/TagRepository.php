@@ -48,8 +48,8 @@ class TagRepository extends ServiceEntityRepository
         ?int $categoryId,
     ): array {
         $query = $this->createQueryBuilder('t')
-            ->join('t.videos', 'v', 'WITH', 'v.id = t.id')
-            ->join('v.category', 'c', 'WITH', 'c.id = v.id')
+            ->join('t.videos', 'v')
+            ->join('v.category', 'c')
             ->andWhere('c.id = :categoryId')
             ->setParameter('categoryId', $categoryId);
         return $query->getQuery()->getResult();
