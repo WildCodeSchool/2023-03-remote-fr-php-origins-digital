@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class VideoFixtures extends Fixture implements DependentFixtureInterface
+class VideoFixtures extends Fixture
 {
     public const VIDEOS = [
         ['title' => 'Gameplay clavier', 'time' => 9, 'video_url' => 'clavier.mp4', 'views' => 5,
@@ -43,11 +43,11 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'is_private' => false, 'is_upcoming' => true, 'category' => 'NOUVEAUTES',
             'image' => 'manette.jpg'],
         ['title' => 'Virtuel', 'time' => 4, 'video_url' => 'grid.mp4', 'views' => 52,
-        'is_private' => false, 'is_upcoming' => true, 'category' => 'NOUVEAUTES',
-        'image' => 'virtuel.jpg'],
+            'is_private' => false, 'is_upcoming' => true, 'category' => 'NOUVEAUTES',
+            'image' => 'virtuel.jpg'],
         ['title' => 'Pokemon', 'time' => 4, 'video_url' => 'pokemon.mp4', 'views' => 52,
-        'is_private' => false, 'is_upcoming' => true, 'category' => 'NOUVEAUTES',
-        'image' => 'pokemon.jpg'],
+            'is_private' => false, 'is_upcoming' => true, 'category' => 'NOUVEAUTES',
+            'image' => 'pokemon.jpg'],
         ['title' => 'Spacecraft', 'time' => 4, 'video_url' => 'spacecraft.mp4', 'views' => 52,
             'is_private' => false, 'is_upcoming' => true, 'category' => 'NOUVEAUTES',
             'image' => 'spacecraft.jpg']
@@ -92,16 +92,9 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
                 $video->setRealeaseDate(new DateTime('now'));
                 $video->setUpcoming($videoData['is_upcoming']);
                 $video->setImage($videoData['image']);
-                $video->setCategory($this->getReference('genre_' . $i . '_' . $videoData['category']));
                 $manager->persist($video);
             }
             $manager->flush();
         }
-    }
-    public function getDependencies(): array
-    {
-        return [
-            CategoriesFixtures::class,
-        ];
     }
 }

@@ -3,9 +3,11 @@
 {% block title %}New Video{% endblock %}
 
 {% block body %}
-        <h2 class="text-black">Ajouter une nouvelle vidéo</h2>
+        <h1 class="text-black">Ajouter une nouvelle vidéo</h1>
 
         {{ include('admin/admin_video/_form.html.twig') }}
 
-        <a href="{{ path('app_admin_video_index') }}">back to list</a>
+    <button class="btn btn-dark mt-2">
+        <a href="{{ path('app_admin_video_index') }}" class="text-decoration-none text-white">Retour à la liste des vidéos</a>
+    </button>
 {% endblock %}

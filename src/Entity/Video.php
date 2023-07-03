@@ -58,12 +58,21 @@ class Video
     #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'bookmarks')]
     private Collection $userBookmarks;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'likes')]
+    private Collection $userLikes;
+
     #[ORM\ManyToOne(inversedBy: 'videos')]
-    private ?Categories $category = null;
+    private ?Category $category = null;
+
+    #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'videos')]
+    #[ORM\JoinTable(name: "video_tags")]
+    private Collection $tag;
 
     public function __construct()
     {
         $this->userBookmarks = new ArrayCollection();
+        $this->userLikes = new ArrayCollection();
+        $this->tag = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -250,14 +259,65 @@ class Video
         return $this;
     }
 
-    public function getCategory(): ?Categories
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUserLikes(): Collection
+    {
+        return $this->userLikes;
+    }
+
+    public function addUserLike(User $userLike): static
+    {
+        if (!$this->userLikes->contains($userLike)) {
+            $this->userLikes->add($userLike);
+            $userLike->addLike($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserLike(User $userLike): static
+    {
+        if ($this->userLikes->removeElement($userLike)) {
+            $userLike->removeLike($this);
+        }
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function setCategory(?Categories $category): static
+    public function setCategory(?Category $category): static
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tag>
+     */
+    public function getTag(): Collection
+    {
+        return $this->tag;
+    }
+
+    public function addTag(Tag $tag): static
+    {
+        if (!$this->tag->contains($tag)) {
+            $this->tag->add($tag);
+        }
+
+        return $this;
+    }
+
+    public function removeTag(Tag $tag): static
+    {
+        $this->tag->removeElement($tag);
 
         return $this;
     }

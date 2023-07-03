@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Genre;
-use App\Entity\Categories;
-use App\Repository\GenreRepository;
-use App\Repository\ImageGenreRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\ImageCategoryRepository;
+use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
-use App\Repository\CategoriesRepository;
-use Symfony\Component\HttpFoundation\Request;
+use App\Services\VideoSorter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,35 +17,19 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(
         VideoRepository $videoRepository,
-        GenreRepository $genreRepository,
-        ImageGenreRepository $imageGenreRepository
+        CategoryRepository $categoryRepository,
+        VideoSorter $videoSorter,
+        TagRepository $tagsRepository
     ): Response {
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
-        $genres = $genreRepository->findAll();
-        $genresWithImages = [];
-
-        foreach ($genres as $genre) {
-            $imagesGenres = $imageGenreRepository->findBy(['genre' => $genre], ['id' => 'ASC']);
-
-            $images = [];
-            foreach ($imagesGenres as $imageGenre) {
-                $images[] = [
-                    'background' => $imageGenre->getBackground(),
-                    'character' => $imageGenre->getGenreCharacter(),
-                    'text' => $imageGenre->getGenreName(),
-                ];
-            }
-
-            $genresWithImages[] = [
-                'genre' => $genre,
-                'images' => $images,
-            ];
-        }
-
+        $sortedVideos = $videoSorter->sortByLikes();
+        $categories = $categoryRepository->findAll();
+        $tags = $tagsRepository->findAll();
         return $this->render('home/index.html.twig', [
+            'sortedVideos' => $sortedVideos,
             'videos' => $videos,
-            'genresWithImages' => $genresWithImages,
-            'genres' => $genres,
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 }

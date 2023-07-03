@@ -7,6 +7,8 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\JoinTable;
+use Doctrine\ORM\Mapping\ManyToMany;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -21,6 +23,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $this->createdAt = new DateTimeImmutable();
         $this->bookmarks = new ArrayCollection();
+        $this->likes = new ArrayCollection();
     }
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -28,7 +31,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
-    #[Assert\Length(min : 2, max : 180)]
+    #[Assert\Length(min: 2, max: 180)]
     #[Assert\Email()]
     private ?string $email = null;
 
@@ -46,7 +49,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 50)]
     #[Assert\NotBlank()]
-    #[Assert\Length(min : 2, max : 50)]
+    #[Assert\Length(min: 2, max: 50)]
     private ?string $fullName = null;
 
     #[ORM\Column(length: 50, nullable: true)]
@@ -56,7 +59,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?\DateTimeImmutable $createdAt;
 
     #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'userBookmarks')]
+    #[ORM\JoinTable(name: "users_bookmarks")]
     private Collection $bookmarks;
+
+    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'userLikes')]
+    #[ORM\JoinTable(name: "users_likes")]
+    private Collection $likes;
     public function getId(): ?int
     {
         return $this->id;
@@ -198,6 +206,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeBookmark(Video $bookmark): static
     {
         $this->bookmarks->removeElement($bookmark);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Video>
+     */
+    public function getLikes(): Collection
+    {
+        return $this->likes;
+    }
+
+    public function addLike(Video $like): static
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+        }
+
+        return $this;
+    }
+
+    public function removeLike(Video $like): static
+    {
+        $this->likes->removeElement($like);
 
         return $this;
     }
