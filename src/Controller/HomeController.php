@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use App\Repository\GenreRepository;
+use App\Repository\CategoryRepository;
+use App\Repository\TagRepository;
 use App\Repository\VideoRepository;
 use App\Services\VideoMostViewed;
 use App\Services\VideoSorter;
@@ -16,19 +17,21 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(
         VideoRepository $videoRepository,
-        GenreRepository $genreRepository,
+        CategoryRepository $categoryRepository,
         VideoSorter $videoSorter,
+        TagRepository $tagsRepository,
         VideoMostViewed $videoMostViewed
     ): Response {
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
         $sortedVideos = $videoSorter->sortByLikes();
-        $genres = $genreRepository->findAll();
+        $categories = $categoryRepository->findAll();
+        $tags = $tagsRepository->findAll();
         $mostViewed = $videoMostViewed->mostViewed();
-
         return $this->render('home/index.html.twig', [
             'sortedVideos' => $sortedVideos,
             'videos' => $videos,
-            'genres' => $genres,
+            'categories' => $categories,
+            'tags' => $tags,
             'mostViewed' => $mostViewed,
         ]);
     }
