@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\CategoryRepository;
 use App\Repository\TagRepository;
+use App\Repository\UserRepository;
 use App\Repository\VideoRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,7 +17,7 @@ class HomeController extends AbstractController
     public function index(
         VideoRepository $videoRepository,
         CategoryRepository $categoryRepository,
-        TagRepository $tagsRepository
+        TagRepository $tagsRepository,
     ): Response {
         $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
         $sortedVideos = $videoRepository->sortByLikes();
