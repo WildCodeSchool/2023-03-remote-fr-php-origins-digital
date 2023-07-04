@@ -3,8 +3,11 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Category;
+use App\Entity\ImageCategory;
 use App\Form\CategoryType;
+use App\Form\ImageCategoryType;
 use App\Repository\CategoryRepository;
+use App\Repository\ImageCategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,27 +25,35 @@ class AdminCategoryController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_category_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CategoryRepository $categoryRepository): Response
-    {
+    public function new(
+        Request $request,
+        CategoryRepository $categoryRepository
+    ): Response {
         $category = new Category();
+
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->save($category, true);
+            $this->addFlash(
+                'success',
+                'Vous avez ajouté la catégorie ' . $category->getName() . ' avec succès'
+            );
 
             return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_category/new.html.twig', [
+        return $this->render('admin/admin_category/new.html.twig', [
             'category' => $category,
-            'form' => $form,
+            'form' => $form
         ]);
     }
 
     #[Route('/{id}', name: 'app_admin_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
+
         return $this->render('admin/admin_category/show.html.twig', [
             'category' => $category,
         ]);
@@ -56,11 +67,15 @@ class AdminCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->save($category, true);
+            $this->addFlash(
+                'success',
+                'La categorie ' . $category->getName() . ' a été modifié avec succès.'
+            );
 
             return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_category/edit.html.twig', [
+        return $this->render('admin/admin_category/edit.html.twig', [
             'category' => $category,
             'form' => $form,
         ]);
@@ -71,6 +86,10 @@ class AdminCategoryController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $categoryRepository->remove($category, true);
+            $this->addFlash(
+                'danger',
+                'Vous avez supprimé la catégorie ' . $category->getName() . ' avec succès'
+            );
         }
 
         return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);

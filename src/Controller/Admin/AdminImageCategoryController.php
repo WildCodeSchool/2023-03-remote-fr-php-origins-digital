@@ -30,6 +30,7 @@ class AdminImageCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageCatRepository->save($imageCategory, true);
+            $this->addFlash('success', 'Vous avez ajouté une nouvelle image à une catégorie');
 
             return $this->redirectToRoute('app_admin_image_category_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -59,6 +60,7 @@ class AdminImageCategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $imageCatRepository->save($imageCategory, true);
+            $this->addFlash('success', 'Vous avez modifié une image à la catégorie');
 
             return $this->redirectToRoute('app_admin_image_category_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -76,6 +78,8 @@ class AdminImageCategoryController extends AbstractController
         ImageCategoryRepository $imageCatRepository
     ): Response {
         if ($this->isCsrfTokenValid('delete' . $imageCategory->getId(), $request->request->get('_token'))) {
+            $this->addFlash('danger', 'Vous avez supprimé les images de la catégorie ');
+
             $imageCatRepository->remove($imageCategory, true);
         }
 

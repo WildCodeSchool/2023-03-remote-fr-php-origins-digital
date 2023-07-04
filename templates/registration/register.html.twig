@@ -3,7 +3,7 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <section class="container-fluid vh-100 d-flex align-items-center">
+    <section class="container-fluid vh-100 d-flex align-items-center text-secondary">
         <div class="row w-100">
             <!-- Start of left column -->
             <div class="col-12 col-lg-6 d-flex justify-content-center align-items-center">
@@ -23,10 +23,15 @@
                         }) }}
                     </fieldset>
 
-                    {{ form_row(registrationForm.RGPDConsent) }}
+                    <div class="col-md-12">
+                        {{ form_label(registrationForm.RGPDConsent, 'J\'accepte les conditions générales') }}
+                         <div class="p-1">
+                            {{ form_widget(registrationForm.RGPDConsent) }}
+                        </div>
+                    </div>
 
-                    <button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
-                    <a href="{{ path('app_login') }}" class="btn btn-secondary my-3">Me connecter</a>
+                    <button type="submit" class="btn btn-info btn-lg my-3 text-secondary">M'inscrire</button>
+                    <a href="{{ path('app_login') }}" class="btn btn-outline-info my-3 text-secondary">Me connecter</a>
                     {{ form_end(registrationForm) }}
                 </div>
             </div>

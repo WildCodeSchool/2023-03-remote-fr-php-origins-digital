@@ -3,30 +3,34 @@
 {% block title %}ImageCategory index{% endblock %}
 
 {% block body %}
-    <h1>ImageCategory index</h1>
-
-    <table class="table">
+    <div class="mb-4"><a class="text-secondary" href="{{ path('index') }}"><i class="fa-solid fa-arrow-turn-up fa-rotate-270 text-secondary"></i> Accueil
+        </a>
+    </div>
+    <h1>Les images des catégories</h1>
+    <div class="mt-2 mb-2 btn btn-info"><a href="{{ path('app_admin_image_category_new') }}" class="text-decoration-none text-secondary">
+            Ajouter une image à une catégorie</a>
+    </div>
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Background</th>
-                <th>CategoryCharacter</th>
-                <th>CategoryName</th>
-                <th>Updated</th>
-                <th>actions</th>
+                <th>Image background</th>
+                <th> Image CategoryCharacter</th>
+                <th> ImageCategoryName</th>
+                <th>Mis à jour le</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
         {% for image_category in image_categories %}
-            <tr>
+            <tr class="position-relative">
                 <td>{{ image_category.id }}</td>
                 <td>{{ image_category.background }}</td>
                 <td>{{ image_category.categoryCharacter }}</td>
                 <td>{{ image_category.categoryName }}</td>
                 <td>{{ image_category.updated ? image_category.updated|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_admin_image_category_show', {'id': image_category.id}) }}">show</a>
-                    <a href="{{ path('app_admin_image_category_edit', {'id': image_category.id}) }}">edit</a>
+                    <a href="{{ path('app_admin_image_category_edit', {'id': image_category.id}) }}" class="stretched-link">Modifier</a>
                 </td>
             </tr>
         {% else %}
@@ -36,6 +40,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_admin_image_category_new') }}">Create new</a>
 {% endblock %}

@@ -110,7 +110,7 @@ class Video
         return $this->videoUrl;
     }
 
-    public function setVideoUrl(string $videoUrl): self
+    public function setVideoUrl(?string $videoUrl): self
     {
         $this->videoUrl = $videoUrl;
 
@@ -238,7 +238,7 @@ class Video
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(?string $image): static
     {
         $this->image = $image;
 
