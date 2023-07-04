@@ -11,9 +11,7 @@
                             <i class="fa-solid fa-lock lock fa-2xl position-absolute"></i>
                         </a>
                         {% else %}
-                            <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}">
-                                <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
-                            </video>
+                                <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
                         {% endif %}
                     </div>
                     <div class="card-body">
