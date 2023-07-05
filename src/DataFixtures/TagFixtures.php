@@ -32,6 +32,7 @@ class TagFixtures extends Fixture
         foreach (self::TAGS as $tagsData) {
             $tag = new Tag();
             $tag->setName($tagsData['name']);
+            $this->addReference('tag_' . $tagsData['name'], $tag);
 
             // Définir le chemin d'accès au fichier
             $filePath = __DIR__ . '/data/images/' . $tagsData['file'];
