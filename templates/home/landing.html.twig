@@ -1,0 +1,20 @@
+<div class="container-fluid mt-4">
+<div class="landingPageContainer">
+    <div class="mostWatchedMainContainer row justify-content-between min-vh-75">
+        {% if mostViewed %}
+        <div class="mostWatchedLeftContainer col-md-4 d-flex flex-column justify-content-center">
+            <h2 class="p-2">Video la plus vue</h2>
+            <h4 class="card-title p-2">{{ mostViewed.title }}</h4>
+        </div>
+        <div class="mostWatchedRightContainer col-md-8">
+            <div class="border-0 bg-transparent text-white"
+                 data-bs-target="#myModal{{ mostViewed.id}}" data-bs-toggle="modal">
+                    <img class="video-js videoPlayerHome videoPlayerMostViewed mostViewed"
+                           id="player-home" alt="{{ mostViewed.title }}"
+                           src="{{ (image_dir ~ '/' ~ mostViewed.image ) | imagine_filter('mostViewed') }}">
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>

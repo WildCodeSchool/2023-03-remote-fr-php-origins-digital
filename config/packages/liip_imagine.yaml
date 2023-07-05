@@ -44,3 +44,11 @@ liip_imagine:
                     size: [ 570, 300 ]
                     # crop the input image, if required
                     mode: outbound
+        mostViewed:
+            quality: 75
+            filters:
+                thumbnail:
+                    # set the thumbnail size to "32x32" pixels
+                    size: [ 1240, 500 ]
+                    # crop the input image, if required
+                    mode: outbound
