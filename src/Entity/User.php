@@ -24,6 +24,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->createdAt = new DateTimeImmutable();
         $this->bookmarks = new ArrayCollection();
         $this->likes = new ArrayCollection();
+        $this->dontLIkes = new ArrayCollection();
     }
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -65,6 +66,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'userLikes')]
     #[ORM\JoinTable(name: "users_likes")]
     private Collection $likes;
+
+    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'userDontLikes')]
+    private Collection $dontLIkes;
     public function getId(): ?int
     {
         return $this->id;
@@ -230,6 +234,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeLike(Video $like): static
     {
         $this->likes->removeElement($like);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Video>
+     */
+    public function getDontLIkes(): Collection
+    {
+        return $this->dontLIkes;
+    }
+
+    public function addDontLIke(Video $dontLIke): static
+    {
+        if (!$this->dontLIkes->contains($dontLIke)) {
+            $this->dontLIkes->add($dontLIke);
+        }
+
+        return $this;
+    }
+
+    public function removeDontLIke(Video $dontLIke): static
+    {
+        $this->dontLIkes->removeElement($dontLIke);
 
         return $this;
     }

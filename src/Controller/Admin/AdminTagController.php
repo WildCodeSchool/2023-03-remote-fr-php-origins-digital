@@ -30,11 +30,12 @@ class AdminTagController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tagRepository->save($tag, true);
+            $this->addFlash('success', 'Création du tag ' . $tag->getName() . ' avec succès');
 
             return $this->redirectToRoute('app_admin_tag_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_tag/new.html.twig', [
+        return $this->render('admin/admin_tag/new.html.twig', [
             'tag' => $tag,
             'form' => $form,
         ]);
@@ -56,11 +57,11 @@ class AdminTagController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $tagRepository->save($tag, true);
-
+            $this->addFlash('success', 'Modification du tag ' . $tag->getName() . ' avec succès');
             return $this->redirectToRoute('app_admin_tag_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_tag/edit.html.twig', [
+        return $this->render('admin/admin_tag/edit.html.twig', [
             'tag' => $tag,
             'form' => $form,
         ]);
@@ -71,6 +72,7 @@ class AdminTagController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $tag->getId(), $request->request->get('_token'))) {
             $tagRepository->remove($tag, true);
+            $this->addFlash('success', 'Le tag ' . $tag->getName() . ' à été supprimé avec succès');
         }
 
         return $this->redirectToRoute('app_admin_tag_index', [], Response::HTTP_SEE_OTHER);

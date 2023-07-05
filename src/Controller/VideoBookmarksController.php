@@ -20,20 +20,9 @@ class VideoBookmarksController extends AbstractController
     #[IsGranted('ROLE_USER')]
     public function show(VideoRepository $videoRepository): Response
     {
-        return $this->render('bookmarks/video_bookmarks.html.twig');
-    }
-
-    #[Route('/bookmarks/save/{id}', name: 'add_bookmark')]
-    #[IsGranted('ROLE_USER')]
-    public function addBookmarkRoute(
-        Video $video,
-        UserRepository $userRepository
-    ): Response {
-        /** @var User $user */
-        $user = $this->getUser();
-        $user->addBookmark($video);
-        $userRepository->save($user, true);
-        $this->addFlash('success', 'Votre video ' . $video->getTitle() . ' a été mise en favoris');
-        return $this->redirectToRoute('app_bookmarks');
+        $videos = $videoRepository->findAll();
+        return $this->render('bookmarks/video_bookmarks.html.twig', [
+                'videos' => $videos,
+            ]);
     }
 }

@@ -68,11 +68,15 @@ class Video
     #[ORM\JoinTable(name: "video_tags")]
     private Collection $tag;
 
+    #[ORM\ManyToMany(targetEntity: User::class, mappedBy: 'dontLIkes')]
+    private Collection $userDontLikes;
+
     public function __construct()
     {
         $this->userBookmarks = new ArrayCollection();
         $this->userLikes = new ArrayCollection();
         $this->tag = new ArrayCollection();
+        $this->userDontLikes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -110,7 +114,7 @@ class Video
         return $this->videoUrl;
     }
 
-    public function setVideoUrl(string $videoUrl): self
+    public function setVideoUrl(?string $videoUrl): self
     {
         $this->videoUrl = $videoUrl;
 
@@ -238,7 +242,7 @@ class Video
         return $this->image;
     }
 
-    public function setImage(string $image): static
+    public function setImage(?string $image): static
     {
         $this->image = $image;
 
@@ -318,6 +322,33 @@ class Video
     public function removeTag(Tag $tag): static
     {
         $this->tag->removeElement($tag);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getUserDontLikes(): Collection
+    {
+        return $this->userDontLikes;
+    }
+
+    public function addUserDontLike(User $userDontLike): static
+    {
+        if (!$this->userDontLikes->contains($userDontLike)) {
+            $this->userDontLikes->add($userDontLike);
+            $userDontLike->addDontLIke($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserDontLike(User $userDontLike): static
+    {
+        if ($this->userDontLikes->removeElement($userDontLike)) {
+            $userDontLike->removeDontLIke($this);
+        }
 
         return $this;
     }
