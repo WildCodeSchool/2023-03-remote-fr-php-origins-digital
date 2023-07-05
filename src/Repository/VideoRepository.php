@@ -53,6 +53,16 @@ class VideoRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
+    public function sortByLikes(): array
+    {
+        $query = $this->createQueryBuilder('v')
+            ->leftJoin('v.userLikes', 'userLikes')
+            ->groupBy('v')
+            ->orderBy('COUNT(userLikes.id)', 'DESC');
+
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Video[] Returns an array of Video objects
 //     */

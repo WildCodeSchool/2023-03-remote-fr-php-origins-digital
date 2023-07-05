@@ -5,7 +5,9 @@ namespace App\Controller\Admin;
 use App\Entity\Video;
 use App\Form\VideoType;
 use App\Repository\VideoRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,10 +16,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminVideoController extends AbstractController
 {
     #[Route('/', name: 'app_admin_video_index', methods: ['GET'])]
-    public function index(VideoRepository $videoRepository): Response
+    public function index(VideoRepository $videoRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $pagination = $paginator->paginate(
+            $videoRepository->queryFindAll(),
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('admin/admin_video/index.html.twig', [
-            'videos' => $videoRepository->findAll(),
+            'videos' => $pagination,
         ]);
     }
 
@@ -29,6 +36,8 @@ class AdminVideoController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'La vidéo ' . $video->getTitle() . ' a été ajouté avec succès.');
+
             $videoRepository->save($video, true);
 
             return $this->redirectToRoute('app_admin_video_index', [], Response::HTTP_SEE_OTHER);
@@ -56,6 +65,8 @@ class AdminVideoController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $videoRepository->save($video, true);
+            $this->addFlash('success', 'La vidéo ' . $video->getTitle() . ' a été modifié avec succès.');
+
 
             return $this->redirectToRoute('app_admin_video_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -71,6 +82,7 @@ class AdminVideoController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $video->getId(), $request->request->get('_token'))) {
             $videoRepository->remove($video, true);
+            $this->addFlash('success', 'La vidéo ' . $video->getTitle() . ' à été supprimé avec succès.');
         }
 
         return $this->redirectToRoute('app_admin_video_index', [], Response::HTTP_SEE_OTHER);
