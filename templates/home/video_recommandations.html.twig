@@ -5,15 +5,12 @@
             <div class="swiper mySwiper_recommandation">
                 <div class="swiper-wrapper">
                     {% for video in videos %}
-                            <div class="swiper-slide card border-0 bg-transparent text-white "
+                            <div class="swiper-slide card border-0 bg-transparent text-white m-2"
                                  data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                                <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100"
-                                       id="player-home" controls
-                                       poster="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}"
-                                       preload="none">
-                                    <source src="{{ video_dir ~ '/' ~ video.videoUrl }}"
-                                            alt="Vidéo {{ video.title }}" type="video/mp4">
-                                </video>
+                                <div class="position-relative">
+                                <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
+                                <i class="fa-solid fa-play fa-2xl position-absolute lock"></i>
+                                </div>
                                 <div class="card-body">
                                     <h3 class="card-title">{{ video.title }}</h3>
                                 </div>
