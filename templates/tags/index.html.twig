@@ -7,15 +7,15 @@
     <h1 class="text-center mt-4 mb-5">{{ tag.name }}</h1>
     <!-- Swiper -->
     <div class="container-fluid">
-        <nav class="ariane" style="--bs-breadcrumb-divider: '/'; "aria-label="breadcrumb">
+        <nav class="ariane" style="--bs-breadcrumb-divider: '/'; " aria-label="breadcrumb">
             <ol class="breadcrumb ml-2 text-light">
                 <li class="breadcrumb-item">
                     <a href="/" class="text-decoration-none text-secondary">Accueil</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="{{ path('category_index', {id : category.id}) }}" class="text-decoration-none text-secondary">Catégories</a>
+                    <a href="{{ path('category_index', {id : category.id}) }}" class="text-decoration-none text-secondary">{{ category.name }}</a>
                 </li>
-                <li class="breadcrumb-item active text-light" aria-current="page">{{ tag.name }}</li>
+                <li class="breadcrumb-item active text-info" aria-current="page">{{ tag.name }}</li>
             </ol>
         </nav>
         <section>
