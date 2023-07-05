@@ -1,0 +1,10 @@
+.pagination {
+    --bs-pagination-color: black; // Écriture noir quand c'est actif
+    --bs-pagination-active-bg: white; // Fond blanc quand c'est actif
+    --bs-pagination-disabled-bg: white; // background non active
+    --bs-pagination-disable-color: white; // text non actif
+}
+.page-link.active, .active > .page-link  {
+    color : black;
+}
+

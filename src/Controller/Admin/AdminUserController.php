@@ -7,6 +7,7 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,10 +17,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminUserController extends AbstractController
 {
     #[Route('/', name: 'index', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $pagination = $paginator->paginate(
+            $userRepository->queryFindAll(),
+            $request->query->getInt('page', 1),
+            5
+        );
         return $this->render('admin/user/index.html.twig', [
-            'users' => $userRepository->findAll(),
+            'users' => $pagination,
         ]);
     }
 
@@ -32,6 +38,7 @@ class AdminUserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
+            $this->addFlash('success', 'Utilisateur ' . $user->getFullName() .  ' crée avec succès.');
 
             return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -58,6 +65,7 @@ class AdminUserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userRepository->save($user, true);
+            $this->addFlash('success', 'Utilisateur ' . $user->getFullName() . ' modifié avec succès');
 
             return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -74,7 +82,6 @@ class AdminUserController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             // Find all reset password requests associated with this user
             $resetRequests = $entityManager->getRepository(ResetPasswordRequest::class)->findBy(['user' => $user]);
-
             // Loop over each reset password request and remove it
             foreach ($resetRequests as $request) {
                 $entityManager->remove($request);
@@ -85,8 +92,8 @@ class AdminUserController extends AbstractController
 
             // Finally, flush to apply the changes
             $entityManager->flush();
+            $this->addFlash('success', 'Utilisateur ' . $user->getFullName() . ' supprimé.');
         }
-
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
     }
 }

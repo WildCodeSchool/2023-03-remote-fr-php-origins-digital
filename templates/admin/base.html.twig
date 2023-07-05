@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" type="image/png" href="{{ asset('build/images/logo_origins.png') }}"/>
+    <script src="https://kit.fontawesome.com/848d5c22f9.js" crossorigin="anonymous"></script>
     <title>
         {% block title %}Origin Digital
         {% endblock %}
@@ -17,13 +18,16 @@
         {{ encore_entry_script_tags('app') }}
     {% endblock %}
 </head>
-<body>
-<div class="container">
+
+<body class="bg-gradient-reversed">
+{% include '_includes/_navbar.html.twig' %}
+<div class="container mt-5">
     <div class="row">
-        {% include '_includes/_navbar.html.twig' %}
+            {% include '_includes/_flash.html.twig' %}
+
         {% include "/admin/_partials/adminnav.html.twig" %}
 
-        <main class="col-9 border border-light bg-secondary p-2">
+        <main class="col-9 border border-light p-2 text-secondary">
             {% block body %}{% endblock %}
         </main>
     </div>
