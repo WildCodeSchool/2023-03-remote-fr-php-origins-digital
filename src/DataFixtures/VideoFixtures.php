@@ -2,8 +2,6 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Category;
-use App\Entity\Tag;
 use DateTime;
 use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -82,27 +80,10 @@ class VideoFixtures extends Fixture
             $video->setRealeaseDate(new DateTime('now'));
             $video->setUpcoming($videoData['is_upcoming']);
             $video->setImage($videoData['image']);
-            $tags = [];
             foreach ($videoData['tags'] as $tagName) {
-                $tag = $manager->getRepository(Tag::class)->findOneBy(['name' => $tagName]);
-                if (!$tag) {
-                    $tag = new Tag();
-                    $tag->setName($tagName);
-                    $manager->persist($tag);
-                }
-                $tags[] = $tag;
+                $video->addTag($this->getReference('tag_' . $tagName));
             }
-            foreach ($tags as $tag) {
-                $video->addTag($tag);
-            }
-            $categoryName = $videoData['categorie'];
-            $category = $manager->getRepository(Category::class)->findOneBy(['name' => $categoryName]);
-            if (!$category) {
-                $category = new Category();
-                $category->setName($categoryName);
-                $manager->persist($category);
-            }
-            $video->setCategory($category);
+            $video->setCategory($this->getReference('category_' . $videoData['categorie']));
             $manager->persist($video);
         }
         $manager->flush();
