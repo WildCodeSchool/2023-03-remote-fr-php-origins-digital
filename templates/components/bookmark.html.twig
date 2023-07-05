@@ -2,11 +2,11 @@
         <button
             data-action="live#action"
             data-action-name="toggleBookmark"
-            class="btn btn-{{ this.isBookmarked ? 'primary' : 'light' }} btn-sm shadow-sm">
+            class="btn btn-{{ this.isBookmarked ? 'warning' : 'light' }} btn-sm shadow-sm">
             {% if this.isBookmarked %}
                 Supprimer des favoris <i class="fas fa-star text-white"></i>
             {% else %}
-                Ajouter aux favoris <i class="far fa-star text-primary"></i>
+                Ajouter aux favoris <i class="far fa-star text-warning"></i>
             {% endif %}
         </button>
 </div>
