@@ -1,0 +1,31 @@
+{% for video in videos %}
+    {% if not video.Private or app.user %}
+        <div class="modal" id="myModal{{ video.id }}">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">{{video.title}}</h3>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <video  id="modal-player-video-{{ video.id }}" class="video-js videoPlayer" controls preload="none">
+                            <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
+                        </video>
+                        <h3>Titre : {{ video.title }}</h3>
+                        {% if app.user %}
+                            <div id="like-dontlike-buttons">
+                                {{ component('like', { 'video': video }) }}
+                            </div>
+                            {{ component('bookmark', { 'video': video }) }}
+                        {% else %}
+                            <a href="{{ path('app_login') }}"><button class="btn btn-primary btn-sm shadow-sm">Connectez vous pour liker et mettre en favoris cette video</button></a>
+                        {% endif %}
+                        {{ video.description | raw }}
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endfor %}
