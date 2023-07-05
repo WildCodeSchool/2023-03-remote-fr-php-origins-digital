@@ -82,7 +82,7 @@ class AdminVideoController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $video->getId(), $request->request->get('_token'))) {
             $videoRepository->remove($video, true);
-            $this->addFlash('danger', 'La vidéo ' . $video->getTitle() . ' à été supprimé avec succès.');
+            $this->addFlash('success', 'La vidéo ' . $video->getTitle() . ' à été supprimé avec succès.');
         }
 
         return $this->redirectToRoute('app_admin_video_index', [], Response::HTTP_SEE_OTHER);

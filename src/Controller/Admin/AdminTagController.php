@@ -72,7 +72,7 @@ class AdminTagController extends AbstractController
     {
         if ($this->isCsrfTokenValid('delete' . $tag->getId(), $request->request->get('_token'))) {
             $tagRepository->remove($tag, true);
-            $this->addFlash('danger', 'Le tag ' . $tag->getName() . ' à été supprimé avec succès');
+            $this->addFlash('success', 'Le tag ' . $tag->getName() . ' à été supprimé avec succès');
         }
 
         return $this->redirectToRoute('app_admin_tag_index', [], Response::HTTP_SEE_OTHER);

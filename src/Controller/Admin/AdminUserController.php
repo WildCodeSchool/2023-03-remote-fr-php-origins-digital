@@ -92,7 +92,7 @@ class AdminUserController extends AbstractController
 
             // Finally, flush to apply the changes
             $entityManager->flush();
-            $this->addFlash('danger', 'Utilisateur ' . $user->getFullName() . ' supprimé.');
+            $this->addFlash('success', 'Utilisateur ' . $user->getFullName() . ' supprimé.');
         }
         return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
     }

@@ -65,7 +65,7 @@ class AdminImageCategoryController extends AbstractController
             return $this->redirectToRoute('app_admin_image_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_image_category/edit.html.twig', [
+        return $this->render('admin/admin_image_category/edit.html.twig', [
             'image_category' => $imageCategory,
             'form' => $form,
         ]);
@@ -78,7 +78,7 @@ class AdminImageCategoryController extends AbstractController
         ImageCategoryRepository $imageCatRepository
     ): Response {
         if ($this->isCsrfTokenValid('delete' . $imageCategory->getId(), $request->request->get('_token'))) {
-            $this->addFlash('danger', 'Vous avez supprimé les images de la catégorie ');
+            $this->addFlash('success', 'Vous avez supprimé les images de la catégorie ');
 
             $imageCatRepository->remove($imageCategory, true);
         }

@@ -87,7 +87,7 @@ class AdminCategoryController extends AbstractController
         if ($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
             $categoryRepository->remove($category, true);
             $this->addFlash(
-                'danger',
+                'success',
                 'Vous avez supprimé la catégorie ' . $category->getName() . ' avec succès'
             );
         }
