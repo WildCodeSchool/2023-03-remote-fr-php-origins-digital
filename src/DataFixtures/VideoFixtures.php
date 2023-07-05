@@ -68,33 +68,32 @@ class VideoFixtures extends Fixture
         if (!is_dir(__DIR__ . '/../../public' . $uploadImageDir)) {
             mkdir(__DIR__ . '/../../public' . $uploadImageDir, recursive: true);
         }
-        for ($i = 1; $i <= 6; $i++) {
-            $faker = Factory::create('fr_FR');
-            foreach (self::VIDEOS as $videoData) {
-                copy(
-                    __DIR__ . '/data/videos/' . $videoData['video_url'],
-                    __DIR__ . '/../../public' . $uploadVideoDir . '/' . $videoData['video_url']
-                );
-                copy(
-                    __DIR__ . '/data/images/' . $videoData['image'],
-                    __DIR__ . '/../../public' . $uploadImageDir . '/' . $videoData['image']
-                );
 
-                $video = new Video();
-                $video->setTitle($videoData['title']);
-                $video->setDescription(implode("", array_map(function ($item) {
+        $faker = Factory::create('fr_FR');
+        foreach (self::VIDEOS as $videoData) {
+            copy(
+                __DIR__ . '/data/videos/' . $videoData['video_url'],
+                __DIR__ . '/../../public' . $uploadVideoDir . '/' . $videoData['video_url']
+            );
+            copy(
+                __DIR__ . '/data/images/' . $videoData['image'],
+                __DIR__ . '/../../public' . $uploadImageDir . '/' . $videoData['image']
+            );
+
+            $video = new Video();
+            $video->setTitle($videoData['title']);
+            $video->setDescription(implode("", array_map(function ($item) {
                     return '<p>' . $item . '</p>';
-                }, $faker->paragraphs($faker->numberBetween(2, 3)))));
-                $video->setTime($videoData['time']);
-                $video->setVideoUrl($videoData['video_url']);
-                $video->setViews($videoData['views']);
-                $video->setPrivate($videoData['is_private']);
-                $video->setRealeaseDate(new DateTime('now'));
-                $video->setUpcoming($videoData['is_upcoming']);
-                $video->setImage($videoData['image']);
-                $manager->persist($video);
-            }
-            $manager->flush();
+            }, $faker->paragraphs($faker->numberBetween(2, 3)))));
+            $video->setTime($videoData['time']);
+            $video->setVideoUrl($videoData['video_url']);
+            $video->setViews($videoData['views']);
+            $video->setPrivate($videoData['is_private']);
+            $video->setRealeaseDate(new DateTime('now'));
+            $video->setUpcoming($videoData['is_upcoming']);
+            $video->setImage($videoData['image']);
+            $manager->persist($video);
         }
+            $manager->flush();
     }
 }
