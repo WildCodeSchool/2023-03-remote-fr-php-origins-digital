@@ -16,13 +16,6 @@ class VideoMostViewed
 
     public function mostViewed(): ?Video
     {
-        $videos = $this->videoRepository->findAll();
-        $mostViewed = $videos[0];
-        foreach ($videos as $video) {
-            if ($video->getViews() > $mostViewed->getViews()) {
-                $mostViewed = $video;
-            }
-        }
-        return $mostViewed;
+        return $this->videoRepository->findOneBy([], ['views' => 'DESC']);
     }
 }
