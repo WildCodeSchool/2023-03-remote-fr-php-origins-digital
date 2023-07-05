@@ -29,7 +29,7 @@ class HomeController extends AbstractController
             'sortedVideos' => $sortedVideos,
             'videos' => $videos,
             'categories' => $categories,
-            'tags' => $tags
+            'tags' => $tags,
         ]);
     }
 }
