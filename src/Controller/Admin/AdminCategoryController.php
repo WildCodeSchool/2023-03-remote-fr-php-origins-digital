@@ -53,7 +53,6 @@ class AdminCategoryController extends AbstractController
     #[Route('/{id}', name: 'app_admin_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
-
         return $this->render('admin/admin_category/show.html.twig', [
             'category' => $category,
         ]);
