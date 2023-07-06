@@ -45,7 +45,7 @@ class VideoRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function findLikeName(string $search): Query
+    public function findLikeName(?string $search): Query
     {
         return $this->createQueryBuilder('v')
             ->andWhere('v.title LIKE :search')
