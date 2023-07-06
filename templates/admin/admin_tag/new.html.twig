@@ -1,11 +1,13 @@
 {% extends 'admin/base.html.twig' %}
 
-{% block title %}New Tag{% endblock %}
+{% block title %}Nouveau Tag{% endblock %}
 
 {% block body %}
-    <h1>Create new Tag</h1>
+    <div class="mb-4">
+        <a class="text-decoration-none text-white" href="{{ path('app_admin_tag_index') }}">
+            <i class="fa-solid fa-arrow-turn-up fa-rotate-270 text-secondary"></i> Liste des tags</a>
+    </div>
+    <h1>Ajouter un nouveau tag</h1>
 
     {{ include('admin/admin_tag/_form.html.twig') }}
-
-    <a href="{{ path('app_admin_tag_index') }}">back to list</a>
 {% endblock %}
