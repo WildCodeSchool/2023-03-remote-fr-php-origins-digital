@@ -25,19 +25,19 @@ class AdminImageCategoryController extends AbstractController
     public function new(Request $request, ImageCategoryRepository $imageCatRepository): Response
     {
         $imageCategory = new ImageCategory();
-        $form = $this->createForm(ImageCategoryType::class, $imageCategory);
-        $form->handleRequest($request);
+        $form1 = $this->createForm(ImageCategoryType::class, $imageCategory);
+        $form1->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form1->isSubmitted() && $form1->isValid()) {
             $imageCatRepository->save($imageCategory, true);
             $this->addFlash('success', 'Vous avez ajouté une nouvelle image à une catégorie');
 
             return $this->redirectToRoute('app_admin_image_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_image_category/new.html.twig', [
+        return $this->render('admin/admin_image_category/new.html.twig', [
             'image_category' => $imageCategory,
-            'form' => $form,
+            'form1' => $form1,
         ]);
     }
 
