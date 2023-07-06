@@ -1,0 +1,26 @@
+$font-family-base: 'Roboto', sans-serif;
+$headings-font-family: 'Montserra', sans-serif;
+$my-gradient: linear-gradient(180deg, rgba(1,13,24,1) 0%, rgba(4,17,28,0.9668242296918768) 50%, rgba(27,41,54,0.9164040616246498) 100%);
+$my-gradient-reversed: linear-gradient(0deg, rgba(1,13,24,1) 0%, rgba(4,17,28,0.9668242296918768) 50%, rgba(27,41,54,0.9164040616246498) 100%);
+
+$orange: #FF6608;
+$black: #021324;
+$white: #FFFFFF;
+$green : #008000;
+$red : #FF0000;
+
+
+$primary : $black;
+$secondary: $white;
+$success: $green;
+$info: $orange;
+$danger : $red;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "danger" : $danger,
+);
+

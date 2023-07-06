@@ -1,0 +1,21 @@
+<div{{ attributes }} class="position-relative mb-2 ms-sm-1 mb-sm-0 z-2">
+        <button
+            data-action="live#action"
+            data-action-name="toggleDontLike"
+            class="btn btn-sm shadow-sm {{ this.isNotLiked ? 'border border-info shadow' : '' }}">
+            J'aime pas
+            {% if this.isNotLiked %}
+                 <i class="fa-solid fa-heart-crack text-info" ></i>
+            {% endif %}
+        </button>
+
+        <button
+            data-action="live#action"
+            data-action-name="toggleLike"
+            class="btn btn-sm shadow-sm {{ this.isLiked ? 'border border-info shadow' : '' }}">
+            J'aime
+            {% if this.isLiked %}
+                 <i class="fa-solid fa-heart text-info"></i>
+            {% endif %}
+        </button>
+</div>
