@@ -27,21 +27,15 @@ class AdminCategoryController extends AbstractController
     #[Route('/new', name: 'app_admin_category_new', methods: ['GET', 'POST'])]
     public function new(
         Request $request,
-        CategoryRepository $categoryRepository,
-        ImageCategoryRepository $imageCatRepository
+        CategoryRepository $categoryRepository
     ): Response {
         $category = new Category();
+
         $form = $this->createForm(CategoryType::class, $category);
-
-        $imageCategory = new ImageCategory();
-        $form1 = $this->createForm(ImageCategoryType::class, $imageCategory);
-
         $form->handleRequest($request);
-        $form1->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid() && $form1->isSubmitted() && $form1->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->save($category, true);
-            $imageCatRepository->save($imageCategory, true);
             $this->addFlash(
                 'success',
                 'Vous avez ajouté la catégorie ' . $category->getName() . ' avec succès'
@@ -52,16 +46,13 @@ class AdminCategoryController extends AbstractController
 
         return $this->render('admin/admin_category/new.html.twig', [
             'category' => $category,
-            'form' => $form,
-            'form1' => $form1,
-            'image_category' => $imageCategory,
+            'form' => $form
         ]);
     }
 
     #[Route('/{id}', name: 'app_admin_category_show', methods: ['GET'])]
     public function show(Category $category): Response
     {
-
         return $this->render('admin/admin_category/show.html.twig', [
             'category' => $category,
         ]);

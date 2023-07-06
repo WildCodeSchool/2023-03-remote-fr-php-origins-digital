@@ -23,7 +23,10 @@
         </tr>
     {% else %}
         <tr>
-            <td colspan="6">no records found</td>
+            <td colspan="3">Aucune image trouvé</td>
+            <td colspan="3">
+                <a href="{{ path('app_admin_image_category_new') }}" class="stretched-link">Ajouter des images</a>
+            </td>
         </tr>
     {% endfor %}
     </tbody>
