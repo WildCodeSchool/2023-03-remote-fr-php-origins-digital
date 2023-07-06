@@ -37,7 +37,7 @@ class AdminImageCategoryController extends AbstractController
 
         return $this->render('admin/admin_image_category/new.html.twig', [
             'image_category' => $imageCategory,
-            'form1' => $form,
+            'form' => $form,
         ]);
     }
 
