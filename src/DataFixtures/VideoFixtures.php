@@ -5,11 +5,12 @@ namespace App\DataFixtures;
 use DateTime;
 use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class VideoFixtures extends Fixture
+class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
     public const VIDEOS = [
         ['title' => 'Gameplay clavier', 'time' => 9, 'video_url' => 'clavier.mp4', 'views' => 5,
@@ -39,6 +40,24 @@ class VideoFixtures extends Fixture
         ['title' => 'Gameplay manette ps5', 'time' => 14, 'video_url' => 'manette_ps5.mp4', 'views' => 12,
             'is_private' => true, 'is_upcoming' => true, 'video_number' => '8', 'image' => 'manette_ps5.jpg',
             'tags' => ['BANDES-ANNONCES', 'NOUVEAUTES'], 'categorie' => 'RPG'],
+        ['title' => 'Among Us', 'time' => 4, 'video_url' => 'among_us.mp4', 'views' => 52,
+            'is_private' => false, 'is_upcoming' => true,
+            'image' => 'among_us.jpg', 'tags' => ['BANDES-ANNONCES'], 'categorie' => 'RPG'],
+        ['title' => 'Minecraft', 'time' => 4, 'video_url' => 'dance_mincrecraft.mp4',
+            'views' => 52, 'is_private' => false, 'is_upcoming' => true,
+             'image' => 'minecraft.jpg', 'tags' => ['BANDES-ANNONCES', 'NOUVEAUTES'], 'categorie' => 'RPG'],
+        ['title' => 'Manette', 'time' => 4, 'video_url' => 'gaming_manette.mp4', 'views' => 52,
+            'is_private' => false, 'is_upcoming' => true,
+            'image' => 'manette.jpg', 'tags' => ['BANDES-ANNONCES', 'NOUVEAUTES'], 'categorie' => 'RPG'],
+        ['title' => 'Virtuel', 'time' => 4, 'video_url' => 'grid.mp4', 'views' => 52,
+            'is_private' => false, 'is_upcoming' => true,
+            'image' => 'virtuel.jpg', 'tags' => ['NOUVEAUTES'], 'categorie' => 'STRATEGIE'],
+        ['title' => 'Pokemon', 'time' => 4, 'video_url' => 'pokemon.mp4', 'views' => 52,
+            'is_private' => false, 'is_upcoming' => true, 'image' => 'pokemon.jpg',
+            'tags' => ['BANDES-ANNONCES', 'ESPORT'], 'categorie' => 'ARCADE'],
+        ['title' => 'Spacecraft', 'time' => 4, 'video_url' => 'spacecraft.mp4', 'views' => 52,
+            'is_private' => false, 'is_upcoming' => true, 'image' => 'spacecraft.jpg',
+            'tags' => ['BANDES-ANNONCES', 'NOUVEAUTES'], 'categorie' => 'COMBAT']
     ];
 
     public function __construct(private ParameterBagInterface $parameterBag)
@@ -87,5 +106,12 @@ class VideoFixtures extends Fixture
             $manager->persist($video);
         }
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            TagFixtures::class
+        ];
     }
 }

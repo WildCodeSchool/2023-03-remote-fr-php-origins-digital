@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid mt-4">
+    <div class=" d-flex justify-content-center">
+        {% include '_includes/_cardVideo.html.twig' %}
+    </div>
+</div>
+        {% include ('_includes/_videoPlayerModal.html.twig') %}
+{% endblock %}

@@ -70,6 +70,9 @@ class VideoType extends AbstractType
                 ],
             ])
 
+            ->add('category', null, [
+                'choice_label' => 'name',
+            ])
         ;
     }
 
