@@ -14,9 +14,9 @@ use App\Services\SortByCatAndTag;
 #[Route('/tags', name: 'tags_')]
 class TagController extends AbstractController
 {
-    #[Route('/{category_id}/{tag_id}', name: 'index', methods: ['GET'])]
-    #[Entity('category', options: ['mapping' => ['category_id' => 'id']])]
-    #[Entity('tag', options: ['mapping' => ['tag_id' => 'id']])]
+    #[Route('/{categoryId}/{tagId}', name: 'index', methods: ['GET'])]
+    #[Entity('category', options: ['mapping' => ['categoryId' => 'id']])]
+    #[Entity('tag', options: ['mapping' => ['tagId' => 'id']])]
     public function index(
         Category $category,
         Tag $tag,
