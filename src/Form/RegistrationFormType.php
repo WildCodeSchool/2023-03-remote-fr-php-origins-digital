@@ -82,7 +82,6 @@ class RegistrationFormType extends AbstractType
                         'message' => 'J\'accepte les conditions générales.'
                     ]),
                 ],
-                'label' => 'J\'accepte les conditions générales'
             ])
         ;
     }

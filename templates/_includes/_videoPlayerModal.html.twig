@@ -18,7 +18,11 @@
                         </div>
                         {{ component('bookmark', { 'video': video }) }}
                     {% else %}
-                        <a href="{{ path('app_login') }}"><button class="btn btn-primary btn-sm shadow-sm">Connectez vous pour liker et mettre en favoris cette video</button></a>
+                        <form action="{{ path('app_login') }}" method="get">
+                            <button class="btn btn-info btn-sm shadow-sm text-white">
+                                Connectez vous pour liker et mettre en favoris cette video
+                            </button>
+                        </form>
                     {% endif %}
                     {{ video.description | raw }}
                 </div>

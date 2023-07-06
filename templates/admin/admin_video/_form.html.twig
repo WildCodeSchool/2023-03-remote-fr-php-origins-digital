@@ -1,5 +1,5 @@
 {{ form_start(form) }}
-<div class="row text-black">
+<div class="row text-secondary">
     <div class="col-md-6">
             {{ form_label(form.title, 'Titre') }}
             {{ form_widget(form.title) }}
@@ -25,15 +25,15 @@
             {{ form_widget(form.description) }}
      </div>
     <div class="col-md-9">
-        {{ form_label(form.posterFile, 'Upload image') }}
+        {{ form_label(form.posterFile, 'Télécharger une image') }}
         {{ form_widget(form.posterFile) }}
     </div>
     <div class="col-md-9">
-        {{ form_label(form.posterFile, 'Upload vidéo') }}
+        {{ form_label(form.posterFile, 'Télécharger une vidéo') }}
         {{ form_widget(form.videoFile) }}
     </div>
     <div class="col-md-6">
-        <button class="btn btn-success mt-3">{{ button_label|default('Sauvegarder') }}</button>
+        <button class="mt-2 mb-2 rounded-2">{{ button_label|default('Sauvegarder') }}</button>
     </div>
 </div>
 {{ form_end(form) }}

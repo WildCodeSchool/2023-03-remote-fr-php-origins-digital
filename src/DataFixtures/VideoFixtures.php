@@ -5,11 +5,12 @@ namespace App\DataFixtures;
 use DateTime;
 use App\Entity\Video;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class VideoFixtures extends Fixture
+class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
     public const VIDEOS = [
         ['title' => 'Gameplay clavier', 'time' => 9, 'video_url' => 'clavier.mp4', 'views' => 5,
@@ -41,7 +42,7 @@ class VideoFixtures extends Fixture
             'tags' => ['BANDES-ANNONCES', 'NOUVEAUTES'], 'categorie' => 'RPG'],
         ['title' => 'Among Us', 'time' => 4, 'video_url' => 'among_us.mp4', 'views' => 52,
             'is_private' => false, 'is_upcoming' => true,
-            'image' => 'among_us.jpg', 'tags' => ['BANDES-ANNONCES', 'AVENTURE'], 'categorie' => 'RPG'],
+            'image' => 'among_us.jpg', 'tags' => ['BANDES-ANNONCES'], 'categorie' => 'RPG'],
         ['title' => 'Minecraft', 'time' => 4, 'video_url' => 'dance_mincrecraft.mp4',
             'views' => 52, 'is_private' => false, 'is_upcoming' => true,
              'image' => 'minecraft.jpg', 'tags' => ['BANDES-ANNONCES', 'NOUVEAUTES'], 'categorie' => 'RPG'],
@@ -105,5 +106,12 @@ class VideoFixtures extends Fixture
             $manager->persist($video);
         }
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            TagFixtures::class
+        ];
     }
 }
