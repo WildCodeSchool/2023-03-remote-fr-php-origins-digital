@@ -5,6 +5,8 @@
 
 {% block body %}
     <h1 class="text-center mt-4 mb-5">{{ tag.name }}</h1>
+    {{ dump(videos) }}
+    {{ dump(sortedByCatAndTag) }}
     <!-- Swiper -->
     <div class="container-fluid">
         <nav class="ariane" style="--bs-breadcrumb-divider: '/'; " aria-label="breadcrumb">
@@ -22,7 +24,7 @@
             <h2 class="mt-5 mb-5">Recommandation</h2>
             <div class="swiper mySwiper_recommandation">
                 <div class="swiper-wrapper">
-                    {% for video in videos %}
+                    {% for video in [sortedByCatAndTag] %}
                         <div class="swiper-slide card border-0 bg-transparent text-white "
                              data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                             <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100"
