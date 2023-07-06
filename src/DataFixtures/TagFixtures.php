@@ -8,7 +8,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
-class TagFixtures extends Fixture
+class TagFixtures extends Fixture implements DependentFixtureInterface
 {
     public const TAGS = [
         ['name' => 'BANDES-ANNONCES', 'file' => 'gaming_house.jpg'],

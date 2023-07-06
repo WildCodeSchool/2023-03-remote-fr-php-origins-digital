@@ -5,7 +5,7 @@
             <div class="swiper mySwiper_recommandation">
                 <div class="swiper-wrapper">
                     {% for video in videos %}
-                            <div class="swiper-slide card border-0 bg-transparent text-white m-2"
+                            <div class="swiper-slide card border-0 bg-transparent text-white p-2"
                                  data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                                 <div class="position-relative">
                                 <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
