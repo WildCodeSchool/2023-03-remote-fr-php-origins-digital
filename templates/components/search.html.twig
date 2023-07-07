@@ -1,0 +1,11 @@
+<div{{ attributes }} class="position- me-2">
+    <input class="form-control me-2" type="search" data-model="search" placeholder="Rechercher une vidéo" aria-label="Search">
+
+    <div class="list-group position-absolute">
+        {% for video in this.searchVideos %}
+        <a href="{{ path('video_show', {'id' : video.id }) }}" class="list-group-item list-group-item-action">
+            {{ video.title }}
+        </a>
+        {% endfor %}
+    </div>
+</div>

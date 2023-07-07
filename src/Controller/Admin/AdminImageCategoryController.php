@@ -35,7 +35,7 @@ class AdminImageCategoryController extends AbstractController
             return $this->redirectToRoute('app_admin_image_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('admin/admin_image_category/new.html.twig', [
+        return $this->render('admin/admin_image_category/new.html.twig', [
             'image_category' => $imageCategory,
             'form' => $form,
         ]);
