@@ -63,6 +63,19 @@ class VideoRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function findVideoByCatAndTag(int $categoryId, int $tagId): array
+    {
+        $query = $this->createQueryBuilder('v')
+            ->join('v.category', 'c')
+            ->join('v.tag', 't')
+            ->where('c.id = :categoryId')
+            ->andWhere('t.id = :tagId')
+            ->setParameter('categoryId', $categoryId)
+            ->setParameter('tagId', $tagId);
+
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Video[] Returns an array of Video objects
 //     */
