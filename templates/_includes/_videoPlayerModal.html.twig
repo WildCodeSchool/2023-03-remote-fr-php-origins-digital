@@ -1,4 +1,4 @@
-{% for video in sortedVideos %}
+{#{% for video in sortedVideos %}
     {% if not video.Private or app.user %}
 <section class="containeur-fluid ">
     <div class="modal" id="myModal{{ video.id }}">
@@ -28,7 +28,7 @@
                         {{ video.description | raw }}
                     </div>
                     <div class="col-lg-4 d-flex flex-column align-items-center">
-                        {% for video in videos|reverse|slice(0, 3) %}
+                        {% for video in videos %}
                             <div class="card mb-2 bg-transparent border-0" style="width: 70%;">
                                 <div class="video-container position-relative" data-bs-target="#myModal{{ video.id }}" data-bs-toggle="modal">
                                     {% if video.Private and not app.user %}
@@ -52,4 +52,4 @@
     </div>
 </section>
     {% endif %}
-{% endfor %}
+{% endfor %}#}

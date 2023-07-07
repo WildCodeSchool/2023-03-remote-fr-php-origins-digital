@@ -1,0 +1,48 @@
+<section {{ attributes }} class="containeur-fluid" {{ stimulus_target('video_modal', 'component') }} >
+    <div class="modal" {{ stimulus_target('video_modal', 'modal') }}>
+    {% if this.video %}
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content text-secondary bg">
+                <div class="modal-header">
+                    <h3 class="modal-title">{{ this.video.title }}</h3>
+                    <i class="fa-solid fa-xmark fa-2xl text-info" data-bs-dismiss="modal"></i>
+                </div>
+                <div class="modal-body row">
+                    <div class="col-lg-8">
+                        <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }}>
+                            <source src="{{ video_dir ~ '/' ~ this.video.videoUrl }}" alt="{{ this.video.title }}" type="video/mp4">
+                        </video>
+                        <h3>{{ this.video.title }}</h3>
+                        {% if app.user %}
+                            {{ component('like', { 'video': this.video }) }}
+                            {{ component('bookmark', { 'video': this.video }) }}
+                        {% else %}
+                            <form action="{{ path('app_login') }}" method="get">
+                                <button class="btn btn-info btn-sm shadow-sm text-white">
+                                    Connectez vous pour liker et mettre en favoris cette video
+                                </button>
+                            </form>
+                        {% endif %}
+
+                        {{ this.video.description | raw }}
+                    </div>
+                    <div class="col-lg-4 d-flex flex-column align-items-center">
+                        {% for recentVideo in this.recentVideos %}
+                            <div class="card mb-2 bg-transparent border-0" style="width: 70%;">
+                                <div class="video-container position-relative">
+                                    <img src="{{ (image_dir ~ '/' ~ recentVideo.image ) | imagine_filter('thumbnail_locked') }}"
+                                         alt="{{ recentVideo.title }}" class="video-thumbnail img-fluid">
+                                </div>
+                                <div class="card-body">
+                                    <h3 class="card-title">{{ recentVideo.title }}</h3>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+

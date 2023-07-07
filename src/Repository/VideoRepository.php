@@ -63,6 +63,15 @@ class VideoRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function sortByVideo(): Query
+    {
+        return $this->createQueryBuilder('v')
+            ->orderBy('v.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery();
+    }
+
+
 //    /**
 //     * @return Video[] Returns an array of Video objects
 //     */
