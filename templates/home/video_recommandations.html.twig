@@ -5,11 +5,12 @@
             <div class="swiper mySwiper_recommandation">
                 <div class="swiper-wrapper">
                     {% for video in videos %}
-                            <div class="swiper-slide card border-0 bg-transparent text-white p-2"
-                                 data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                            <div class="swiper-slide card border-0 bg-transparent text-white p-2">
                                 <div class="position-relative">
+                                 <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
                                 <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
                                 <i class="fa-solid fa-play fa-2xl position-absolute lock"></i>
+                                 </a>
                                 </div>
                                 <div class="card-body">
                                     <h3 class="card-title">{{ video.title }}</h3>
