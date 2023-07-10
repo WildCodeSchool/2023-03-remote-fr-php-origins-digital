@@ -63,6 +63,15 @@ class VideoRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function sortByVideo(): Query
+    {
+        return $this->createQueryBuilder('v')
+            ->orderBy('v.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery();
+    }
+
+
     public function findVideoByCatAndTag(int $categoryId, int $tagId): array
     {
         $query = $this->createQueryBuilder('v')
@@ -72,6 +81,23 @@ class VideoRepository extends ServiceEntityRepository
             ->andWhere('t.id = :tagId')
             ->setParameter('categoryId', $categoryId)
             ->setParameter('tagId', $tagId);
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function findVideoByFavourites(int $categoryId, int $tagId): ?array
+    {
+        $query = $this->createQueryBuilder('v')
+            ->join('v.category', 'c')
+            ->join('v.tag', 't')
+            ->join('v.userBookmarks', 'ub')
+            ->where('c.id = :categoryId')
+            ->andWhere('t.id = :tagId')
+            ->setParameter('categoryId', $categoryId)
+            ->setParameter('tagId', $tagId)
+            ->groupBy('v')
+            ->orderBy('COUNT(ub.id)', 'DESC')
+            ->setMaxResults(10);
 
         return $query->getQuery()->getResult();
     }

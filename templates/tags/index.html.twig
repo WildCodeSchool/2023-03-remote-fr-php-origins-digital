@@ -18,54 +18,40 @@
                 <li class="breadcrumb-item active text-info" aria-current="page">{{ tag.name }}</li>
             </ol>
         </nav>
-        <section>
-            <h2 class="mt-5 mb-5">Recommandation</h2>
-            <div class="swiper mySwiper_recommandation">
-                <div class="swiper-wrapper">
-                    {% for video in findByCatAndTag %}
-                        <div class="swiper-slide card border-0 bg-transparent text-white "
-                             data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                            <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100"
-                                   id="player-home" controls
-                                   poster="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}"
-                                   preload="none">
-                                <source src="{{ video_dir ~ '/' ~ video.videoUrl }}"
-                                        alt="Vidéo {{ video.title }}" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <h3 class="card-title">{{ video.title }}</h3>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </section>
-        <div class="container-fluid">
+        {% include 'home/video_recommandations.html.twig' %}
+
+        <div class="container-fluid mt-4">
+            <!-- Swiper -->
             <section>
-                <div>
-                    <h2 class="text-center mt-5 mb-5">Top 10 de nos abonnées</h2>
-                    <!-- Swiper -->
-                    <div class="swiper mySwiper_top">
-                        <div class="swiper-wrapper swiper-wrapper-top">
-                            {% for i in 0..9 %}
-                                <div class="swiper-slide top">
-                                    <img src="https://fakeimg.pl/330x330/?text=IMG" class="card-img-top" alt="IMG">
+                <h2 class="mt-4">Top 10 de nos abonnés</h2>
+                <div class="swiper mySwiper_recommandation overflow-visible mb-5">
+                    <div class="swiper-wrapper position-relative">
+                        {% for video in sortedByFavourites %}
+                            <div class="swiper-slide card border-0 bg-transparent text-white">
+                                <div class="position-relative">
+                                    <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
+                                        <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
+                                        <i class="fa-solid fa-play fa-2xl position-absolute lock"></i>
+                                    </a>
                                 </div>
-                            {% endfor %}
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
+                                <div class="card-body position-absolute">
+                                    <h3 class="card-title">{{ video.title }}</h3>
+                                </div>
+                            </div>
+                        {% endfor %}
                     </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </section>
         </div>
+
+
         <div class="container card mt-5 mb-5 p-0">
             <img src="https://fakeimg.pl/1320x200/?text=PUB" class="card-img-top" alt="PUB">
         </div>
     </div>
-    {% include '_includes/_videoPlayerModal.html.twig' %}
+
 {% endblock %}
 {% block stylesheets %}
     {{ parent() }}
