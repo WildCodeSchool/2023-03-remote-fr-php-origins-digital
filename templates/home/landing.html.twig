@@ -1,0 +1,22 @@
+<div class="container-fluid mt-4">
+<div class="landingPageContainer">
+    <div class="mostWatchedMainContainer row justify-content-between min-vh-75">
+        {% if mostViewed %}
+        <div class="mostWatchedLeftContainer col-md-4 d-flex flex-column justify-content-center">
+            <h2 class="p-2">Video la plus vue</h2>
+            <h4 class="card-title p-2">{{ mostViewed.title }}</h4>
+        </div>
+        <div class="mostWatchedRightContainer col-md-8">
+            <div class="border-0 bg-transparent text-white position-relative">
+                <a href="#" data-video-id="{{ mostViewed.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
+                    <img class="video-js videoPlayerHome videoPlayerMostViewed mostViewed img-fluid"
+                           id="player-home" alt="{{ mostViewed.title }}"
+                           src="{{ (image_dir ~ '/' ~ mostViewed.image ) | imagine_filter('mostViewed') }}">
+                    <i class="fa-solid fa-play lock fa-2xl position-absolute"></i>
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>

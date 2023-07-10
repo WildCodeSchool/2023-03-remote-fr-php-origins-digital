@@ -45,13 +45,32 @@ class VideoRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-    public function findLikeName(string $search): Query
+    public function findLikeName(?string $search): Query
     {
         return $this->createQueryBuilder('v')
             ->andWhere('v.title LIKE :search')
             ->setParameter('search', '%' . $search . '%')
             ->getQuery();
     }
+
+    public function sortByLikes(): array
+    {
+        $query = $this->createQueryBuilder('v')
+            ->leftJoin('v.userLikes', 'userLikes')
+            ->groupBy('v')
+            ->orderBy('COUNT(userLikes.id)', 'DESC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function sortByVideo(): Query
+    {
+        return $this->createQueryBuilder('v')
+            ->orderBy('v.id', 'DESC')
+            ->setMaxResults(3)
+            ->getQuery();
+    }
+
 
 //    /**
 //     * @return Video[] Returns an array of Video objects

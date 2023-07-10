@@ -1,16 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@300&display=swap');
+@import "_variables.scss";
 @import "bootstrap/scss/bootstrap";
 @import "navbarStyles.scss";
 @import "category.scss";
 @import "genre.scss";
 @import 'atropos/atropos.scss';
 @import "favoris";
-
-body {
-    background: rgb(1,13,24);
-    background: linear-gradient(180deg, rgba(1,13,24,1) 0%, rgba(4,17,28,0.9668242296918768) 50%, rgba(27,41,54,0.9164040616246498) 100%);
-    color: #FFFFFF;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-
+@import "knp_paginator";
+@import "_global";

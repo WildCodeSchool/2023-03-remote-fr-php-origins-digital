@@ -2,25 +2,7 @@
     <div class="row">
         <h2 class="mt-4">Tendance</h2>
         {% for video in sortedVideos %}
-            <div class="col-lg-4 col-md-6 d-flex justify-content-center">
-                <div class="card mt-2 mb-2 card bg-transparent text-white border-0" style="width: 100%;">
-                    <div class="video-container position-relative" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                        {% if video.Private and not app.user %}
-                        <a href="{{ path('app_login') }}">
-                        <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid img-tendance">
-                            <i class="fa-solid fa-lock lock fa-2xl position-absolute"></i>
-                        </a>
-                        {% else %}
-                            <video class=" recommandationVideo video-js videoPlayerHome" id="player-home" controls poster="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}">
-                                <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
-                            </video>
-                        {% endif %}
-                    </div>
-                    <div class="card-body">
-                        <h3 class="card-title">{{ video.title }}</h3>
-                    </div>
-                </div>
-            </div>
+           {% include '_includes/_cardVideo.html.twig' %}
         {% endfor %}
     </div>
 </div>

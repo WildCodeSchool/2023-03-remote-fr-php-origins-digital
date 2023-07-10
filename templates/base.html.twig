@@ -13,16 +13,15 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
             {{ encore_entry_link_tags('swiper') }}
-            {{ encore_entry_link_tags('video') }}
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
             {{ encore_entry_script_tags('swiper') }}
-            {{ encore_entry_script_tags('video') }}
+
         {% endblock %}
 </head>
-<body>
+<body class="bg text-secondary" {{ stimulus_controller('video_modal') }}>
 
 {% if app.request.get('_route') not in ['app_register', 'app_login'] %}
     {% include '_includes/_navbar.html.twig' %}
@@ -30,11 +29,12 @@
 
 {% include '_includes/_flash.html.twig' %}
 
-{% block body %}{% endblock %}
-
+<main class="text-secondary">
+    {% block body %}{% endblock %}
+</main>
+{{ component('VideoModal') }}
 {% if app.request.get('_route') not in ['app_register', 'app_login'] %}
     {% include '_includes/_footer.html.twig' %}
 {% endif %}
-
 </body>
 </html>

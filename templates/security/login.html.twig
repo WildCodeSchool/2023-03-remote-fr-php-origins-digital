@@ -19,7 +19,7 @@
                         </div>
                     {% endif %}
 
-                    <a href="/" class="back-button text-decoration-none">Retour au site
+                    <a href="/" class="back-button text-decoration-none text-secondary">Retour au site
                         <i class="fa-solid fa-reply"></i></a>
                     <h1 class="h3 mb-3 mt-3 font-weight-normal">Me connecter</h1>
                     <label for="inputEmail">Email</label>
@@ -28,7 +28,7 @@
                     <label for="inputPassword">Mot de passe</label>
                     <input type="password" name="password" id="inputPassword" class="form-control"
                            autocomplete="current-password" required>
-                    <a href="/reset-password" class="back-button text-decoration-none mt-3 d-block">
+                    <a href="/reset-password" class="back-button text-secondary text-decoration-none mt-3 d-block">
                         Mot de passe oublié <i class="fa-solid fa-question"></i></a>
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
@@ -45,10 +45,10 @@
                     </div>
                     #}
 
-                    <button class="btn btn-lg btn-primary mt-3" type="submit">
+                    <button class="btn btn-lg btn-info mt-3 text-secondary" type="submit">
                         Me connecter
                     </button>
-                    <a href="{{ path('app_register') }}" class="btn btn-secondary mt-3">M'inscrire</a>
+                    <a href="{{ path('app_register') }}" class="btn btn-outline-info mt-3 text-secondary">M'inscrire</a>
                 </form>
             </div>
             <div class="col-lg-6 d-none d-lg-block vh-100">

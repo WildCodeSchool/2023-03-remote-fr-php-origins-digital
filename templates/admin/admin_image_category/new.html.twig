@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block title %}Nouvelle image catégorie{% endblock %}
+
+{% block body %}
+    <div class="mb-4">
+        <a class="text-decoration-none text-white" href="{{ path('app_admin_image_category_index') }}">
+            <i class="fa-solid fa-arrow-turn-up fa-rotate-270 text-secondary"></i> Liste des catégories</a>
+    </div>
+    <h1>Nouvelle image catégorie</h1>
+
+    {{ include('admin/admin_image_category/_form.html.twig') }}
+
+{% endblock %}
