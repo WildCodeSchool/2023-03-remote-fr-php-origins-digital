@@ -9,7 +9,7 @@
         <div class="mostWatchedRightContainer col-md-8">
             <div class="border-0 bg-transparent text-white position-relative">
                 <a href="#" data-video-id="{{ mostViewed.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
-                    <img class="video-js videoPlayerHome videoPlayerMostViewed mostViewed"
+                    <img class="video-js videoPlayerHome videoPlayerMostViewed mostViewed img-fluid"
                            id="player-home" alt="{{ mostViewed.title }}"
                            src="{{ (image_dir ~ '/' ~ mostViewed.image ) | imagine_filter('mostViewed') }}">
                     <i class="fa-solid fa-play lock fa-2xl position-absolute"></i>

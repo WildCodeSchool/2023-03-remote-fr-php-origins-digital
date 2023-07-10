@@ -30,11 +30,13 @@
                         {% for recentVideo in this.recentVideos %}
                             <div class="card mb-2 bg-transparent border-0" style="width: 70%;">
                                 <div class="video-container position-relative">
+                                    <a href="#" data-video-id="{{ recentVideo.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
                                     <img src="{{ (image_dir ~ '/' ~ recentVideo.image ) | imagine_filter('thumbnail_locked') }}"
                                          alt="{{ recentVideo.title }}" class="video-thumbnail img-fluid">
+                                    </a>
                                 </div>
                                 <div class="card-body">
-                                    <h3 class="card-title">{{ recentVideo.title }}</h3>
+                                    <h3 class="card-title text-secondary">{{ recentVideo.title }}</h3>
                                 </div>
                             </div>
                         {% endfor %}
