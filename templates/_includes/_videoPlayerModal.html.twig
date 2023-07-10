@@ -1,16 +1,15 @@
-{% for video in sortedVideos %}
-    {% if not video.Private or app.user %}
+ {% if not video.Private or app.user %}
 <section class="containeur-fluid ">
     <div class="modal" id="myModal{{ video.id }}">
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content text-secondary bg">
-                <div class="modal-header">
+                <div class="modal-header p-0">
                     <h3 class="modal-title">{{ video.title }}</h3>
                     <i class="fa-solid fa-xmark fa-2xl text-info" data-bs-dismiss="modal"></i>
                 </div>
                 <div class="modal-body row">
                     <div class="col-lg-8">
-                        <video id="main-video-player" class="video-js videoPlayer" controls>
+                        <video id="modal-player-video" class="video-js videoPlayer" controls preload="none">
                             <source id="main-video-source" src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="{{ video.title }}" type="video/mp4">
                         </video>
                         <h3>{{ video.title }}</h3>
@@ -52,4 +51,3 @@
     </div>
 </section>
     {% endif %}
-{% endfor %}

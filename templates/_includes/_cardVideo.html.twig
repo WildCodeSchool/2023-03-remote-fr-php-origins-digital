@@ -8,6 +8,7 @@
                 </a>
             {% else %}
                 <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
+                <i class="fa-solid fa-play lock fa-2xl position-absolute"></i>
             {% endif %}
         </div>
         <div class="card-body">

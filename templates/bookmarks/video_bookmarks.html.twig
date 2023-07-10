@@ -12,7 +12,7 @@
                     {% for video in app.user.bookmarks %}
                         {% if loop.last %}
                             <div class="latestBookmark card border-0 bg-transparent text-white " data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                                <video class="recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="{{ image_dir ~ '/' ~ video.image }}" preload="none">
+                                <video class="recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="{{ image_dir ~ '/' ~ video.image }}" preload="none" >
                                     <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
                                 </video>
                             </div>
