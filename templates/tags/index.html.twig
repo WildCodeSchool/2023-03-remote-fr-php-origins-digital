@@ -18,30 +18,7 @@
                 <li class="breadcrumb-item active text-info" aria-current="page">{{ tag.name }}</li>
             </ol>
         </nav>
-        <section>
-            <h2 class="mt-5 mb-5">Recommandation</h2>
-            <div class="swiper mySwiper_recommandation">
-                <div class="swiper-wrapper">
-                    {% for video in videos %}
-                        <div class="swiper-slide card border-0 bg-transparent text-white "
-                             data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                            <video class=" recommandationVideo video-js videoPlayerHome hover-to-play w-100"
-                                   id="player-home" controls
-                                   poster="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}"
-                                   preload="none">
-                                <source src="{{ video_dir ~ '/' ~ video.videoUrl }}"
-                                        alt="Vidéo {{ video.title }}" type="video/mp4">
-                            </video>
-                            <div class="card-body">
-                                <h3 class="card-title">{{ video.title }}</h3>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-            </div>
-        </section>
+       {% include 'home/video_recommandations.html.twig' %}
         <div class="container-fluid">
             <section>
                 <div>
