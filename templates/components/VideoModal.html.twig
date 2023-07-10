@@ -8,7 +8,7 @@
                     <i class="fa-solid fa-xmark fa-2xl text-info" data-bs-dismiss="modal"></i>
                 </div>
                 <div class="modal-body row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8" data-live-id="video-{{ 'now'|date('U') }}">
                         <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }}>
                             <source src="{{ video_dir ~ '/' ~ this.video.videoUrl }}" alt="{{ this.video.title }}" type="video/mp4">
                         </video>
