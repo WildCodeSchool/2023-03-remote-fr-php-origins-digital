@@ -15,5 +15,17 @@
             </p>
         </div>
 
+    {% block stylesheets %}
+        {{ parent() }}
+        {% if app.user.isFirstConnexion == true %}
+            {{ encore_entry_link_tags('intro') }}
+        {% endif %}
+    {% endblock %}
 
+    {% block javascripts %}
+        {{ parent() }}
+        {% if app.user.isFirstConnexion == true %}
+            {{ encore_entry_script_tags('intro') }}
+        {% endif %}
+    {% endblock %}
 {% endblock %}
