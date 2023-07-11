@@ -47,7 +47,6 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('swiper', './assets/swiper.js')
     .addEntry('atropos', './assets/atropos.js')
-    .addEntry('video', './assets/video-player.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
@@ -71,14 +70,7 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     // enables hashed filenames (e.g. app.abc123.css)
     .enableVersioning(Encore.isProduction())
-    .configureLoaderRule('javascript', loaderRule => {
-        loaderRule.use = {
-            loader: 'esbuild-loader',
-            options: {
-                target: 'es2015'
-            }
-        }
-    })
+
     .configureBabel((config) => {
         config.plugins.push('@babel/plugin-proposal-class-properties');
     })

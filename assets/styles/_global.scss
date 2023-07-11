@@ -1,0 +1,17 @@
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.bg {
+    background: $my-gradient;
+}
+
+.bg-gradient-reversed {
+    background: $my-gradient-reversed;
+}
+
+.h1 {
+    font-family: 'Montserra', sans-serif;
+}

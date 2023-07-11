@@ -7,6 +7,7 @@ window.Swiper = Swiper;
 const swiper = new Swiper(".mySwiper_recommandation", {
     // Default parameters
     slidesPerView: 2,
+    slidesPerGroup: 2,
     spaceBetween: 10,
     preload: 'none',
     navigation: {
@@ -18,17 +19,20 @@ const swiper = new Swiper(".mySwiper_recommandation", {
     // when window width is >= 576px
         576: {
             slidesPerView: 2,
-            spaceBetween: 1
+            slidesPerGroup: 2,
+            spaceBetween: 15
         },
         // when window width is >= 768px
         768: {
             slidesPerView: 3,
-            spaceBetween: 2
+            slidesPerGroup: 3,
+            spaceBetween: 15
         },
         // when window width is >= 992px
         992: {
             slidesPerView: 4,
-            spaceBetween: 2
+            slidesPerGroup: 4,
+            spaceBetween: 15
         }
     }
 });
