@@ -16,8 +16,8 @@ fi
 php bin/console cache:clear
 php bin/console cache:warmup
 
-chmod -R 777 /var/www/var
-chmod -R 777 /var/www/public
+chown -R www-data:www-data /var/www/var
+chown -R www-data:www-data /var/www/public
 
 # run composer scripts like
 # assets:install public
