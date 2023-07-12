@@ -1,6 +1,5 @@
 .swiper-wrapper {
     margin-bottom: 8rem;
-    max-width: 100%;
 }
 
 .swiper-button-next,
@@ -21,3 +20,12 @@
         --swiper-navigation-color: rgba(0, 0, 0, 0.9);
     }
 }
+
+.swiper-button-next {
+    right: 0;
+}
+
+.swiper-button-prev {
+    left: 0;
+}
+
