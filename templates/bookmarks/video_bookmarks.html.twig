@@ -6,17 +6,23 @@
     <div class="mainContainer">
         <h2 class="text-center mb-5 mt-3">Vos vidéos favorites</h2>
 
-        <div class="d-flex justify-content-around">
+        <div class="d-flex justify-content-around flex-md-row flex-column">
             <div class="latestBookmarkContainer">
                 <h4 class="p-2">Dernière vidéo mise en favoris</h4>
                     {% for video in app.user.bookmarks %}
                         {% if loop.last %}
-                            <div class="latestBookmark card border-0 bg-transparent text-white " data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
+                            <div class="latestBookmark card border-0 bg-transparent text-white d-flex flex-column justify-content-center align-content-center" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
                                 <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
-                                <video class="recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="{{ image_dir ~ '/' ~ video.image }}" preload="none" >
-                                    <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
-                                </video>
+                                    <video class="recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="{{ image_dir ~ '/' ~ video.image }}" preload="none" >
+                                        <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
+                                    </video>
                                 </a>
+                                <div class="d-flex flex-column justify-content-around justify-content-center text-secondary m-4">
+                                    <h3>{{ video.title }}</h3>
+                                    <p>
+                                        {{ video.description | raw }}
+                                    </p>
+                                </div>
                             </div>
                         {% endif %}
                         {% else %}
