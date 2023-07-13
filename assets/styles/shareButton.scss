@@ -51,15 +51,15 @@ $linkedin: #0e76a8;
             }
         }
 
-        &:nth-child(2):hover &:nth-child(2):active {
+        &:nth-child(2):hover, &:nth-child(2):active {
             background-color: $facebook;
         }
 
-        &:nth-child(3):hover &:nth-child(3):active {
+        &:nth-child(3):hover, &:nth-child(3):active {
             background-color: $whatsapp;
         }
 
-        &:nth-child(4):hover &:nth-child(4):active{
+        &:nth-child(4):hover, &:nth-child(4):active{
             background-color: $linkedin;
         }
 
