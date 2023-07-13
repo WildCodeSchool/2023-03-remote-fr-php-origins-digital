@@ -18,21 +18,31 @@
                 <li class="breadcrumb-item active text-info" aria-current="page">{{ tag.name }}</li>
             </ol>
         </nav>
-        {% include 'home/video_recommandations.html.twig' %}
 
-        <div class="container-fluid mt-4">
+        <section>
+            <h2 class="mt-5">Prochainement</h2>
+            <div class="swiper mySwiper_next mt-5">
+                <div class="swiper-wrapper swiper-next position-relative">
+                    {% for nextVideo in nextVideos %}
+                        <div class="swiper-slide d-flex justify-content-center align-items-center">
+                            <img src="{{ (image_dir ~ '/' ~ nextVideo.image ) | imagine_filter('video_next') }}" alt="{{ nextVideo.title }}" class="img-fluid">
+                            <h2 class="position-absolute font-weight-bold gradient">{{ nextVideo.title }}</h2>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <div class="container-fluid mt-5">
             <!-- Swiper -->
             <section>
-                <h2 class="mt-4">Top 10 de nos abonnés</h2>
+                <h2 class="mt-5">Top 10 de nos abonnés</h2>
                 <div class="swiper mySwiper_recommandation overflow-visible mb-5">
                     <div class="swiper-wrapper position-relative">
                         {% for video in sortedByFavourites %}
                             <div class="swiper-slide card border-0 bg-transparent text-white">
                                 <div class="position-relative">
-                                    <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
-                                        <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
-                                        <i class="fa-solid fa-play fa-2xl position-absolute lock"></i>
-                                    </a>
+                                    {{ include('_includes/_videoRepeatedCode.html.twig') }}
                                 </div>
                                 <div class="card-body position-absolute">
                                     <h3 class="card-title">{{ video.title }}</h3>
@@ -45,11 +55,9 @@
                 </div>
             </section>
         </div>
+          {% include 'home/video_tendances.html.twig' %}
 
-
-        <div class="container card mt-5 mb-5 p-0">
-            <img src="https://fakeimg.pl/1320x200/?text=PUB" class="card-img-top" alt="PUB">
-        </div>
+        {% include 'home/video_recommandations.html.twig' %}
     </div>
 
 {% endblock %}
