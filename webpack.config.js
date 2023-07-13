@@ -47,6 +47,7 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('swiper', './assets/swiper.js')
     .addEntry('atropos', './assets/atropos.js')
+    .addEntry('intro', './assets/intro.js')
     .addEntry('sharer', './assets/sharer.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
