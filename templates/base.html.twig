@@ -38,7 +38,7 @@
 {% if app.request.get('_route') not in ['app_register', 'app_login'] %}
     {% include '_includes/_footer.html.twig' %}
 {% endif %}
-{{ render_esi(path('ch_cookie_consent.show')) }}
+{{ render_esi(path('ch_cookie_consent.show_if_cookie_consent_not_set')) }}
 
 
 </body>
