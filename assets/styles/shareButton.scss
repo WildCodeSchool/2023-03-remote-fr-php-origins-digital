@@ -45,24 +45,7 @@ $linkedin: #0e76a8;
             border-top-left-radius: 0.25rem;
             border-bottom-left-radius: 0.25rem;
             margin-left: 0;
-
-            &:hover, &:active {
-                background-color: $twitter;
-            }
         }
-
-        &:nth-child(2):hover, &:nth-child(2):active {
-            background-color: $facebook;
-        }
-
-        &:nth-child(3):hover, &:nth-child(3):active {
-            background-color: $whatsapp;
-        }
-
-        &:nth-child(4):hover, &:nth-child(4):active{
-            background-color: $linkedin;
-        }
-
         &:nth-child(5){
             border-top-right-radius: 0.25rem;
             border-bottom-right-radius: 0.25rem;
@@ -89,5 +72,7 @@ $linkedin: #0e76a8;
         button i {
             color: $buttonColor !important;
         }
+
     }
 }
+
