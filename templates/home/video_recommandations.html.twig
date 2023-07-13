@@ -7,10 +7,7 @@
                     {% for video in videos %}
                             <div class="swiper-slide card border-0 bg-transparent text-white">
                                 <div class="position-relative">
-                                 <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
-                                <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
-                                <i class="fa-solid fa-play fa-2xl position-absolute lock"></i>
-                                 </a>
+                                    {{ include('_includes/_videoRepeatedCode.html.twig') }}
                                 </div>
                                 <div class="card-body position-absolute">
                                     <h3 class="card-title">{{ video.title }}</h3>

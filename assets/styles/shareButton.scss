@@ -1,0 +1,93 @@
+$backgroundColor: #FF6608;
+$buttonColor: #ffffff;
+$facebook: #3B5998;
+$twitter: #61c5ec;
+$whatsapp: #25D366;
+$linkedin: #0e76a8;
+
+.share {
+    border-radius: 80px;
+    width: 500px;
+
+    span {
+        display: inline-block;
+        font-weight: 700;
+        text-transform: uppercase;
+        position: absolute;
+        margin-top: 10px;
+        margin-left: 30px;
+        opacity: 1;
+        transition: opacity 0.2s ease-in-out;
+        pointer-events: none;
+    }
+
+    nav {
+        font-size: 0;
+    }
+
+    button i {
+        color: $backgroundColor;
+        text-align: center;
+    }
+
+    button {
+        line-height: 30px;
+        text-align: center;
+        width: 65px;
+        display: inline-block;
+        overflow: hidden;
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+        margin: 0 -20px;
+        box-shadow: 3px 1px 3px rgba(0, 0, 0, 0.1);
+
+        &:nth-child(1) {
+            border-top-left-radius: 0.25rem;
+            border-bottom-left-radius: 0.25rem;
+            margin-left: 0;
+
+            &:hover {
+                background-color: $twitter;
+            }
+        }
+
+        &:nth-child(2):hover {
+            background-color: $facebook;
+        }
+
+        &:nth-child(3):hover {
+            background-color: $whatsapp;
+        }
+
+        &:nth-child(4):hover {
+            background-color: $linkedin;
+        }
+
+        &:nth-child(5){
+            border-top-right-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+            margin-right: 0;
+
+            &:hover {
+                background-color: $twitter;
+            }
+        }
+    }
+
+    &:hover, &.hover {
+        span {
+            opacity: 0;
+        }
+
+        button {
+            border-radius: 50%;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            width: 45px;
+        }
+
+        button i {
+            color: $buttonColor !important;
+        }
+    }
+}
