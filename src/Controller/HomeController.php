@@ -21,7 +21,7 @@ class HomeController extends AbstractController
         TagRepository $tagsRepository,
         VideoMostViewed $videoMostViewed
     ): Response {
-        $videos = $videoRepository->findAll(); // recup toutes les vidéos de la bdd
+        $videos = $videoRepository->findAll();
         $sortedVideos = $videoRepository->sortByLikes();
         $categories = $categoryRepository->findAll();
         $tags = $tagsRepository->findAll();
