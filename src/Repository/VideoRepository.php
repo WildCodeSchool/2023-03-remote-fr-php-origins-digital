@@ -72,6 +72,36 @@ class VideoRepository extends ServiceEntityRepository
     }
 
 
+    public function findVideoByCatAndTag(int $categoryId, int $tagId): array
+    {
+        $query = $this->createQueryBuilder('v')
+            ->join('v.category', 'c')
+            ->join('v.tag', 't')
+            ->where('c.id = :categoryId')
+            ->andWhere('t.id = :tagId')
+            ->setParameter('categoryId', $categoryId)
+            ->setParameter('tagId', $tagId);
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function findVideoByFavourites(int $categoryId, int $tagId): ?array
+    {
+        $query = $this->createQueryBuilder('v')
+            ->join('v.category', 'c')
+            ->join('v.tag', 't')
+            ->join('v.userBookmarks', 'ub')
+            ->where('c.id = :categoryId')
+            ->andWhere('t.id = :tagId')
+            ->setParameter('categoryId', $categoryId)
+            ->setParameter('tagId', $tagId)
+            ->groupBy('v')
+            ->orderBy('COUNT(ub.id)', 'DESC')
+            ->setMaxResults(10);
+
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Video[] Returns an array of Video objects
 //     */

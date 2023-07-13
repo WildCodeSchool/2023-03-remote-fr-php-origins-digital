@@ -52,3 +52,11 @@ liip_imagine:
                     size: [ 1240, 500 ]
                     # crop the input image, if required
                     mode: outbound
+        video_next:
+            quality: 75
+            filters:
+                thumbnail:
+                    # set the thumbnail size to "32x32" pixels
+                    size: [ 150, 150 ]
+                    # crop the input image, if required
+                    mode: outbound            
