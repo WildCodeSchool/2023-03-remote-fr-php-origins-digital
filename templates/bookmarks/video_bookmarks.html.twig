@@ -26,11 +26,10 @@
                             </div>
                         {% endif %}
                         {% else %}
-                            <p>Pas de videos mis en favoris...</p>
                     {% endfor %}
             </div>
 
-            <div class="bookmarkContainer">
+            <div class="bookmarkContainer d-flex justify-content-around">
                 <div class="swiper videoBookmarksSwiper">
                     <div class="swiper-wrapper bookmarkWrapper">
                             {% for video in app.user.bookmarks %}

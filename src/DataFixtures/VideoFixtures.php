@@ -64,7 +64,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
         ['title' => 'Valorant', 'time' => 32, 'video_url' => 'Dancin_Valorant.mp4', 'views' => 4,
             'is_private' => true, 'is_upcoming' => true, 'image' => 'valorant.jpg',
             'tags' => ['ESPORT'], 'categorie' => 'FPS'],
-        ['title' => 'Starcraft II', 'time' => 56, 'video_url' => 'Starcraft_II.mp4', 'views' => 4,
+        ['title' => 'Starcraft II', 'time' => 56, 'video_url' => 'StarCraft_II.mp4', 'views' => 4,
             'is_private' => true, 'is_upcoming' => true, 'image' => 'starcraft2.jpeg',
             'tags' => ['BANDES-ANNONCES'], 'categorie' => 'FPS'],
         ['title' => 'Street Fighter 6 Guilde', 'time' => 1, 'video_url' => 'Street_Fighter_6_Guile.mp4', 'views' => 4,
