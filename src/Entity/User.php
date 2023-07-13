@@ -69,6 +69,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'userDontLikes')]
     private Collection $dontLIkes;
+
     public function getId(): ?int
     {
         return $this->id;
