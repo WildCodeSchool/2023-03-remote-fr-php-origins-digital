@@ -47,8 +47,10 @@ Encore
     .addEntry('app', './assets/app.js')
     .addEntry('swiper', './assets/swiper.js')
     .addEntry('atropos', './assets/atropos.js')
+    .addEntry('intro', './assets/intro.js')
 
-    // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
+
+// enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     .enableStimulusBridge('./assets/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
