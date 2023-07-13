@@ -17,15 +17,11 @@
 
     {% block stylesheets %}
         {{ parent() }}
-        {% if app.user.isFirstConnexion == true %}
-            {{ encore_entry_link_tags('intro') }}
-        {% endif %}
+        {{ encore_entry_link_tags('intro') }}
     {% endblock %}
 
     {% block javascripts %}
         {{ parent() }}
-        {% if app.user.isFirstConnexion == true %}
-            {{ encore_entry_script_tags('intro') }}
-        {% endif %}
+        {{ encore_entry_script_tags('intro') }}
     {% endblock %}
 {% endblock %}

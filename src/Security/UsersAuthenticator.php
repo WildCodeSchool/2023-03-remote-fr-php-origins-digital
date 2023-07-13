@@ -23,8 +23,7 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     public function __construct(
-        private readonly UrlGeneratorInterface $urlGenerator,
-        public EntityManagerInterface $entityManager
+        private readonly UrlGeneratorInterface $urlGenerator
     ) {
     }
 
@@ -45,20 +44,6 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        $user = $token->getUser();
-
-        if ($user->getIsFirstConnexion() === true) {
-            $user->setIsFirstConnexion(false);
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
-        }
-
-        if ($user->getIsFirstConnexion() === null) {
-            $user->setIsFirstConnexion(true);
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
-        }
-
         $targetPath = $this->getTargetPath($request->getSession(), $firewallName);
         if ($targetPath) {
             return new RedirectResponse($targetPath);

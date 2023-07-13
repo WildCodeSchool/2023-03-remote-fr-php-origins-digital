@@ -2,7 +2,9 @@ import 'intro.js/introjs.css';
 
 import introJs from 'intro.js';
 
+
 introJs().setOptions({
+    dontShowAgain: true,
     steps: [{
         intro: "Bonjour. Bienvenue dans votre espace administrateur !"
     },
@@ -24,3 +26,4 @@ introJs().setOptions({
     },
     ],
 }).start();
+

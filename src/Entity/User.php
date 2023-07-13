@@ -70,8 +70,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'userDontLikes')]
     private Collection $dontLIkes;
 
-    #[ORM\Column(nullable: true)]
-    private ?bool $isFirstConnexion = null;
     public function getId(): ?int
     {
         return $this->id;
@@ -261,18 +259,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeDontLIke(Video $dontLIke): static
     {
         $this->dontLIkes->removeElement($dontLIke);
-
-        return $this;
-    }
-
-    public function getIsFirstConnexion(): ?bool
-    {
-        return $this->isFirstConnexion;
-    }
-
-    public function setIsFirstConnexion(?bool $isFirstConnexion): static
-    {
-        $this->isFirstConnexion = $isFirstConnexion;
 
         return $this;
     }
