@@ -23,7 +23,7 @@
             {% for tag in activeTags %}
                 <div class="col-lg-5">
                     <div class="card text-center bg-image position-relative">
-                        <a class="stretched-link" href="{{ path('tags_index', { 'category_id' : category.id, 'tag_id' : tag.id }) }}">
+                        <a class="stretched-link" href="{{ path('tags_index', { 'categoryId' : category.id, 'tagId' : tag.id }) }}">
                             <img src="{{ (image_dir ~ '/' ~ tag.file) | imagine_filter('thumbnail_categories') }}"
                                  class="card-img-top" alt="{{ tag.name }}">
                         </a>
