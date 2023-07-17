@@ -26,12 +26,14 @@ class HomeController extends AbstractController
         $categories = $categoryRepository->findAll();
         $tags = $tagsRepository->findAll();
         $mostViewed = $videoMostViewed->mostViewed();
+        $videosRec = $videoRepository->sortByViews();
         return $this->render('home/index.html.twig', [
             'sortedVideos' => $sortedVideos,
             'videos' => $videos,
             'categories' => $categories,
             'tags' => $tags,
             'mostViewed' => $mostViewed,
+            'videosRec' => $videosRec
         ]);
     }
 }

@@ -7,7 +7,15 @@ $linkedin: #0e76a8;
 
 .share {
     border-radius: 80px;
-    width: 500px;
+    width: 330px;
+
+    div.backgroundContainer {
+        background-color: transparent;
+        width: 330px;
+        height: 40px;
+        position: absolute;
+        z-index: 0;
+    }
 
     span {
         display: inline-block;
@@ -19,6 +27,7 @@ $linkedin: #0e76a8;
         opacity: 1;
         transition: opacity 0.2s ease-in-out;
         pointer-events: none;
+        z-index: 1;
     }
 
     nav {
