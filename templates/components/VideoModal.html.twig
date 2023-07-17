@@ -1,49 +1,78 @@
 <section {{ attributes }} class="containeur-fluid" {{ stimulus_target('video_modal', 'component') }} >
     <div class="modal" {{ stimulus_target('video_modal', 'modal') }}>
-    {% if this.video %}
-        <div class="modal-dialog modal-fullscreen">
-            <div class="modal-content text-secondary bg">
-                <div class="modal-header">
-                    <h3 class="modal-title">{{ this.video.title }}</h3>
-                    <i class="fa-solid fa-xmark fa-2xl text-info" data-bs-dismiss="modal"></i>
-                </div>
-                <div class="modal-body row">
-                    <div class="col-lg-8" data-live-id="video-{{ 'now'|date('U') }}">
-                        <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }}>
-                            <source src="{{ video_dir ~ '/' ~ this.video.videoUrl }}" alt="{{ this.video.title }}" type="video/mp4">
-                        </video>
-                        <h3 class="mt-3">{{ this.video.title }}</h3>
-                        {% if app.user %}
-                            {{ component('like', { 'video': this.video }) }}
-                            {{ component('bookmark', { 'video': this.video }) }}
-                        {% else %}
-                            <form action="{{ path('app_login') }}" method="get">
-                                <button class="btn btn-info btn-sm shadow-sm text-white mb-3">
-                                    Connectez vous pour liker et mettre en favoris cette video
-                                </button>
-                            </form>
-                        {% endif %}
-
-                        {{ this.video.description | raw }}
+        {% if this.video %}
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content text-secondary bg">
+                    <div class="modal-header">
+                        <h3 class="modal-title">{{ this.video.title }}</h3>
+                        <i class="fa-solid fa-xmark fa-2xl text-info" data-bs-dismiss="modal"></i>
                     </div>
-                    <div class="col-lg-4 d-flex flex-column align-items-center">
-                        {% for recentVideo in this.recentVideos %}
-                            <div class="card mb-2 bg-transparent border-0" style="width: 70%;">
-                                <div class="video-container position-relative">
-                                    <a href="#" data-video-id="{{ recentVideo.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
-                                    <img src="{{ (image_dir ~ '/' ~ recentVideo.image ) | imagine_filter('thumbnail_locked') }}"
-                                         alt="{{ recentVideo.title }}" class="video-thumbnail img-fluid">
+                    <div class="modal-body row" data-live-id="video-{{ 'now'|date('U') }}">
+                        <div class="col-lg-8">
+                            <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }}>
+                                <source src="{{ video_dir ~ '/' ~ this.video.videoUrl }}" alt="{{ this.video.title }}"
+                                        type="video/mp4">
+                            </video>
+                            <h3>{{ this.video.title }}</h3>
+                            <div class="d-flex flex-row justify-content-between flex-nowrap">
+                                {% if app.user %}
+                                    {{ component('like', { 'data-live-id': 'now'|date('U'), 'video': this.video }) }}
+                                    {{ component('bookmark', { 'data-live-id': 'now'|date('U'), 'video': this.video }) }}
+                                {% else %}
+                                    <a href="{{ path('app_login') }}" class="btn btn-info btn-sm shadow-sm text-white LF">
+                                        Connectez vous pour aimer et mettre en favoris cette video
                                     </a>
-                                </div>
-                                <div class="card-body">
-                                    <h3 class="card-title text-secondary">{{ recentVideo.title }}</h3>
-                                </div>
+                                {% endif %}
                             </div>
-                        {% endfor %}
+                            <div class="share mt-3 mb-3">
+                                <span>Partager <i class="fa-solid fa-share text-white"></i></span>
+                                <nav>
+                                    <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
+                                            data-sharer="telegram" data-title="Checkout this video on Origins Digital!"
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                        <i class="fa-brands fa-telegram"></i></button>
+                                    <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
+                                            data-sharer="facebook" data-hashtag="hashtag"
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                        <i class="fa-brands fa-facebook"></i></button>
+                                    <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
+                                            data-sharer="whatsapp" data-title="Checkout this video on Origins Digital!"
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                        <i class="fa-brands fa-whatsapp"></i></button>
+                                    <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
+                                            data-sharer="linkedin"
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                        <i class="fa-brands fa-linkedin-in"></i></button>
+                                    <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
+                                            data-sharer="twitter" data-title="Checkout this video on OriginsDigital!"
+                                            data-hashtags="OriginsDigital"
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                        <i class="fa-brands fa-twitter"></i></button>
+                                </nav>
+                            </div>
+                            {{ this.video.description | raw }}
+                        </div>
+                        <div class="col-lg-4 d-flex flex-column align-items-center">
+                            <h3 class="gradient mb-4 mt-0">Vidéos récentes</h3>
+                            {% for recentVideo in this.recentVideos %}
+                                <div class="card mb-2 bg-transparent border-0" style="width: 70%;">
+                                    <div class="video-container position-relative">
+                                        <a href="#"
+                                           data-video-id="{{ recentVideo.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
+                                            <img
+                                                src="{{ (image_dir ~ '/' ~ recentVideo.image ) | imagine_filter('thumbnail_locked') }}"
+                                                alt="{{ recentVideo.title }}" class="video-thumbnail img-fluid">
+                                        </a>
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title text-secondary">{{ recentVideo.title }}</h3>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         {% endif %}
     </div>
 </section>

@@ -28,3 +28,21 @@
 .swiper-button-prev {
     left: 0;
 }
+
+.swiper-next {
+    background-position: center;
+    background-size: cover;
+    width: 1200px;
+    height: 500px;
+}
+
+.swiper-next img {
+    display: block;
+    width: 100%;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+
+.swiper-next h2 {
+    font-size : 3rem;
+}
