@@ -32,15 +32,15 @@
 .swiper-next {
     background-position: center;
     background-size: cover;
-    width: 1200px;
+    width: 1500px;
     height: 500px;
 }
 
 .swiper-next img {
     display: block;
     width: 100%;
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
 }
 
 .swiper-next h2 {
