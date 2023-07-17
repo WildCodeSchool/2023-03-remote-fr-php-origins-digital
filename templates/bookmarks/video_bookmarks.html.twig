@@ -8,41 +8,49 @@
 
         <div class="d-flex justify-content-around flex-md-row flex-column">
             <div class="latestBookmarkContainer">
-                <h4 class="p-2">Dernière vidéo mise en favoris</h4>
-                    {% for video in app.user.bookmarks %}
-                        {% if loop.last %}
-                            <div class="latestBookmark card border-0 bg-transparent text-white d-flex flex-column justify-content-center align-content-center" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                                <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
-                                    <video class="recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="{{ image_dir ~ '/' ~ video.image }}" preload="none" >
-                                        <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
-                                    </video>
-                                </a>
-                                <div class="d-flex flex-column justify-content-around justify-content-center text-secondary m-4">
-                                    <h3>{{ video.title }}</h3>
-                                    <p>
-                                        {{ video.description | raw }}
-                                    </p>
-                                </div>
+                <h4 class="p-2 text-center">Dernière vidéo mise en favoris</h4>
+                {% for video in app.user.bookmarks %}
+                    {% if loop.last %}
+                        <div class="latestBookmark card border-0 bg-transparent text-white d-flex flex-column
+                             justify-content-center align-content-center" data-bs-target="#myModal{{ video.id }}"
+                             data-bs-toggle="modal">
+                            <a href="#" data-video-id="{{ video.id }}"
+                                {{ stimulus_action('video_modal', 'findVideo') }}>
+                                <video class="recommandationVideo video-js videoPlayerHome hover-to-play w-100"
+                                       id="player-home" controls poster="{{ image_dir ~ '/' ~ video.image }}"
+                                       preload="none">
+                                    <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo
+                                    {{ video.title }}" type="video/mp4">
+                                </video>
+                            </a>
+                            <div class="d-flex flex-column justify-content-around
+                                justify-content-center text-secondary m-4">
+                                <h3>{{ video.title }}</h3>
+                                <p>
+                                    {{ video.description | raw }}
+                                </p>
                             </div>
-                        {% endif %}
-                        {% else %}
-                    {% endfor %}
+                        </div>
+                    {% endif %}
+                {% else %}
+                {% endfor %}
             </div>
 
             <div class="bookmarkContainer d-flex justify-content-around">
                 <div class="swiper videoBookmarksSwiper">
                     <div class="swiper-wrapper bookmarkWrapper">
-                            {% for video in app.user.bookmarks|reverse %}
-                                <div class="swiper-slide card border-0 bg-transparent text-white swiper-slide-bookMarks" data-bs-target="#myModal{{ video.id}}" data-bs-toggle="modal">
-                                    <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
-                                    <video class="recommandationVideo video-js videoPlayerHome hover-to-play w-100" id="player-home" controls poster="{{ image_dir ~ '/' ~ video.image }}" preload="none">
-                                        <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo {{ video.title }}" type="video/mp4">
-                                    </video>
-                                    </a>
-                                </div>
-                            {% else %}
-                                <p>Pas de videos mis en favoris...</p>
-                            {% endfor %}
+                        {% for video in app.user.bookmarks|reverse %}
+                            <div class="swiper-slide card border-0 bg-transparent text-white
+                                 swiper-slide-bookMarks" data-bs-target="#myModal{{ video.id }}" data-bs-toggle="modal">
+                                <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
+                                    <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}"
+                                         alt="{{ video.title }}" class="img-fluid">
+                                    <i class="fa-solid fa-play lock fa-2xl position-absolute"></i>
+                                </a>
+                            </div>
+                        {% else %}
+                            <p>Pas de videos mis en favoris...</p>
+                        {% endfor %}
                     </div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
