@@ -6,9 +6,9 @@
                 <div class="swiper-wrapper position-relative">
                     {% for video in videos %}
                             <div class="swiper-slide card border-0 bg-transparent text-white">
-                                <div class="position-relative">
+                                <div class="position-relative overflow-hidden">
                                  <a href="#" data-video-id="{{ video.id }}" {{ stimulus_action('video_modal', 'findVideo') }}>
-                                <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class="img-fluid">
+                                <img src="{{ (image_dir ~ '/' ~ video.image ) | imagine_filter('thumbnail_locked') }}" alt="{{ video.title }}" class=" w-100 img-fluid">
                                 <i class="fa-solid fa-play fa-2xl position-absolute lock"></i>
                                  </a>
                                 </div>

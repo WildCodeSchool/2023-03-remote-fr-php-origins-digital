@@ -73,3 +73,12 @@
 .img-tendance {
     opacity: 25%;
 }
+
+.img-fluid {
+    background-size: cover;
+    transition: all 1s;
+}
+
+.position-relative:hover .img-fluid {
+    transform: scale(1.1);
+}

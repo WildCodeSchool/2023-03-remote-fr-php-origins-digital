@@ -19,9 +19,9 @@
         </nav>
     </div>
     <div class="container margin-left-2">
-        <div class="row g-4 justify-content-center">
+        <div class="row g-4 justify-content-center mb-3">
             {% for tag in activeTags %}
-                <div class="col-lg-5">
+                <div class="col-lg-5 ">
                     <div class="card text-center bg-image position-relative">
                         <a class="stretched-link" href="{{ path('tags_index', { 'category_id' : category.id, 'tag_id' : tag.id }) }}">
                             <img src="{{ (image_dir ~ '/' ~ tag.file) | imagine_filter('thumbnail_categories') }}"
@@ -33,7 +33,6 @@
                         </div>
                     </div>
                 </div>
-
             {% endfor %}
         </div>
     </div>
