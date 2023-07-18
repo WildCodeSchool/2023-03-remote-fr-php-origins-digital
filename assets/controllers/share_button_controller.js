@@ -26,7 +26,6 @@ export default class extends Controller {
         if (window.innerWidth <= 600) {
             this.hideShareButtons();
         }
-      // Stop the event from propagating to the document.
         event.stopPropagation();
     }
 

@@ -17,6 +17,12 @@ $linkedin: #0e76a8;
         z-index: 0;
     }
 
+    @media screen and (min-width: 601px) {
+        div.backgroundContainer {
+            display: none;
+        }
+    }
+
     span {
         display: inline-block;
         font-weight: 700;
@@ -102,4 +108,6 @@ $linkedin: #0e76a8;
 
     }
 }
+
+
 
