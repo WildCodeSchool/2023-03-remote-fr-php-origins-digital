@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin/video')]
 class AdminVideoController extends AbstractController
@@ -29,13 +30,15 @@ class AdminVideoController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_video_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, VideoRepository $videoRepository): Response
+    public function new(Request $request, VideoRepository $videoRepository, SluggerInterface $slugger): Response
     {
         $video = new Video();
         $form = $this->createForm(VideoType::class, $video);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($video->getTitle());
+            $video->setSlug($slug);
             $this->addFlash('success', 'La vidéo ' . $video->getTitle() . ' a été ajouté avec succès.');
 
             $videoRepository->save($video, true);
@@ -49,7 +52,7 @@ class AdminVideoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_video_show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'app_admin_video_show', methods: ['GET'])]
     public function show(Video $video): Response
     {
         return $this->render('admin/admin_video/show.html.twig', [
@@ -57,13 +60,19 @@ class AdminVideoController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_video_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Video $video, VideoRepository $videoRepository): Response
-    {
+    #[Route('/{slug}/edit', name: 'app_admin_video_edit', methods: ['GET', 'POST'])]
+    public function edit(
+        Request $request,
+        Video $video,
+        VideoRepository $videoRepository,
+        SluggerInterface $slugger
+    ): Response {
         $form = $this->createForm(VideoType::class, $video);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($video->getTitle());
+            $video->setSlug($slug);
             $videoRepository->save($video, true);
             $this->addFlash('success', 'La vidéo ' . $video->getTitle() . ' a été modifié avec succès.');
 

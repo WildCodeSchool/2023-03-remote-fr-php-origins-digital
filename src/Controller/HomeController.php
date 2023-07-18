@@ -19,7 +19,7 @@ class HomeController extends AbstractController
         VideoRepository $videoRepository,
         CategoryRepository $categoryRepository,
         TagRepository $tagsRepository,
-        VideoMostViewed $videoMostViewed
+        VideoMostViewed $videoMostViewed,
     ): Response {
         $videos = $videoRepository->findAll();
         $sortedVideos = $videoRepository->sortByLikes();

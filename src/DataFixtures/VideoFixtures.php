@@ -9,6 +9,7 @@ use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class VideoFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -81,7 +82,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             'tags' => ['ESPORT'], 'categorie' => 'FPS'],
     ];
 
-    public function __construct(private ParameterBagInterface $parameterBag)
+    public function __construct(private ParameterBagInterface $parameterBag, private SluggerInterface $slugger)
     {
     }
 
@@ -120,6 +121,7 @@ class VideoFixtures extends Fixture implements DependentFixtureInterface
             $video->setRealeaseDate(new DateTime('now'));
             $video->setUpcoming($videoData['is_upcoming']);
             $video->setImage($videoData['image']);
+            $video->setSlug($this->slugger->slug($videoData['title']));
             foreach ($videoData['tags'] as $tagName) {
                 $video->addTag($this->getReference('tag_' . $tagName));
             }

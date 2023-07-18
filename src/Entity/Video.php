@@ -29,6 +29,9 @@ class Video
     #[ORM\Column(length: 255)]
     private ?string $videoUrl = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     #[ORM\Column(nullable: true)]
     private ?int $views = null;
 
@@ -349,6 +352,18 @@ class Video
         if ($this->userDontLikes->removeElement($userDontLike)) {
             $userDontLike->removeDontLIke($this);
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
