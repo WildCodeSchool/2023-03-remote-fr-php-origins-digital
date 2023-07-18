@@ -7,7 +7,7 @@
     --swiper-navigation-color: rgba(255, 112, 2, 0.7);
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
-    height: 100%;
+    height: 59.7%;
     top: 0;
     width: 1.5rem;
     margin-top: 0;
@@ -45,4 +45,36 @@
 
 .swiper-next h2 {
     font-size : 3rem;
+}
+
+/* Point de rupture pour les smartphones en orientation portrait */
+@media screen and (max-width: 575.98px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        height: 40.8%;
+    }
+}
+
+/* Point de rupture pour les smartphones en orientation paysage */
+@media screen and (min-width: 576px) and (max-width: 767.98px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        height: 59%;
+    }
+}
+
+/* Point de rupture pour les tablettes en orientation portrait */
+@media screen and (min-width: 768px) and (max-width: 991.98px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        height: 50.2%;
+    }
+}
+
+/* Point de rupture pour les tablettes en orientation paysage */
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .swiper-button-next,
+    .swiper-button-prev {
+        height: 55%;
+    }
 }
