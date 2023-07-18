@@ -4,7 +4,7 @@
         <div class="row">
             {% for category in categories %}
                     <div class="col-lg-4 col-md-6">
-                        <a href="{{ path('category_index', { 'id' : category.id }) }}">
+                        <a href="{{ path('category_index', { 'slug' : category.slug }) }}">
                             <div class="atropos desAtropos genre-box genreAtropos">
                                 <!-- scale container (required) -->
 

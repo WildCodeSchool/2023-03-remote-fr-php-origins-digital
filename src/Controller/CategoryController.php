@@ -12,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 #[Route('/category', name: 'category_')]
 class CategoryController extends AbstractController
 {
-    #[Route('/{id}', name: 'index', methods: ['GET'])]
+    #[Route('/{slug}', name: 'index', methods: ['GET'])]
     public function index(
         TagRepository $tagRepository,
         Category $category
