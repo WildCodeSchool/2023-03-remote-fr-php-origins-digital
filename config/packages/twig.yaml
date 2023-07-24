@@ -5,6 +5,7 @@ twig:
         image_dir: '%image_dir%'
         form_themes:
             - '@FontAwesome/fontawesome_layout.html.twig'
+            - 'bootstrap_5_layout.html.twig'
 
 when@test:
     twig:
