@@ -1,68 +1,16 @@
 .bookmarkContainer{
-    width: 70vh;
-    height: 90vh;
-}
-.bookmarkWrapper .recommandationVideo{
-    height: 90%;
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-.swiper.videoBookmarksSwiper{
-    height: 100%;
-}
-
-.videoBookmarksSwiper [class^=swiper-button]{
-    transform:rotate(90deg);
-    top: initial;
-    left: initial;
-    right: 50%;
-    margin: 0;
-    background-color: transparent;
-    width: auto !important;
-    height: auto;
-}
-.videoBookmarksSwiper .swiper-button-prev{
-    top:0 !important;
-}
-.videoBookmarksSwiper .swiper-button-next{
-    bottom:0 !important;
-}
-.videoPlayerBookmarks{
-    height: auto;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.videoBookmark {
-    margin-top: 1.5rem;
-    margin-bottom: 5rem;
+    width: 50vh;
+    height: 80vh;
 }
 
 .latestBookmarkContainer{
     background: rgb(255,112,2);
     background: linear-gradient(180deg, rgba(255,112,2,0.5606617647058824) 0%, rgba(255,112,2,0.07326680672268904) 100%);
-    width: 45%;
     border-radius: 10px 10px 0 0;
 }
 
-.latestBookmarkContainer .latestBookmark .recommandationVideo{
-    width: 90% !important;
+.recommandationVideo{
+    width: 100% !important;
     margin: 5%;
 }
-
-@media screen and (max-width: 768px) {
-    .latestBookmarkContainer{
-        width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .bookmarkContainer {
-        width: 100%;
-        margin-top: 2rem;
-    }
-}
-
 
