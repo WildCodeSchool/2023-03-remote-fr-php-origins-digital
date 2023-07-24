@@ -13,7 +13,7 @@
                     <a href="/" class="text-decoration-none text-secondary">Accueil</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="{{ path('category_index', {id : category.id}) }}" class="text-decoration-none text-secondary">{{ category.name }}</a>
+                    <a href="{{ path('category_index', {slug : category.slug}) }}" class="text-decoration-none text-secondary">{{ category.name }}</a>
                 </li>
                 <li class="breadcrumb-item active text-info" aria-current="page">{{ tag.name }}</li>
             </ol>
