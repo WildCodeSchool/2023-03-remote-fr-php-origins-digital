@@ -1,15 +1,31 @@
 .bookmarkContainer{
     width: 50vh;
-    height: 80vh;
-}
-.bookmarkWrapper .recommandationVideo{
-    height: 90%;
-    margin-top: 0;
-    margin-bottom: 0;
+    height: 90vh;
+    margin-left: 10rem;
 }
 
-.swiper.videoBookmarksSwiper{
-    height: 100%;
+.latestBookmarkContainer{
+    background: rgb(255,112,2);
+    background: linear-gradient(180deg, rgba(255,112,2,0.5606617647058824) 0%, rgba(255,112,2,0.07326680672268904) 100%);
+    border-radius: 10px 10px 0 0;
+    margin-left: 2rem;
+}
+
+.recommandationVideo{
+    width: 100% !important;
+    margin: 5%;
+}
+
+.swiper-slide-bookMarks {
+    margin-top: 2rem;
+}
+
+.button-prev {
+    top:0 !important;
+}
+
+.button-next {
+    bottom: 0 !important;
 }
 
 .videoBookmarksSwiper [class^=swiper-button]{
@@ -22,47 +38,3 @@
     width: auto !important;
     height: auto;
 }
-.videoBookmarksSwiper .swiper-button-prev{
-    top:0 !important;
-}
-.videoBookmarksSwiper .swiper-button-next{
-    bottom:0 !important;
-}
-.videoPlayerBookmarks{
-    height: auto;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.videoBookmark {
-    margin-top: 1.5rem;
-    margin-bottom: 5rem;
-}
-
-.latestBookmarkContainer{
-    background: rgb(255,112,2);
-    background: linear-gradient(180deg, rgba(255,112,2,0.5606617647058824) 0%, rgba(255,112,2,0.07326680672268904) 100%);
-    width: 45%;
-    border-radius: 10px 10px 0 0;
-}
-
-.latestBookmarkContainer .latestBookmark .recommandationVideo{
-    width: 90% !important;
-    margin: 5%;
-}
-
-@media screen and (max-width: 768px) {
-    .latestBookmarkContainer{
-        width: 90%;
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-
-    .bookmarkContainer {
-        width: 100%;
-        margin-top: 2rem;
-    }
-}
-
-
