@@ -9,7 +9,7 @@
                     </div>
                     <div class="modal-body row" data-live-id="video-{{ 'now'|date('U') }}">
                         <div class="col-lg-8">
-                            <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }}>
+                            <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }} data-video-id-value="{{ this.video.id }}">
                                 <source src="{{ video_dir ~ '/' ~ this.video.videoUrl }}" alt="{{ this.video.title }}"
                                         type="video/mp4">
                             </video>

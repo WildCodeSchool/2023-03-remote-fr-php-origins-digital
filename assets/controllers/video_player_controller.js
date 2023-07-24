@@ -14,7 +14,6 @@ export default class extends Controller {
             autoload: true,
         });
 
-        // Add a view after the video has been played for at least 15 seconds
         window.viewAdded = false;
         window.player.on('timeupdate', (event) => {
             console.log('timeupdate event triggered');
@@ -31,7 +30,7 @@ export default class extends Controller {
     {
         const videoId = this.element.getAttribute('data-video-id-value');
         try {
-            fetch(` / video / api / videos / ${videoId} / incrementView`)
+            fetch(`/video/${videoId}/incrementView`)
                 .then(res => res.json())
                 .then(data => console.log(data))
         } catch (err) {

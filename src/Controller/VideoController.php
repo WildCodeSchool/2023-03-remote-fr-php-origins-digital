@@ -19,7 +19,7 @@ class VideoController extends AbstractController
             'video' => $video,
         ]);
     }
-    #[Route("/api/videos/{id}/incrementView", name: "increment_views")]
+    #[Route("/{id}/incrementView", name: "increment_views")]
     public function addView(Video $video, EntityManagerInterface $entityManager): JsonResponse
     {
         $video->setViews($video->getViews() + 1);
