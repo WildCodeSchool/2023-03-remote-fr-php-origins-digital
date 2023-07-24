@@ -16,7 +16,6 @@ export default class extends Controller {
 
         window.viewAdded = false;
         window.player.on('timeupdate', (event) => {
-            console.log('timeupdate event triggered');
             if (!window.viewAdded && window.player.currentTime() >= 5) {
                 window.viewAdded = true;
                 this.updateViewCount();
