@@ -1,12 +1,14 @@
 .bookmarkContainer{
     width: 50vh;
-    height: 80vh;
+    height: 90vh;
+    margin-left: 10rem;
 }
 
 .latestBookmarkContainer{
     background: rgb(255,112,2);
     background: linear-gradient(180deg, rgba(255,112,2,0.5606617647058824) 0%, rgba(255,112,2,0.07326680672268904) 100%);
     border-radius: 10px 10px 0 0;
+    margin-left: 2rem;
 }
 
 .recommandationVideo{
@@ -14,3 +16,25 @@
     margin: 5%;
 }
 
+.swiper-slide-bookMarks {
+    margin-top: 2rem;
+}
+
+.button-prev {
+    top:0 !important;
+}
+
+.button-next {
+    bottom: 0 !important;
+}
+
+.videoBookmarksSwiper [class^=swiper-button]{
+    transform:rotate(90deg);
+    top: initial;
+    left: initial;
+    right: 50%;
+    margin: 0;
+    background-color: transparent;
+    width: auto !important;
+    height: auto;
+}
