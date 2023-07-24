@@ -25,13 +25,15 @@ export default class extends Controller {
     {
         if (window.innerWidth <= 600) {
             this.hideShareButtons();
+            event.stopPropagation();
         }
-        event.stopPropagation();
     }
 
-    handleGlobalClick()
+    handleGlobalClick(event)
     {
-        this.showShareButtons();
+        if (!this.shareButtonTargets.includes(event.target) && window.innerWidth <= 600) {
+            this.showShareButtons();
+        }
     }
 
     hideShareButtons()
