@@ -30,11 +30,9 @@ export default class extends Controller {
     updateViewCount()
     {
         const videoId = this.element.getAttribute('data-video-id-value');
-        console.log(videoId);
         try {
             fetch(`/video/api/videos/${videoId}/incrementView`)
                 .then(res => res.json())
-            // Then update the icon
                 .then(data => console.log(data))
         } catch (err) {
             console.error(err);
