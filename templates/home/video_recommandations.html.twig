@@ -1,17 +1,13 @@
-<div class="container-fluid mt-4 mb-4 p-4">
+<div class="container-fluid mt-4 p-4">
     <!-- Swiper -->
     <section>
-        <h2 class="mt-4 mb-4 p-4">Recommandation</h2>
+        <h2 class="mt-4 p-4">Recommandation</h2>
             <div class="swiper mySwiper_recommandation mb-5">
                 <div class="swiper-wrapper position-relative">
                     {% for video in videosRec %}
                             <div class="swiper-slide card border-0 bg-transparent text-white">
-                                <div class="position-relative">
                                     {{ include('_includes/_videoRepeatedCode.html.twig') }}
-                                </div>
-                                <div class="card-body position-absolute">
-                                    <h3 class="card-title">{{ video.title }}</h3>
-                                </div>
+                                <h3 class="videoTitle">{{ video.title }}</h3>
                             </div>
                     {% endfor %}
                 </div>
