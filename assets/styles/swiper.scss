@@ -1,13 +1,28 @@
-.swiper-wrapper {
-    margin-bottom: 8rem;
+$orange: #FF6608;
+$black: #021324;
+$white: #FFFFFF;
+.swiper {
+    margin-bottom: 0 !important;
+    padding-bottom: 4rem;
 }
-
+.swiper h3.videoTitle {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: $white;
+}
+.swiper-wrapper {
+    margin-bottom: 0 !important;
+}
+.swiper .card-title {
+    margin-bottom: 0 !important;
+}
 .swiper-button-next,
 .swiper-button-prev {
     --swiper-navigation-color: rgba(255, 112, 2, 0.7);
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
-    height: 59.7%;
+    height: calc(100% - 4rem);
     top: 0;
     width: 1.5rem;
     margin-top: 0;
@@ -45,36 +60,4 @@
 
 .swiper-next h2 {
     font-size : 3rem;
-}
-
-/* Point de rupture pour les smartphones en orientation portrait */
-@media screen and (max-width: 575.98px) {
-    .swiper-button-next,
-    .swiper-button-prev {
-        height: 40.8%;
-    }
-}
-
-/* Point de rupture pour les smartphones en orientation paysage */
-@media screen and (min-width: 576px) and (max-width: 767.98px) {
-    .swiper-button-next,
-    .swiper-button-prev {
-        height: 59%;
-    }
-}
-
-/* Point de rupture pour les tablettes en orientation portrait */
-@media screen and (min-width: 768px) and (max-width: 991.98px) {
-    .swiper-button-next,
-    .swiper-button-prev {
-        height: 50.2%;
-    }
-}
-
-/* Point de rupture pour les tablettes en orientation paysage */
-@media screen and (min-width: 992px) and (max-width: 1199px) {
-    .swiper-button-next,
-    .swiper-button-prev {
-        height: 55%;
-    }
 }
