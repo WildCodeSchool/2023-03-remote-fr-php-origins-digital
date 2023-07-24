@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Tendances
+{% endblock %}
+
+{% block body %}
+    <div class="container-fluid mt-4 mb-4 p-4">
+        <div class="row">
+            <h2 class="gradient mt-4 mb-4 p-4">Toutes les vidéos en tendances</h2>
+            {% for video in videos %}
+                {% include '_includes/_cardVideo.html.twig' %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -7,6 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class TagFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -17,7 +18,7 @@ class TagFixtures extends Fixture implements DependentFixtureInterface
         ['name' => 'ESPORT', 'file' => 'esport-categories.jpg']
     ];
 
-    public function __construct(private ParameterBagInterface $parameterBag)
+    public function __construct(private ParameterBagInterface $parameterBag, private SluggerInterface $slugger)
     {
     }
 
@@ -43,6 +44,7 @@ class TagFixtures extends Fixture implements DependentFixtureInterface
             copy($filePath, $destinationPath);
 
             $tag->setFile($tagsData['file']);
+            $tag->setSlug($this->slugger->slug($tagsData['name']));
             $manager->persist($tag);
         }
 

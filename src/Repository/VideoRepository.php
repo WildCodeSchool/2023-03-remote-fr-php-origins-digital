@@ -63,6 +63,14 @@ class VideoRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function sortByViews(): array
+    {
+        $query = $this->createQueryBuilder('v')
+            ->orderBy('v.views', 'DESC');
+
+        return $query->getQuery()->getResult();
+    }
+
     public function sortByVideo(): Query
     {
         return $this->createQueryBuilder('v')
@@ -71,8 +79,7 @@ class VideoRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
-
-    public function findVideoByCatAndTag(int $categoryId, int $tagId): array
+    public function findVideoByCatAndTagSortedByViews(int $categoryId, int $tagId): array
     {
         $query = $this->createQueryBuilder('v')
             ->join('v.category', 'c')
@@ -80,7 +87,24 @@ class VideoRepository extends ServiceEntityRepository
             ->where('c.id = :categoryId')
             ->andWhere('t.id = :tagId')
             ->setParameter('categoryId', $categoryId)
-            ->setParameter('tagId', $tagId);
+            ->setParameter('tagId', $tagId)
+            ->orderBy('v.views', 'DESC');
+
+        return $query->getQuery()->getResult();
+    }
+
+    public function findVideoByCatAndTagSortedByLikes(int $categoryId, int $tagId): array
+    {
+        $query = $this->createQueryBuilder('v')
+            ->join('v.category', 'c')
+            ->join('v.tag', 't')
+            ->leftJoin('v.userLikes', 'userLikes')
+            ->where('c.id = :categoryId')
+            ->andWhere('t.id = :tagId')
+            ->setParameter('categoryId', $categoryId)
+            ->setParameter('tagId', $tagId)
+            ->groupBy('v')
+            ->orderBy('COUNT(userLikes.id)', 'DESC');
 
         return $query->getQuery()->getResult();
     }

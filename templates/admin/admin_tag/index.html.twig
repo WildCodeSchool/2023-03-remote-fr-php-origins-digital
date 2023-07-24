@@ -28,7 +28,7 @@
                 <td>{{ tag.file }}</td>
                 <td>{{ tag.updatedAt ? tag.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
-                    <a href="{{ path('app_admin_tag_edit', {'id': tag.id}) }}"  class="stretched-link">Modifier</a>
+                    <a href="{{ path('app_admin_tag_edit', {'slug': tag.slug}) }}"  class="stretched-link">Modifier</a>
                 </td>
             </tr>
         {% else %}

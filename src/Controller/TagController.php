@@ -23,10 +23,11 @@ class TagController extends AbstractController
         int $categoryId,
         int $tagId
     ): Response {
-        $videos = $videoRepository->findVideoByCatAndTag($categoryId, $tagId);
+        $videos = $videoRepository->findVideoByCatAndTagSortedByLikes($categoryId, $tagId);
         $sortedByFavourites = $videoRepository->findVideoByFavourites($categoryId, $tagId);
         $sortedVideos = $videoRepository->sortByLikes();
         $nextVideos = $videoRepository->findBy(['upcoming' => true]);
+        $videosRec = $videoRepository->findVideoByCatAndTagSortedByViews($categoryId, $tagId);
         return $this->render(
             'tags/index.html.twig',
             [
@@ -35,7 +36,8 @@ class TagController extends AbstractController
             'tag' => $tag,
             'videos' => $videos,
             'sortedByFavourites' => $sortedByFavourites,
-             'nextVideos' => $nextVideos,
+            'nextVideos' => $nextVideos,
+            'videosRec' => $videosRec
             ]
         );
     }
