@@ -9,7 +9,7 @@
                     </div>
                     <div class="modal-body row" data-live-id="video-{{ 'now'|date('U') }}">
                         <div class="col-lg-8">
-                            <video class="video-js videoPlayer" data-video-id-value="{{ this.video.id }}" controls {{ stimulus_controller('video_player') }}>
+                            <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }}>
                                 <source src="{{ video_dir ~ '/' ~ this.video.videoUrl }}" alt="{{ this.video.title }}"
                                         type="video/mp4">
                             </video>
@@ -28,7 +28,6 @@
                                 {% endif %}
                             </div>
                             <div class="share mt-3 mb-3">
-                                <div class="backgroundContainer" data-controller="share-button" data-share-button-target="shareButton"></div>
                                 <span>Partager <i class="fa-solid fa-share text-white"></i></span>
                                 <nav>
                                     <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
@@ -53,7 +52,6 @@
                                             data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
                                         <i class="fa-brands fa-twitter"></i></button>
                                 </nav>
-
                             </div>
                             {{ this.video.description | raw }}
                         </div>
@@ -81,3 +79,4 @@
         {% endif %}
     </div>
 </section>
+
