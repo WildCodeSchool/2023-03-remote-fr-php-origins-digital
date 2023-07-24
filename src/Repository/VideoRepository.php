@@ -58,7 +58,8 @@ class VideoRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('v')
             ->leftJoin('v.userLikes', 'userLikes')
             ->groupBy('v')
-            ->orderBy('COUNT(userLikes.id)', 'DESC');
+            ->orderBy('COUNT(userLikes.id)', 'DESC')
+            ->setMaxResults(25);
 
         return $query->getQuery()->getResult();
     }
@@ -66,7 +67,8 @@ class VideoRepository extends ServiceEntityRepository
     public function sortByViews(): array
     {
         $query = $this->createQueryBuilder('v')
-            ->orderBy('v.views', 'DESC');
+            ->orderBy('v.views', 'DESC')
+            ->setMaxResults(25);
 
         return $query->getQuery()->getResult();
     }
@@ -88,7 +90,8 @@ class VideoRepository extends ServiceEntityRepository
             ->andWhere('t.id = :tagId')
             ->setParameter('categoryId', $categoryId)
             ->setParameter('tagId', $tagId)
-            ->orderBy('v.views', 'DESC');
+            ->orderBy('v.views', 'DESC')
+            ->setMaxResults(25);
 
         return $query->getQuery()->getResult();
     }
@@ -104,7 +107,8 @@ class VideoRepository extends ServiceEntityRepository
             ->setParameter('categoryId', $categoryId)
             ->setParameter('tagId', $tagId)
             ->groupBy('v')
-            ->orderBy('COUNT(userLikes.id)', 'DESC');
+            ->orderBy('COUNT(userLikes.id)', 'DESC')
+            ->setMaxResults(25);
 
         return $query->getQuery()->getResult();
     }
@@ -125,7 +129,6 @@ class VideoRepository extends ServiceEntityRepository
 
         return $query->getQuery()->getResult();
     }
-
 //    /**
 //     * @return Video[] Returns an array of Video objects
 //     */
