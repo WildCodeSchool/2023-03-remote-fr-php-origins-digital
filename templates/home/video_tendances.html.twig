@@ -1,6 +1,6 @@
-<div class="container-fluid mt-4 mb-4 p-4">
+<div class="container-fluid p-4">
     <div class="row">
-        <h2 class="mt-4 mb-4 p-4">Tendance</h2>
+        <h2 class="p-4">Tendance</h2>
         {% for video in sortedVideos|slice(0, 6) %}
             {% include '_includes/_cardVideo.html.twig' %}
         {% endfor %}

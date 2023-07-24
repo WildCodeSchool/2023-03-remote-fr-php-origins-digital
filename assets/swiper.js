@@ -6,9 +6,9 @@ window.Swiper = Swiper;
 
 const swiper = new Swiper(".mySwiper_recommandation", {
     // Default parameters
-    slidesPerView: 2,
-    slidesPerGroup: 2,
-    spaceBetween: 10,
+    slidesPerView: 1,
+    slidesPerGroup: 1,
+    spaceBetween: 15,
     preload: 'none',
     navigation: {
         nextEl: ".swiper-button-next",
