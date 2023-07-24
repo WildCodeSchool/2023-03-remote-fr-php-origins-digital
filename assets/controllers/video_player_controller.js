@@ -31,7 +31,7 @@ export default class extends Controller {
     {
         const videoId = this.element.getAttribute('data-video-id-value');
         try {
-            fetch(`/video/api/videos/${videoId}/incrementView`)
+            fetch(` / video / api / videos / ${videoId} / incrementView`)
                 .then(res => res.json())
                 .then(data => console.log(data))
         } catch (err) {
