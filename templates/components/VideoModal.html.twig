@@ -13,7 +13,7 @@
                                 <source src="{{ video_dir ~ '/' ~ this.video.videoUrl }}" alt="{{ this.video.title }}"
                                         type="video/mp4">
                             </video>
-                            <h3>{{ this.video.title }}</h3>
+                            <h3 class="mt-3 mb-3">{{ this.video.title }}</h3>
                             <div class="d-flex flex-row justify-content-between flex-nowrap">
                                 {% if app.user %}
                                     {{ component('like', { 'data-live-id': 'now'|date('U'), 'video': this.video }) }}
@@ -62,7 +62,14 @@
                                             <img
                                                 src="{{ (image_dir ~ '/' ~ recentVideo.image ) | imagine_filter('thumbnail_locked') }}"
                                                 alt="{{ recentVideo.title }}" class="video-thumbnail img-fluid">
+
+                                            {% if app.user %}
+                                                <i class="fa-solid fa-play lock fa-2xl position-absolute"></i>
+                                            {% else %}
+                                                <i class="fa-solid fa-lock lock fa-2xl position-absolute"></i>
+                                            {% endif %}
                                         </a>
+
                                     </div>
                                     <div class="card-body">
                                         <h3 class="card-title text-secondary">{{ recentVideo.title }}</h3>
