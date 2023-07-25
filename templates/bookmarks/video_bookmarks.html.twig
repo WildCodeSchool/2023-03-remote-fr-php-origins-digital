@@ -10,14 +10,12 @@
             <h3 class="p-2 text-center">Dernière vidéo mise en favoris</h3>
             {% for video in app.user.bookmarks %}
                 {% if loop.last %}
-                    <div class="latestBookmark card border-0 bg-transparent text-white" data-bs-target="#myModal{{ video.id }}" data-bs-toggle="modal">
-                        <a href="#" data-video-id="{{ video.id }}">
+                    <div class="latestBookmark card border-0 bg-transparent text-white">
                             <video class="video-js videoBookmark img-fluid hover-to-play" {{ stimulus_controller('video_player') }}
-                                   controls poster="{{ image_dir ~ '/' ~ video.image }}" preload="none">
+                                   controls poster="{{ (image_dir ~ '/' ~ video.image) | imagine_filter('thumbnail_locked') }}" preload="none">
                                 <source src="{{ video_dir ~ '/' ~ video.videoUrl }}" alt="Vidéo
                             {{ video.title }}" type="video/mp4">
                             </video>
-                        </a>
                         <div class="text-secondary m-4">
                             <h3>{{ video.title }}</h3>
                             <p>
