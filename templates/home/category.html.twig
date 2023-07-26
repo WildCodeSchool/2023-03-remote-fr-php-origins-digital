@@ -1,10 +1,10 @@
-<div class="categorie mt-4 mb-4 p-4" id="categorie">
+<div class="categorie mb-4 p-4" id="categorie">
     <div class="container-fluid">
-        <h2 class="mt-4 mb-4 p-4">Categories</h2>
+        <h2 class="mb-4 p-4">Categories</h2>
         <div class="row">
             {% for category in categories %}
                     <div class="col-lg-4 col-md-6">
-                        <a href="{{ path('category_index', { 'id' : category.id }) }}">
+                        <a href="{{ path('category_index', { 'slug' : category.slug }) }}">
                             <div class="atropos desAtropos genre-box genreAtropos">
                                 <!-- scale container (required) -->
 

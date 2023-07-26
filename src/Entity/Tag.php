@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use DateTime;
@@ -25,6 +26,9 @@ class Tag
 
     #[ORM\Column(nullable: true)]
     private ?string $file = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
 
     #[Vich\UploadableField(mapping: 'image_file', fileNameProperty: 'file')]
     private ?File $imageFile = null;
@@ -121,6 +125,17 @@ class Tag
         if ($this->videos->removeElement($video)) {
             $video->removeTag($this);
         }
+
+        return $this;
+    }
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

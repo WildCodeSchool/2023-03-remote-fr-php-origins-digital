@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 #[Route('/admin/tag')]
 class AdminTagController extends AbstractController
@@ -22,13 +23,15 @@ class AdminTagController extends AbstractController
     }
 
     #[Route('/new', name: 'app_admin_tag_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, TagRepository $tagRepository): Response
+    public function new(Request $request, TagRepository $tagRepository, SluggerInterface $slugger): Response
     {
         $tag = new Tag();
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($tag->getName());
+            $tag->setSlug($slug);
             $tagRepository->save($tag, true);
             $this->addFlash('success', 'Création du tag ' . $tag->getName() . ' avec succès');
 
@@ -41,7 +44,7 @@ class AdminTagController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_admin_tag_show', methods: ['GET'])]
+    #[Route('/{slug}', name: 'app_admin_tag_show', methods: ['GET'])]
     public function show(Tag $tag): Response
     {
         return $this->render('admin/admin_tag/show.html.twig', [
@@ -49,13 +52,15 @@ class AdminTagController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_admin_tag_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Tag $tag, TagRepository $tagRepository): Response
+    #[Route('/{slug}/edit', name: 'app_admin_tag_edit', methods: ['GET', 'POST'])]
+    public function edit(Request $request, Tag $tag, TagRepository $tagRepository, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(TagType::class, $tag);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugger->slug($tag->getName());
+            $tag->setSlug($slug);
             $tagRepository->save($tag, true);
             $this->addFlash('success', 'Modification du tag ' . $tag->getName() . ' avec succès');
             return $this->redirectToRoute('app_admin_tag_index', [], Response::HTTP_SEE_OTHER);

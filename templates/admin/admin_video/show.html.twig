@@ -54,7 +54,7 @@
     </button>
 
     <button class="btn btn-warning">
-        <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}" class="text-decoration-none text-white">Modifier</a>
+        <a href="{{ path('app_admin_video_edit', {'slug': video.slug}) }}" class="text-decoration-none text-white">Modifier</a>
     </button>
 
     {{ include('admin/admin_video/_delete_form.html.twig') }}

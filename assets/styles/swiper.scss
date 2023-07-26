@@ -1,13 +1,28 @@
-.swiper-wrapper {
-    margin-bottom: 8rem;
+$orange: #FF6608;
+$black: #021324;
+$white: #FFFFFF;
+.swiper {
+    margin-bottom: 0 !important;
+    padding-bottom: 4rem;
 }
-
+.swiper h3.videoTitle {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    color: $white;
+}
+.swiper-wrapper {
+    margin-bottom: 0 !important;
+}
+.swiper .card-title {
+    margin-bottom: 0 !important;
+}
 .swiper-button-next,
 .swiper-button-prev {
     --swiper-navigation-color: rgba(255, 112, 2, 0.7);
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
-    height: 100%;
+    height: calc(100% - 4rem);
     top: 0;
     width: 1.5rem;
     margin-top: 0;
@@ -32,17 +47,18 @@
 .swiper-next {
     background-position: center;
     background-size: cover;
-    width: 1200px;
+    width: 1500px;
     height: 500px;
 }
 
 .swiper-next img {
     display: block;
     width: 100%;
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
 }
 
 .swiper-next h2 {
     font-size : 3rem;
 }
+

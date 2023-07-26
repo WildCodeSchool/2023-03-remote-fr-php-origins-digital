@@ -9,11 +9,14 @@
                     </div>
                     <div class="modal-body row" data-live-id="video-{{ 'now'|date('U') }}">
                         <div class="col-lg-8">
-                            <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }}>
+                            <video class="video-js videoPlayer" controls {{ stimulus_controller('video_player') }} data-video-id-value="{{ this.video.id }}">
                                 <source src="{{ video_dir ~ '/' ~ this.video.videoUrl }}" alt="{{ this.video.title }}"
                                         type="video/mp4">
                             </video>
-                            <h3>{{ this.video.title }}</h3>
+                            <div class="titleContainer d-flex flex-row justify-content-between flex-nowrap mt-3 mb-3">
+                                <h3>{{ this.video.title }}</h3>
+                                <h3>{{ this.video.views }} vues</h3>
+                            </div>
                             <div class="d-flex flex-row justify-content-between flex-nowrap">
                                 {% if app.user %}
                                     {{ component('like', { 'data-live-id': 'now'|date('U'), 'video': this.video }) }}
@@ -29,24 +32,24 @@
                                 <nav>
                                     <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
                                             data-sharer="telegram" data-title="Checkout this video on Origins Digital!"
-                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'slug': video.slug}) }}">
                                         <i class="fa-brands fa-telegram"></i></button>
                                     <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
                                             data-sharer="facebook" data-hashtag="hashtag"
-                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'slug': video.slug}) }}">
                                         <i class="fa-brands fa-facebook"></i></button>
                                     <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
                                             data-sharer="whatsapp" data-title="Checkout this video on Origins Digital!"
-                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'slug': video.slug}) }}">
                                         <i class="fa-brands fa-whatsapp"></i></button>
                                     <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
                                             data-sharer="linkedin"
-                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'slug': video.slug}) }}">
                                         <i class="fa-brands fa-linkedin-in"></i></button>
                                     <button class="button btn btn-info btn-sm shadow-sm text-white shareBtn"
                                             data-sharer="twitter" data-title="Checkout this video on OriginsDigital!"
                                             data-hashtags="OriginsDigital"
-                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'id': video.id}) }}">
+                                            data-url="{{ "https://origins-digital.remote-fr-1.wilders.dev" ~ path('video_show', {'slug': video.slug}) }}">
                                         <i class="fa-brands fa-twitter"></i></button>
                                 </nav>
                             </div>

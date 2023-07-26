@@ -14,6 +14,7 @@
     </rule>
     <rule ref="rulesets/codesize.xml" >
         <exclude name="TooManyFields" />
+        <exclude name="ExcessiveClassComplexity" />
         <exclude name="TooManyPublicMethods" />
     </rule>
     <rule ref="rulesets/codesize.xml/TooManyFields" >
@@ -24,6 +25,11 @@
     <rule ref="rulesets/codesize.xml/TooManyPublicMethods" >
         <properties>
             <property name="ignorepattern" value="(^(set|get|add|remove))i" />
+        </properties>
+    </rule>
+    <rule ref="rulesets/codesize.xml/ExcessiveClassComplexity">
+        <properties>
+            <property name="maximum" value="60" />
         </properties>
     </rule>
     <rule ref="rulesets/controversial.xml" >

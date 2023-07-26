@@ -40,7 +40,7 @@
                 <td>{{ video.upcoming ? 'Yes' : 'No' }}</td>
                 <td>{{ video.description }}</td>
                 <td>
-                        <a href="{{ path('app_admin_video_edit', {'id': video.id}) }}"
+                        <a href="{{ path('app_admin_video_edit', {'slug': video.slug}) }}"
                            class="text-decoration-none stretched-link">Modifier la vidéo</a>
                 </td>
             </tr>

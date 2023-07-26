@@ -51,7 +51,10 @@ class VideoType extends AbstractType
                 ]
             ])
             ->add('description', CKEditorType::class, [
-                'purify_html' => true
+                'purify_html' => true,
+                'attr' => [
+                    'class' => 'form-control'
+                ],
             ])
             ->add('videoFile', VichFileType::class, [
                 'required' => false,
@@ -72,6 +75,9 @@ class VideoType extends AbstractType
 
             ->add('category', null, [
                 'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'form-control'
+                ],
             ])
         ;
     }
